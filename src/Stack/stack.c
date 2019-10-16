@@ -6,7 +6,7 @@
 static int sp = 0;
 static int stack[SK_SIZE];
 
-void pushc(int value) {
+void push(int value) {
   if (sp == SK_SIZE)
     stackOverflowError();
   stack[sp] = value;
