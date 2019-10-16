@@ -3,5 +3,6 @@
 
 void stackOverflowError();
 void emptyStackError();
+void unknownInstructionError(const int optCode);
 
 #endif

@@ -1,8 +1,11 @@
 #include "error.h"
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-static void vmError(int errc, char *em) {
+static void vmError(const int errc, const char *em, ...) {
+  va_list errV;
+
   // Change the Text Color to Red
   fprintf(stderr, "\033[0;31m");
 
@@ -12,10 +15,15 @@ static void vmError(int errc, char *em) {
   fprintf(stderr, "\033[0m");
 
   // Print error
-  fprintf(stderr, "%s\n", em);
+  va_start(errV, em);
+  vfprintf(stderr, em, errV);
+  va_end(errV);
 
   exit(errc);
 }
 
-void stackOverflowError(int line) { vmError(101, "stackOverflowError"); }
-void emptyStackError(int line) { vmError(102, "emtyStackError"); }
+void stackOverflowError() { vmError(101, "stackOverflowError"); }
+void emptyStackError() { vmError(102, "emtyStackError"); }
+void unknownInstructionError(const int optCode) {
+  vmError(103, "Opcode '%d' does not exist\n", optCode);
+}
