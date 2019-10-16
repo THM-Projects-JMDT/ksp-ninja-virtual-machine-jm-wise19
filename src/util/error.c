@@ -22,8 +22,8 @@ static void vmError(const int errc, const char *em, ...) {
   exit(errc);
 }
 
-void stackOverflowError() { vmError(101, "stackOverflowError"); }
-void stackUnderflowError() { vmError(102, "stackUnderflowError"); }
+void stackOverflowError() { vmError(101, "stackOverflowError\n"); }
+void stackUnderflowError() { vmError(102, "stackUnderflowError\n"); }
 void unknownInstructionError(const int optCode) {
   vmError(103, "Opcode '%d' does not exist\n", optCode);
 }
