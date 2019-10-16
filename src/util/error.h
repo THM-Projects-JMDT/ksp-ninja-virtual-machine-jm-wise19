@@ -4,5 +4,6 @@
 void stackOverflowError();
 void stackUnderflowError();
 void unknownInstructionError(const int optCode);
+void dividedByZeroError();
 
 #endif
