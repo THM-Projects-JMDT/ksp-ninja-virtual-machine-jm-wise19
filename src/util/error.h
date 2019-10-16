@@ -2,7 +2,7 @@
 #define NJCM_ERROR_H_INCLUDED
 
 void stackOverflowError();
-void emptyStackError();
+void stackUnderflowError();
 void unknownInstructionError(const int optCode);
 
 #endif

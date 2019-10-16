@@ -15,7 +15,7 @@ void push(int value) {
 
 int pop() {
   if (sp == 0)
-    emptyStackError();
+    stackUnderflowError();
   sp--;
   return stack[sp];
 }

@@ -23,7 +23,7 @@ static void vmError(const int errc, const char *em, ...) {
 }
 
 void stackOverflowError() { vmError(101, "stackOverflowError"); }
-void emptyStackError() { vmError(102, "emtyStackError"); }
+void stackUnderflowError() { vmError(102, "stackUnderflowError"); }
 void unknownInstructionError(const int optCode) {
   vmError(103, "Opcode '%d' does not exist\n", optCode);
 }
