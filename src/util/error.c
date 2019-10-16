@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void vmError(const int errc, const char *em, ...) {
+void vmError(const int errc, const char *em, ...) {
   va_list errV;
 
   // Change the Text Color to Red
