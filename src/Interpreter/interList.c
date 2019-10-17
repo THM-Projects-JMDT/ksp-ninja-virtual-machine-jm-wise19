@@ -31,6 +31,7 @@ static void execInst(const unsigned int inst) {
   switch (opcode) {
   case halt:
     printf("HALT\n");
+    haltList = 1;
     break;
   case pushc:
     printf("PUSHC\t %d\n", value);
