@@ -9,6 +9,7 @@
 #define GET_IMMEDIATE(i) ((i)&0x00FFFFFF)
 
 static int pc = 0;
+static int lc = 0;
 static int haltProg = 0;
 // Instruction definition (starts with 0)
 typedef enum inst {
@@ -55,44 +56,51 @@ static void execRdchr() {
 }
 static void execWrchr() { printf("%c", pop()); }
 
+// Print functions
+static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
+static void printInstValue(char *inst, int value) {
+  printf("%03d:\t %s\t %d\n", lc - 1, inst, value);
+}
+
 // Find right Instruction
-void execInst(const unsigned int inst) {
+static void execInst(const unsigned int inst, int dpMode) {
   int opcode = GET_INST(inst);
   int value = SIGN_EXTEND(GET_IMMEDIATE(inst));
 
+  // If Display Mode(dpMode) == 1 -> Just Print Instructions
   switch (opcode) {
   case halt:
-    execHalt();
+    dpMode ? printInst("halt") : execHalt();
     break;
   case pushc:
-    execPushc(value);
+    dpMode ? printInstValue("pushc", value) : execPushc(value);
     break;
   case add:
-    execAdd();
+    dpMode ? printInst("add") : execAdd();
     break;
   case sub:
-    execSub();
+    dpMode ? printInst("sub") : execSub();
     break;
   case mul:
-    execMul();
+    dpMode ? printInst("mul") : execMul();
     break;
   case div:
-    execDiv();
+    dpMode ? printInst("div") : execDiv();
     break;
   case mod:
-    execMod();
+    dpMode ? printInst("mod") : execMod();
     break;
   case rdint:
-    execRdint();
+    dpMode ? printInst("rdint") : execRdint();
     break;
   case wrint:
-    execWrint();
+    dpMode ? printInst("wrint") : execWrint();
     break;
   case rdchr:
-    execRdchr();
+    dpMode ? printInst("rdchr") : execRdchr();
     break;
   case wrchr:
-    execWrchr();
+    dpMode ? printInst("wrchr") : execWrchr();
     break;
 
   default:
@@ -101,6 +109,17 @@ void execInst(const unsigned int inst) {
   }
 }
 
+// Display all Instructions in Memory
+void execList() {
+  while (lc < filledMemory) {
+    int ir = programMemory[lc];
+    lc++;
+    execInst(ir, 1);
+  }
+  lc = 0;
+}
+
+// Run Programm in Memory
 void execprog() {
   while (!haltProg) {
     if (pc == filledMemory)
@@ -108,7 +127,7 @@ void execprog() {
 
     int ir = programMemory[pc];
     pc++;
-    execInst(ir);
+    execInst(ir, 0);
   }
   pc = 0;
 }
