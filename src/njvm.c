@@ -43,13 +43,10 @@ int main(int argc, char *argv[]) {
       // argument prog 1-3
     } else if (strcmp(argv[i], "--prog1") == 0) {
       loadprog(0);
-      break;
     } else if (strcmp(argv[i], "--prog2") == 0) {
       loadprog(1);
-      break;
     } else if (strcmp(argv[i], "--prog3") == 0) {
       loadprog(2);
-      break;
     }
     // handle an invalid argument
     else {
