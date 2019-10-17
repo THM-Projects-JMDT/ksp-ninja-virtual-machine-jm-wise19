@@ -1,4 +1,4 @@
-#include "Interpreter/interCode.h"
+#include "Interpreter/interpreter.h"
 #include "Memory/programMemory.h"
 #include <stdio.h>
 #include <stdlib.h>

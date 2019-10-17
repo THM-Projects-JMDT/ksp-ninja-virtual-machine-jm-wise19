@@ -1,4 +1,4 @@
-#include "interCode.h"
+#include "interpreter.h"
 #include "../Memory/programMemory.h"
 #include "../Memory/stack.h"
 #include "../util/error.h"
