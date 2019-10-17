@@ -23,44 +23,43 @@ typedef enum inst {
   wrchr
 } inst;
 
-static void execInst(const unsigned int inst) {
+static void execInst(const unsigned int inst, int count) {
   int opcode = GET_INST(inst);
   int value = SIGN_EXTEND(GET_IMMEDIATE(inst));
 
   switch (opcode) {
   case halt:
-    printf("HALT\n");
-
+    printf("%03d:\t HALT\n", count);
     break;
   case pushc:
-    printf("PUSHC\t %d\n", value);
+    printf("%03d:\t PUSHC\t %d\n", count, value);
     break;
   case add:
-    printf("ADD\n");
+    printf("%03d:\t ADD\n", count);
     break;
   case sub:
-    printf("SUB\n");
+    printf("%03d:\t SUB\n", count);
     break;
   case mul:
-    printf("MUL\n");
+    printf("%03d:\t MUL\n", count);
     break;
   case div:
-    printf("DIV\n");
+    printf("%03d:\t DIV\n", count);
     break;
   case mod:
-    printf("MOD\n");
+    printf("%03d:\t MOD\n", count);
     break;
   case rdint:
-    printf("RDINT\n");
+    printf("%03d:\t RDINT\n", count);
     break;
   case wrint:
-    printf("WRINT\n");
+    printf("%03d:\t WRINT\n", count);
     break;
   case rdchr:
-    printf("RDCHR\n");
+    printf("%03d:\t RDCHR\n", count);
     break;
   case wrchr:
-    printf("WRCHR\n");
+    printf("%03d:\t WRCHR\n", count);
     break;
 
   default:
@@ -73,7 +72,7 @@ void execList() {
   while (lc < filledMemory) {
     int ir = programMemory[lc];
     lc++;
-    execInst(ir);
+    execInst(ir, lc - 1);
   }
   lc = 0;
 }
