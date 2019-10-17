@@ -99,6 +99,9 @@ void execInst(const unsigned int inst) {
 
 void execprog() {
   while (!haltProg) {
+    if (pc == filledMemory)
+      invalidProgrammCodeError();
+
     int ir = programMemory[pc];
     pc++;
     execInst(ir);

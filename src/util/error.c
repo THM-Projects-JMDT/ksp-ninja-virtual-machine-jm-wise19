@@ -28,3 +28,5 @@ void unknownInstructionError(const int optCode) {
   vmError(103, "Opcode '%d' does not exist\n", optCode);
 }
 void dividedByZeroError() { vmError(3, "dividedByZeroError\n"); }
+void outOfMemoryError() { vmError(4, "Vm run out of Memory\n"); }
+void invalidProgrammCodeError() { vmError(5, "No Program loaded\n"); }
