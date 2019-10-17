@@ -1,4 +1,5 @@
 #include "Interpreter/interCode.h"
+#include "Interpreter/interList.h"
 #include "Memory/programMemory.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,6 +59,7 @@ int main(int argc, char *argv[]) {
   // Start Message
   printf("Ninja Virtual Machine started\n");
 
+  execList();
   execprog();
 
   // Stop Message
