@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VERSION 0
+#define VERSION 1
 
 // Handle version argument
 static void version(const char *myself) {
