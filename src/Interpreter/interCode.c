@@ -42,14 +42,18 @@ static void execDiv() {
   push(num1 / num2);
 }
 static void execMod() { push(pop() % pop()); }
-static void execRdint() { /*TODO*/
+static void execRdint() {
+  int myInt;
+  scanf("%d", &myInt);
+  push(myInt);
 }
-static void execWrint() { /*TODO*/
+static void execWrint() { printf("%d", pop()); }
+static void execRdchr() {
+  char myChar;
+  scanf("%c", &myChar);
+  push(myChar);
 }
-static void execRdchr() { /*TODO*/
-}
-static void execWrchr() { /*TODO*/
-}
+static void execWrchr() { printf("%c", pop()); }
 
 // Find right Instruction
 void execInst(const unsigned int inst) {
