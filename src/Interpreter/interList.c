@@ -7,7 +7,6 @@
 #define SIGN_EXTEND(i) ((i)&0x00800000 ? (i) | 0xFF000000 : (i))
 #define GET_IMMEDIATE(i) ((i)&0x00FFFFFF)
 
-static int haltList = 0;
 static int lc = 0;
 
 typedef enum inst {
@@ -31,7 +30,7 @@ static void execInst(const unsigned int inst) {
   switch (opcode) {
   case halt:
     printf("HALT\n");
-    haltList = 1;
+
     break;
   case pushc:
     printf("PUSHC\t %d\n", value);
@@ -71,10 +70,7 @@ static void execInst(const unsigned int inst) {
 }
 
 void execList() {
-  while (!haltList) {
-    if (lc == filledMemory)
-      invalidProgrammCodeError();
-
+  while (lc < filledMemory) {
     int ir = programMemory[lc];
     lc++;
     execInst(ir);
