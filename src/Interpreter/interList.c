@@ -1,5 +1,11 @@
 #include "interList.h"
-#include "Memory/programMemory.h"
+#include "../Memory/programMemory.h"
+#include "../util/error.h"
+#include <stdio.h>
+
+#define GET_INST(i) (((i)&0xFF000000) >> 24)
+#define SIGN_EXTEND(i) ((i)&0x00800000 ? (i) | 0xFF000000 : (i))
+#define GET_IMMEDIATE(i) ((i)&0x00FFFFFF)
 
 static int haltList = 0;
 static int lc = 0;
@@ -24,37 +30,37 @@ static void execInst(const unsigned int inst) {
 
   switch (opcode) {
   case halt:
-    execHalt();
+    printf("HALT\n");
     break;
   case pushc:
-    execPushc(value);
+    printf("PUSHC\t %d\n", value);
     break;
   case add:
-    execAdd();
+    printf("ADD\n");
     break;
   case sub:
-    execSub();
+    printf("SUB\n");
     break;
   case mul:
-    execMul();
+    printf("MUL\n");
     break;
   case div:
-    execDiv();
+    printf("DIV\n");
     break;
   case mod:
-    execMod();
+    printf("MOD\n");
     break;
   case rdint:
-    execRdint();
+    printf("RDINT\n");
     break;
   case wrint:
-    execWrint();
+    printf("WRINT\n");
     break;
   case rdchr:
-    execRdchr();
+    printf("RDCHR\n");
     break;
   case wrchr:
-    execWrchr();
+    printf("WRCHR\n");
     break;
 
   default:
