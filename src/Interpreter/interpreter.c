@@ -29,20 +29,39 @@ typedef enum inst {
 // Instructions Functions
 static void execHalt() { haltProg = 1; }
 static void execPushc(int value) { push(value); }
-static void execAdd() { push(pop() + pop()); }
-static void execSub() { push(pop() - pop()); }
-static void execMul() { push(pop() * pop()); }
+static void execAdd() {
+  int num2 = pop();
+  int num1 = pop();
+
+  push(num1 + num2);
+}
+static void execSub() {
+  int num2 = pop();
+  int num1 = pop();
+
+  push(num1 - num2);
+}
+static void execMul() {
+  int num2 = pop();
+  int num1 = pop();
+
+  push(num1 * num2);
+}
 static void execDiv() {
   // Check if Secound nummber is Zero
-  int num1 = pop();
   int num2 = pop();
+  int num1 = pop();
 
   if (num2 == 0)
     dividedByZeroError();
 
   push(num1 / num2);
 }
-static void execMod() { push(pop() % pop()); }
+static void execMod() {
+  int num2 = pop();
+  int num1 = pop();
+  push(num1 % num2);
+}
 static void execRdint() {
   int myInt;
   scanf("%d", &myInt);
