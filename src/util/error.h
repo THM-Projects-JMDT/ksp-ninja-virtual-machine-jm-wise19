@@ -8,5 +8,6 @@ void unknownInstructionError(const int optCode);
 void dividedByZeroError();
 void outOfMemoryError();
 void invalidProgrammCodeError();
+void moreThanOneInputError();
 
 #endif
