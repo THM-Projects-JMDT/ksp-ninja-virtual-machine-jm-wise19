@@ -12,8 +12,7 @@ static int pc = 0;
 static int lc = 0;
 static int haltProg = 0;
 // Instruction definition (starts with 0)
-typedef enum inst
-{
+typedef enum inst {
   halt,
   pushc,
   add,
@@ -24,71 +23,71 @@ typedef enum inst
   rdint,
   wrint,
   rdchr,
-  wrchr,
-  pushg,
-  popg,
-  asf,
-  rsf,
-  pushl,
-  popl
+  wrchr
 } inst;
 
 // Instructions Functions
 static void execHalt() { haltProg = 1; }
 static void execPushc(int value) { push(value); }
-static void execAdd() { push(pop() + pop()); }
-static void execSub() { push(pop() - pop()); }
-static void execMul() { push(pop() * pop()); }
-static void execDiv()
-{
-  // Check if Secound nummber is Zero
-  int num1 = pop();
+static void execAdd() {
   int num2 = pop();
+  int num1 = pop();
+
+  push(num1 + num2);
+}
+static void execSub() {
+  int num2 = pop();
+  int num1 = pop();
+
+  push(num1 - num2);
+}
+static void execMul() {
+  int num2 = pop();
+  int num1 = pop();
+
+  push(num1 * num2);
+}
+static void execDiv() {
+  // Check if Secound nummber is Zero
+  int num2 = pop();
+  int num1 = pop();
 
   if (num2 == 0)
     dividedByZeroError();
 
   push(num1 / num2);
 }
-static void execMod() { push(pop() % pop()); }
-static void execRdint()
-{
+static void execMod() {
+  int num2 = pop();
+  int num1 = pop();
+  push(num1 % num2);
+}
+static void execRdint() {
   int myInt;
   scanf("%d", &myInt);
   push(myInt);
 }
 static void execWrint() { printf("%d", pop()); }
-static void execRdchr()
-{
+static void execRdchr() {
   char myChar;
   scanf("%c", &myChar);
   push(myChar);
 }
 static void execWrchr() { printf("%c", pop()); }
 
-static void execPushg() {}
-static void execPopg() {}
-static void execAsf() {}
-static void execRsf() {}
-static void execPushl() {}
-static void execPopl() {}
-
 // Print functions
 static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
-static void printInstValue(char *inst, int value)
-{
+static void printInstValue(char *inst, int value) {
   printf("%03d:\t %s\t %d\n", lc - 1, inst, value);
 }
 
 // Find right Instruction
-static void execInst(const unsigned int inst, int dpMode)
-{
+static void execInst(const unsigned int inst, int dpMode) {
   int opcode = GET_INST(inst);
   int value = SIGN_EXTEND(GET_IMMEDIATE(inst));
 
   // If Display Mode(dpMode) == 1 -> Just Print Instructions
-  switch (opcode)
-  {
+  switch (opcode) {
   case halt:
     dpMode ? printInst("halt") : execHalt();
     break;
@@ -130,10 +129,8 @@ static void execInst(const unsigned int inst, int dpMode)
 }
 
 // Display all Instructions in Memory
-void execList()
-{
-  while (lc < filledMemory)
-  {
+void execList() {
+  while (lc < filledMemory) {
     int ir = programMemory[lc];
     lc++;
     execInst(ir, 1);
@@ -142,10 +139,8 @@ void execList()
 }
 
 // Run Programm in Memory
-void execprog()
-{
-  while (!haltProg)
-  {
+void execprog() {
+  while (!haltProg) {
     if (pc == filledMemory)
       invalidProgrammCodeError();
 
