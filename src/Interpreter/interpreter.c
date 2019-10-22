@@ -23,7 +23,13 @@ typedef enum inst {
   rdint,
   wrint,
   rdchr,
-  wrchr
+  wrchr,
+  pushg,
+  popg,
+  asf,
+  rsf,
+  pushl,
+  popl
 } inst;
 
 // Instructions Functions
@@ -74,6 +80,11 @@ static void execRdchr() {
   push(myChar);
 }
 static void execWrchr() { printf("%c", pop()); }
+static void execPushg() {}
+static void execPopg() {}
+static void execAsf() {}
+static void execRsf() {}
+static void execPushl() {}
 
 // Print functions
 static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
@@ -121,7 +132,24 @@ static void execInst(const unsigned int inst, int dpMode) {
   case wrchr:
     dpMode ? printInst("wrchr") : execWrchr();
     break;
-
+  case pushg:
+    dpMode ? printInst("pushg") : execPushg();
+    break;
+  case popg:
+    dpMode ? printInst("popg") : execPopg();
+    break;
+  case asf:
+    dpMode ? printInst("asf") : execAsf();
+    break;
+  case rsf:
+    dpMode ? printInst("rsf") : execRsf();
+    break;
+  case pushl:
+    dpMode ? printInst("wrchr") : execPushl();
+    break;
+  case popl:
+    dpMode ? printInst("popl") : execPopl();
+    break;
   default:
     unknownInstructionError(opcode);
     break;
