@@ -30,3 +30,6 @@ void unknownInstructionError(const int optCode) {
 void dividedByZeroError() { vmError(3, "dividedByZeroError\n"); }
 void outOfMemoryError() { vmError(4, "Vm run out of Memory\n"); }
 void invalidProgrammCodeError() { vmError(5, "No program selected\n"); }
+void moreThanOneInputError() {
+  vmError(6, "more than one code file specified");
+}
