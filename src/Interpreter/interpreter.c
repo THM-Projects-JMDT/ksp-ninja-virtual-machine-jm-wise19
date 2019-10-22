@@ -12,7 +12,8 @@ static int pc = 0;
 static int lc = 0;
 static int haltProg = 0;
 // Instruction definition (starts with 0)
-typedef enum inst {
+typedef enum inst
+{
   halt,
   pushc,
   add,
@@ -23,7 +24,13 @@ typedef enum inst {
   rdint,
   wrint,
   rdchr,
-  wrchr
+  wrchr,
+  pushg,
+  popg,
+  asf,
+  rsf,
+  pushl,
+  popl
 } inst;
 
 // Instructions Functions
@@ -32,7 +39,8 @@ static void execPushc(int value) { push(value); }
 static void execAdd() { push(pop() + pop()); }
 static void execSub() { push(pop() - pop()); }
 static void execMul() { push(pop() * pop()); }
-static void execDiv() {
+static void execDiv()
+{
   // Check if Secound nummber is Zero
   int num1 = pop();
   int num2 = pop();
@@ -43,13 +51,15 @@ static void execDiv() {
   push(num1 / num2);
 }
 static void execMod() { push(pop() % pop()); }
-static void execRdint() {
+static void execRdint()
+{
   int myInt;
   scanf("%d", &myInt);
   push(myInt);
 }
 static void execWrint() { printf("%d", pop()); }
-static void execRdchr() {
+static void execRdchr()
+{
   char myChar;
   scanf("%c", &myChar);
   push(myChar);
@@ -58,17 +68,20 @@ static void execWrchr() { printf("%c", pop()); }
 
 // Print functions
 static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
-static void printInstValue(char *inst, int value) {
+static void printInstValue(char *inst, int value)
+{
   printf("%03d:\t %s\t %d\n", lc - 1, inst, value);
 }
 
 // Find right Instruction
-static void execInst(const unsigned int inst, int dpMode) {
+static void execInst(const unsigned int inst, int dpMode)
+{
   int opcode = GET_INST(inst);
   int value = SIGN_EXTEND(GET_IMMEDIATE(inst));
 
   // If Display Mode(dpMode) == 1 -> Just Print Instructions
-  switch (opcode) {
+  switch (opcode)
+  {
   case halt:
     dpMode ? printInst("halt") : execHalt();
     break;
@@ -110,8 +123,10 @@ static void execInst(const unsigned int inst, int dpMode) {
 }
 
 // Display all Instructions in Memory
-void execList() {
-  while (lc < filledMemory) {
+void execList()
+{
+  while (lc < filledMemory)
+  {
     int ir = programMemory[lc];
     lc++;
     execInst(ir, 1);
@@ -120,8 +135,10 @@ void execList() {
 }
 
 // Run Programm in Memory
-void execprog() {
-  while (!haltProg) {
+void execprog()
+{
+  while (!haltProg)
+  {
     if (pc == filledMemory)
       invalidProgrammCodeError();
 
