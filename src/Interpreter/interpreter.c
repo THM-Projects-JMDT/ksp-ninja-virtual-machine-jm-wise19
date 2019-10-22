@@ -66,6 +66,13 @@ static void execRdchr()
 }
 static void execWrchr() { printf("%c", pop()); }
 
+static void execPushg() {}
+static void execPopg() {}
+static void execAsf() {}
+static void execRsf() {}
+static void execPushl() {}
+static void execPopl() {}
+
 // Print functions
 static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
 static void printInstValue(char *inst, int value)
