@@ -5,17 +5,17 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VERSION 1
+const int version = 2;
 
 // Handle version argument
-static void version(const char *myself) {
-  printf("Ninja Virtual Machine Version %d (compiled %s, %s)\n", VERSION,
+static void displayVersion(const char *myself) {
+  printf("Ninja Virtual Machine Version %d (compiled %s, %s)\n", version,
          __DATE__, __TIME__);
 }
 
 // Handle help argument
 static void help(const char *myself) {
-  printf("usage: %s [options] ...\n"
+  printf("usage: %s [options] ... [code file]\n"
          "Options: \n"
          "\t--version \t show version and exit\n"
          "\t--help \t\t show this text and exit\n",
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
   for (int i = 1; i < argc; i++) {
     // argument version
     if (strcmp(argv[i], "--version") == 0) {
-      version(argv[0]);
+      displayVersion(argv[0]);
       exit(0);
     }
     // argument help
@@ -58,8 +58,7 @@ int main(int argc, char *argv[]) {
 
   // Start Message
   printf("Ninja Virtual Machine started\n");
-
-  // loadprog(progFile);
+  loadprog(progFile);
   // execList();
   // execprog();
 
