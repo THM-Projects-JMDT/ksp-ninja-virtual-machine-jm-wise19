@@ -1,7 +1,7 @@
 #include "stack.h"
 #include "../util/error.h"
 
-#define SK_SIZE 20
+#define SK_SIZE 10000
 
 static int sp = 0;
 static int stack[SK_SIZE];
