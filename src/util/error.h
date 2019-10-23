@@ -9,5 +9,10 @@ void dividedByZeroError();
 void outOfMemoryError();
 void invalidProgrammCodeError();
 void moreThanOneInputError();
+void noPathError();
+void invalidPathError(const char *path);
+void invalidFileSizeError();
+void invalidFileIdentifierError();
+void invalidCodeVersion(int fileVs, int vmVs);
 
 #endif
