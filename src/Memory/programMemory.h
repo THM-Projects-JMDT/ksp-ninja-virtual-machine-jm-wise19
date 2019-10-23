@@ -4,6 +4,6 @@
 extern unsigned int programMemory[];
 extern int filledMemory;
 
-void loadprog(const int x);
+void loadprog(const char *x);
 
 #endif
