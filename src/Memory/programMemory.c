@@ -6,7 +6,9 @@
 #include <string.h>
 
 unsigned int *programMemory;
+int *globalvars;
 int memorySize;
+int globalVarSize;
 
 // Load programs
 void loadprog(const char *path)
@@ -39,14 +41,17 @@ void loadprog(const char *path)
   // Verify that the version Number matches the current VM's version number
   if (header[0] != version)
     invalidCodeVersion(header[0], version);
+
+  // Reading Instructions
   programMemory = (unsigned int *)malloc(header[1]);
   if (fread(programMemory, sizeof(int), header[1], fp) != header[1])
     invalidFileSizeError();
   memorySize = header[1];
-  printf("format: %s\n", format);
-  printf("version: %d\n", header[0]);
-  printf("inst: %d\n", header[1]);
-  printf("vars: %d\n", header[2]);
+
+  // Setting amount of global Varibales
+  globalvars = (int *)malloc(header[2]);
+  globalVarSize = header[2];
+
   // TODO vtl check int
   fclose(fp);
 }
