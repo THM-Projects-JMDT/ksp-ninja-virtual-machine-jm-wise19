@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-unsigned int programMemory[200];
-int filledMemory = 0;
+unsigned int *programMemory;
+int memorySize;
 
 // Load programs
 void loadprog(const char *path)
@@ -39,15 +39,10 @@ void loadprog(const char *path)
   // Verify that the version Number matches the current VM's version number
   if (header[0] != version)
     invalidCodeVersion(header[0], version);
-  unsigned int memmory[header[1]];
-  if (fread(memmory, sizeof(int), header[1], fp) != header[1])
+  programMemory = (unsigned int *)malloc(header[1]);
+  if (fread(programMemory, sizeof(int), header[1], fp) != header[1])
     invalidFileSizeError();
-  for (int i = 0; i < header[1]; i++)
-  {
-    programMemory[i] = memmory[i];
-    printf("Memory : %x\n", memmory[i]);
-  }
-  filledMemory = header[1];
+  memorySize = header[1];
   printf("format: %s\n", format);
   printf("version: %d\n", header[0]);
   printf("inst: %d\n", header[1]);
