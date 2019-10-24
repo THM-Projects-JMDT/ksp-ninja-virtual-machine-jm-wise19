@@ -18,7 +18,13 @@ static void help(const char *myself) {
   printf("\033[1musage:\033[0m %s [options] ... [code file]\n"
          "\033[1mOptions:\033[0m \n"
          "\t\033[1m--version\033[0m \t show version and exit\n"
-         "\t\033[1m--help\033[0m \t\t show this text and exit\n",
+         "\t\033[1m--help\033[0m \t\t show this text and exit\n"
+         "\033[1mError Codes:\033[0m \n"
+         "\t\033[1m1x:\033[0m Argument Errors codes\n"
+         "\t\033[1m2x:\033[0m File read Errors\n"
+         "\t\033[1m3x:\033[0m Memory Errors\n"
+         "\t\033[1m4x:\033[0m Stack Errors\n"
+         "\t\033[1m5x:\033[0m Runtime Errors\n",
          myself);
 }
 
@@ -44,7 +50,7 @@ int main(int argc, char *argv[]) {
     } else {
       // If more than 1 file path -> error
       if (progFile != NULL)
-        moreThanOneInputError();
+        moreThanOneInputError(argv[0]);
 
       progFile = argv[i];
     }
