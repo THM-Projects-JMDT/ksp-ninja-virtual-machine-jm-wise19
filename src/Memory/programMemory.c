@@ -45,9 +45,9 @@ void loadprog(const char *path)
   for (int i = 0; i < header[1]; i++)
   {
     programMemory[i] = memmory[i];
-    printf("%x\n", memmory[i]);
+    printf("Memory : %x\n", memmory[i]);
   }
-
+  filledMemory = header[1];
   printf("format: %s\n", format);
   printf("version: %d\n", header[0]);
   printf("inst: %d\n", header[1]);
