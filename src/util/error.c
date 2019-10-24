@@ -4,48 +4,68 @@
 #include <stdlib.h>
 
 void vmError(const int errc, const char *em, ...) {
-  va_list errV;
+  va_list parms;
 
-  // Change the Text Color to Red
-  fprintf(stderr, "\033[0;31m");
+  if (errc < 10 || errc >= 20) {
+    // Change the Text Color to Red
+    fprintf(stderr, "\033[0;31m");
 
-  fprintf(stderr, "An error occurred:\n");
+    fprintf(stderr, "An error occurred:\n");
 
-  // Reset Text Color
-  fprintf(stderr, "\033[0m");
+    // Reset Text Color
+    fprintf(stderr, "\033[0m");
+
+    // Print Error code
+    fprintf(stderr, "Error %d: \033[1m", errc);
+  }
 
   // Print error
-  va_start(errV, em);
-  vfprintf(stderr, em, errV);
-  va_end(errV);
+  va_start(parms, em);
+  vfprintf(stderr, em, parms);
+  va_end(parms);
 
-  fprintf(stderr, "\n");
+  fprintf(stderr, "\033[0m\n");
 
+  // Exit error
   exit(errc);
 }
 
-// TODO error codes vtl als like HTTP error
-void stackOverflowError() { vmError(1, "stackOverflowError"); }
-void stackUnderflowError() { vmError(2, "stackUnderflowError"); }
-void unknownInstructionError(const int optCode) {
-  vmError(103, "Opcode '%d' does not exist", optCode);
+// Argument Errors codes 1_
+void invalidArgumentError(const char *myself, const char *arg) {
+  vmError(10, "unknown command line argument '%s', try '%s --help'", arg,
+          myself);
 }
-void dividedByZeroError() { vmError(3, "dividedByZeroError"); }
-void outOfMemoryError() { vmError(4, "Vm run out of Memory"); }
-void invalidProgrammCodeError() { vmError(5, "No program selected"); }
+void noPathError(const char *myself) {
+  vmError(11, "no code file specified, try '%s --help'", myself);
+}
+
+// File read Errors 2_
 void moreThanOneInputError() {
-  vmError(6, "more than one code file specified");
+  vmError(20, "more than one code file specified");
 }
-void noPathError() { vmError(7, "no code File specified"); }
 void invalidPathError(const char *path) {
-  vmError(8, "can not open code File '%s'", path);
+  vmError(21, "can not open code File '%s'", path);
 }
 // TODO vtl with line or bytes
 void invalidFileSizeError() {
-  vmError(9, "the document size does not correspond to the NJBF");
+  vmError(22, "the document size does not correspond to the NJBF");
 }
-void invalidFileIdentifierError() { vmError(10, "invalid code File format"); }
+void invalidFileIdentifierError() { vmError(23, "invalid code File format"); }
 void invalidCodeVersion(int fileVs, int vmVs) {
-  vmError(11, "Version %d of the NJBF is not supported, please use version %d",
+  vmError(24, "Version %d of the NJBF is not supported, please use version %d",
           fileVs, vmVs);
 }
+
+// Memory Errors 3_
+void outOfMemoryError() { vmError(30, "Vm run out of Memory"); }
+
+// Stack Errors 4_
+void stackOverflowError() { vmError(40, "stackOverflowError"); }
+void stackUnderflowError() { vmError(41, "stackUnderflowError"); }
+
+// Runtime Errors 5_
+void unknownInstructionError(const int optCode) {
+  vmError(50, "Opcode '%d' does not exist", optCode);
+}
+void dividedByZeroError() { vmError(51, "dividedByZeroError"); }
+void invalidProgrammCodeError() { vmError(52, "Missing 'HALT' statement"); }

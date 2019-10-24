@@ -12,10 +12,6 @@ int globalVarSize;
 
 // Load programs
 void loadprog(const char *path) {
-  // check if path was Specified
-  if (path == NULL)
-    noPathError();
-
   // Read File
   FILE *fp;
   char format[4];

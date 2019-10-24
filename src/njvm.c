@@ -15,16 +15,11 @@ static void displayVersion(const char *myself) {
 
 // Handle help argument
 static void help(const char *myself) {
-  printf("usage: %s [options] ... [code file]\n"
-         "Options: \n"
-         "\t--version \t show version and exit\n"
-         "\t--help \t\t show this text and exit\n",
+  printf("\033[1musage:\033[0m %s [options] ... [code file]\n"
+         "\033[1mOptions:\033[0m \n"
+         "\t\033[1m--version\033[0m \t show version and exit\n"
+         "\t\033[1m--help\033[0m \t\t show this text and exit\n",
          myself);
-}
-
-// Handle an invalid argument
-static void invalid(const char *myself, const char *arg) {
-  printf("unknown command line argument '%s', try '%s --help'\n", arg, myself);
 }
 
 int main(int argc, char *argv[]) {
@@ -44,8 +39,7 @@ int main(int argc, char *argv[]) {
     }
     // handle an invalid argument
     else if ((argv[i][0] == '-' && argv[i][1] == '-')) {
-      invalid(argv[0], argv[argc - 1]);
-      exit(0);
+      invalidArgumentError(argv[0], argv[i]);
       // Save file path
     } else {
       // If more than 1 file path -> error
@@ -56,11 +50,15 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  // check if progFile was Specified
+  if (progFile == NULL)
+    noPathError(argv[0]);
+
   // Start Message
   printf("Ninja Virtual Machine started\n");
   loadprog(progFile);
   execList();
-  // execprog();
+  execprog();
 
   // TODO maybe somewhere else
   free(programMemory);
