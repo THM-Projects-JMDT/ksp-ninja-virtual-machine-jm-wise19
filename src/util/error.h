@@ -8,7 +8,7 @@ void unknownInstructionError(const int optCode);
 void dividedByZeroError();
 void outOfMemoryError();
 void invalidProgrammCodeError();
-void moreThanOneInputError();
+void moreThanOneInputError(const char *myself);
 void invalidArgumentError(const char *myself, const char *arg);
 void noPathError(const char *myself);
 void invalidPathError(const char *path);

@@ -30,40 +30,40 @@ void vmError(const int errc, const char *em, ...) {
   exit(errc);
 }
 
-// Argument Errors codes 1_
+// Argument Errors codes 1x
 void invalidArgumentError(const char *myself, const char *arg) {
   vmError(10, "unknown command line argument '%s', try '%s --help'", arg,
           myself);
 }
 void noPathError(const char *myself) {
-  vmError(11, "no code file specified, try '%s --help'", myself);
+  vmError(11, "A code file must be specified, try '%s --help'", myself);
+}
+void moreThanOneInputError(const char *myself) {
+  vmError(12, "Only one code file may be specified, try '%s --help'", myself);
 }
 
-// File read Errors 2_
-void moreThanOneInputError() {
-  vmError(20, "more than one code file specified");
-}
+// File read Errors 2x
 void invalidPathError(const char *path) {
-  vmError(21, "can not open code File '%s'", path);
+  vmError(20, "can not open code File '%s'", path);
 }
 // TODO vtl with line or bytes
 void invalidFileSizeError() {
-  vmError(22, "the document size does not correspond to the NJBF");
+  vmError(21, "the document size does not correspond to the NJBF");
 }
-void invalidFileIdentifierError() { vmError(23, "invalid code File format"); }
+void invalidFileIdentifierError() { vmError(22, "invalid code File format"); }
 void invalidCodeVersion(int fileVs, int vmVs) {
-  vmError(24, "Version %d of the NJBF is not supported, please use version %d",
+  vmError(23, "Version %d of the NJBF is not supported, please use version %d",
           fileVs, vmVs);
 }
 
-// Memory Errors 3_
+// Memory Errors 3x
 void outOfMemoryError() { vmError(30, "Vm run out of Memory"); }
 
-// Stack Errors 4_
+// Stack Errors 4x
 void stackOverflowError() { vmError(40, "stackOverflowError"); }
 void stackUnderflowError() { vmError(41, "stackUnderflowError"); }
 
-// Runtime Errors 5_
+// Runtime Errors 5x
 void unknownInstructionError(const int optCode) {
   vmError(50, "Opcode '%d' does not exist", optCode);
 }
