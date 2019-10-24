@@ -160,7 +160,7 @@ static void execInst(const unsigned int inst, int dpMode) {
 // Display all Instructions in Memory
 void execList() {
   while (lc < memorySize) {
-    int ir = programMemory[lc];
+    unsigned int ir = programMemory[lc];
     lc++;
     execInst(ir, 1);
   }
@@ -173,7 +173,7 @@ void execprog() {
     if (pc == memorySize)
       invalidProgrammCodeError();
 
-    int ir = programMemory[pc];
+    unsigned int ir = programMemory[pc];
     pc++;
     execInst(ir, 0);
   }

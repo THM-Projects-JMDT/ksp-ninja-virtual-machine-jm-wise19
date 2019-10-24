@@ -42,7 +42,7 @@ void loadprog(const char *path) {
     invalidCodeVersion(header[0], version);
 
   // Reading Instructions
-  programMemory = (unsigned int *)malloc(header[1]);
+  programMemory = (unsigned int *)malloc(header[1] * sizeof(int));
 
   if (fread(programMemory, sizeof(unsigned int), header[1], fp) != header[1])
     invalidFileSizeError();
@@ -50,8 +50,8 @@ void loadprog(const char *path) {
   memorySize = header[1];
 
   // Setting amount of global Varibales
-  globalvars = (int *)malloc(header[2]);
   globalVarSize = header[2];
+  globalvars = (int *)malloc(globalVarSize * sizeof(unsigned int));
 
   // TODO vtl check int
   fclose(fp);
