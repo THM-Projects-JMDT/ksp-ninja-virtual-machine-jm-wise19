@@ -8,15 +8,13 @@
 const int version = 2;
 
 // Handle version argument
-static void displayVersion(const char *myself)
-{
+static void displayVersion(const char *myself) {
   printf("Ninja Virtual Machine Version %d (compiled %s, %s)\n", version,
          __DATE__, __TIME__);
 }
 
 // Handle help argument
-static void help(const char *myself)
-{
+static void help(const char *myself) {
   printf("usage: %s [options] ... [code file]\n"
          "Options: \n"
          "\t--version \t show version and exit\n"
@@ -25,39 +23,31 @@ static void help(const char *myself)
 }
 
 // Handle an invalid argument
-static void invalid(const char *myself, const char *arg)
-{
+static void invalid(const char *myself, const char *arg) {
   printf("unknown command line argument '%s', try '%s --help'\n", arg, myself);
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   char *progFile;
 
-  for (int i = 1; i < argc; i++)
-  {
+  for (int i = 1; i < argc; i++) {
     // argument version
-    if (strcmp(argv[i], "--version") == 0)
-    {
+    if (strcmp(argv[i], "--version") == 0) {
       displayVersion(argv[0]);
       exit(0);
     }
     // argument help
-    else if (strcmp(argv[i], "--help") == 0)
-    {
+    else if (strcmp(argv[i], "--help") == 0) {
       help(argv[0]);
       exit(0);
       // argument prog 1-3
     }
     // handle an invalid argument
-    else if ((argv[i][0] == '-' && argv[i][1] == '-'))
-    {
+    else if ((argv[i][0] == '-' && argv[i][1] == '-')) {
       invalid(argv[0], argv[argc - 1]);
       exit(0);
       // Save file path
-    }
-    else
-    {
+    } else {
       // If more than 1 file path -> error
       if (progFile != NULL)
         moreThanOneInputError();
@@ -71,6 +61,12 @@ int main(int argc, char *argv[])
   loadprog(progFile);
   execList();
   // execprog();
+
+  // TODO maybe somewhere else
+  free(programMemory);
+  memorySize = 0;
+  free(globalvars);
+  globalVarSize = 0;
 
   // Stop Message
   printf("Ninja Virtual Machine stopped\n");

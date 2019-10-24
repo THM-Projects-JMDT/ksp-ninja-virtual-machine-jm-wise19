@@ -3,6 +3,8 @@
 
 extern unsigned int *programMemory;
 extern int memorySize;
+extern int *globalvars;
+extern int globalVarSize;
 
 void loadprog(const char *x);
 
