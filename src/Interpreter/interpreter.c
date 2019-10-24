@@ -12,8 +12,7 @@ static int pc = 0;
 static int lc = 0;
 static int haltProg = 0;
 // Instruction definition (starts with 0)
-typedef enum inst
-{
+typedef enum inst {
   halt,
   pushc,
   add,
@@ -36,29 +35,25 @@ typedef enum inst
 // Instructions Functions
 static void execHalt() { haltProg = 1; }
 static void execPushc(int value) { push(value); }
-static void execAdd()
-{
+static void execAdd() {
   int num2 = pop();
   int num1 = pop();
 
   push(num1 + num2);
 }
-static void execSub()
-{
+static void execSub() {
   int num2 = pop();
   int num1 = pop();
 
   push(num1 - num2);
 }
-static void execMul()
-{
+static void execMul() {
   int num2 = pop();
   int num1 = pop();
 
   push(num1 * num2);
 }
-static void execDiv()
-{
+static void execDiv() {
   // Check if Secound nummber is Zero
   int num2 = pop();
   int num1 = pop();
@@ -68,49 +63,43 @@ static void execDiv()
 
   push(num1 / num2);
 }
-static void execMod()
-{
+static void execMod() {
   int num2 = pop();
   int num1 = pop();
   push(num1 % num2);
 }
-static void execRdint()
-{
+static void execRdint() {
   int myInt;
   scanf("%d", &myInt);
   push(myInt);
 }
 static void execWrint() { printf("%d", pop()); }
-static void execRdchr()
-{
+static void execRdchr() {
   char myChar;
   scanf("%c", &myChar);
   push(myChar);
 }
 static void execWrchr() { printf("%c", pop()); }
-static void execPushg() {}
-static void execPopg() {}
-static void execAsf() {}
+static void execPushg(int n) {}
+static void execPopg(int n) {}
+static void execAsf(int n) {}
 static void execRsf() {}
-static void execPushl() {}
-static void execPopl() {}
+static void execPushl(int n) {}
+static void execPopl(int n) {}
 
 // Print functions
 static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
-static void printInstValue(char *inst, int value)
-{
+static void printInstValue(char *inst, int value) {
   printf("%03d:\t %s\t %d\n", lc - 1, inst, value);
 }
 
 // Find right Instruction
-static void execInst(const unsigned int inst, int dpMode)
-{
+static void execInst(const unsigned int inst, int dpMode) {
   int opcode = GET_INST(inst);
   int value = SIGN_EXTEND(GET_IMMEDIATE(inst));
 
   // If Display Mode(dpMode) == 1 -> Just Print Instructions
-  switch (opcode)
-  {
+  switch (opcode) {
   case halt:
     dpMode ? printInst("halt") : execHalt();
     break;
@@ -145,22 +134,22 @@ static void execInst(const unsigned int inst, int dpMode)
     dpMode ? printInst("wrchr") : execWrchr();
     break;
   case pushg:
-    dpMode ? printInst("pushg") : execPushg();
+    dpMode ? printInstValue("pushg", value) : execPushg(value);
     break;
   case popg:
-    dpMode ? printInst("popg") : execPopg();
+    dpMode ? printInstValue("popg", value) : execPopg(value);
     break;
   case asf:
-    dpMode ? printInst("asf") : execAsf();
+    dpMode ? printInstValue("asf", value) : execAsf(value);
     break;
   case rsf:
     dpMode ? printInst("rsf") : execRsf();
     break;
   case pushl:
-    dpMode ? printInst("wrchr") : execPushl();
+    dpMode ? printInstValue("wrchr", value) : execPushl(value);
     break;
   case popl:
-    dpMode ? printInst("popl") : execPopl();
+    dpMode ? printInstValue("popl", value) : execPopl(value);
     break;
   default:
     unknownInstructionError(opcode);
@@ -169,10 +158,8 @@ static void execInst(const unsigned int inst, int dpMode)
 }
 
 // Display all Instructions in Memory
-void execList()
-{
-  while (lc < memorySize)
-  {
+void execList() {
+  while (lc < memorySize) {
     int ir = programMemory[lc];
     lc++;
     execInst(ir, 1);
@@ -181,10 +168,8 @@ void execList()
 }
 
 // Run Programm in Memory
-void execprog()
-{
-  while (!haltProg)
-  {
+void execprog() {
+  while (!haltProg) {
     if (pc == memorySize)
       invalidProgrammCodeError();
 
