@@ -11,8 +11,7 @@ int memorySize;
 int globalVarSize;
 
 // Load programs
-void loadprog(const char *path)
-{
+void loadprog(const char *path) {
   // check if path was Specified
   if (path == NULL)
     noPathError();
@@ -44,8 +43,10 @@ void loadprog(const char *path)
 
   // Reading Instructions
   programMemory = (unsigned int *)malloc(header[1]);
-  if (fread(programMemory, sizeof(int), header[1], fp) != header[1])
+
+  if (fread(programMemory, sizeof(unsigned int), header[1], fp) != header[1])
     invalidFileSizeError();
+
   memorySize = header[1];
 
   // Setting amount of global Varibales
