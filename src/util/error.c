@@ -69,3 +69,6 @@ void unknownInstructionError(const int optCode) {
 }
 void dividedByZeroError() { vmError(51, "dividedByZeroError"); }
 void invalidProgrammCodeError() { vmError(52, "Missing 'HALT' statement"); }
+void invalidGlobalVarPosition(const int pos) {
+  vmError(53, "The global var %d does not exsist", pos);
+}

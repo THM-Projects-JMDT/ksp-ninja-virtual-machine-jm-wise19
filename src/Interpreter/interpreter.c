@@ -80,8 +80,18 @@ static void execRdchr() {
   push(myChar);
 }
 static void execWrchr() { printf("%c", pop()); }
-static void execPushg(int n) {}
-static void execPopg(int n) {}
+static void execPushg(int n) {
+  if (n < 0 || n == globalVarSize)
+    invalidGlobalVarPosition(n);
+
+  push(globalvars[n]);
+}
+static void execPopg(int n) {
+  if (n < 0 || n == globalVarSize)
+    invalidGlobalVarPosition(n);
+
+  globalvars[n] = pop();
+}
 static void execAsf(int n) {}
 static void execRsf() {}
 static void execPushl(int n) {}
