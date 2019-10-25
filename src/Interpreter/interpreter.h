@@ -1,9 +1,6 @@
 #ifndef NJCM_INTERPRETER_H_INCLUDED
 #define NJCM_INTERPRETER_H_INCLUDED
 
-extern int haltProg;
-
-void execList();
-void execprog();
+void execInst(const unsigned int inst, const int counter, const int dpMode);
 
 #endif

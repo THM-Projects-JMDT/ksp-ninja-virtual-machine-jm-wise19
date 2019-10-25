@@ -1,6 +1,8 @@
 #ifndef NJCM_INSTRUCTIONS_H_INCLUDED
 #define NJCM_INSTRUCTIONS_H_INCLUDED
 
+void printInst(char *inst, int ct);
+void printInstValue(char *inst, int value, int ct);
 void execHalt();
 void execPushc(int value);
 void execAdd();

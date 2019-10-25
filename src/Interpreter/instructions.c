@@ -1,9 +1,15 @@
 #include "instructions.h"
 #include "../Memory/programMemory.h"
 #include "../Memory/stack.h"
+#include "../runner/runner.h"
 #include "../util/error.h"
-#include "interpreter.h"
 #include <stdio.h>
+
+// Print functions
+void printInst(char *inst, int ct) { printf("%03d:\t %s\n", ct - 1, inst); }
+void printInstValue(char *inst, int value, int ct) {
+  printf("%03d:\t %s\t %d\n", ct - 1, inst, value);
+}
 
 // Instructions Functions
 void execHalt() { haltProg = 1; }

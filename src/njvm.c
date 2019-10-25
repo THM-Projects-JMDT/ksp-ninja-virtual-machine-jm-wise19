@@ -1,5 +1,5 @@
-#include "Interpreter/interpreter.h"
 #include "Memory/programMemory.h"
+#include "runner/runner.h"
 #include "util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
