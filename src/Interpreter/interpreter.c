@@ -2,6 +2,7 @@
 #include "../Memory/programMemory.h"
 #include "../Memory/stack.h"
 #include "../util/error.h"
+#include "instructions.h"
 #include <stdio.h>
 
 #define GET_INST(i) (((i)&0xFF000000) >> 24)
@@ -10,7 +11,7 @@
 
 static int pc = 0;
 static int lc = 0;
-static int haltProg = 0;
+int haltProg = 0;
 // Instruction definition (starts with 0)
 typedef enum inst {
   halt,
@@ -31,71 +32,6 @@ typedef enum inst {
   pushl,
   popl
 } inst;
-
-// Instructions Functions
-static void execHalt() { haltProg = 1; }
-static void execPushc(int value) { push(value); }
-static void execAdd() {
-  int num2 = pop();
-  int num1 = pop();
-
-  push(num1 + num2);
-}
-static void execSub() {
-  int num2 = pop();
-  int num1 = pop();
-
-  push(num1 - num2);
-}
-static void execMul() {
-  int num2 = pop();
-  int num1 = pop();
-
-  push(num1 * num2);
-}
-static void execDiv() {
-  // Check if Secound nummber is Zero
-  int num2 = pop();
-  int num1 = pop();
-
-  if (num2 == 0)
-    dividedByZeroError();
-
-  push(num1 / num2);
-}
-static void execMod() {
-  int num2 = pop();
-  int num1 = pop();
-  push(num1 % num2);
-}
-static void execRdint() {
-  int myInt;
-  scanf("%d", &myInt);
-  push(myInt);
-}
-static void execWrint() { printf("%d", pop()); }
-static void execRdchr() {
-  char myChar;
-  scanf("%c", &myChar);
-  push(myChar);
-}
-static void execWrchr() { printf("%c", pop()); }
-static void execPushg(int n) {
-  if (n < 0 || n == globalVarSize)
-    invalidGlobalVarPosition(n);
-
-  push(globalvars[n]);
-}
-static void execPopg(int n) {
-  if (n < 0 || n == globalVarSize)
-    invalidGlobalVarPosition(n);
-
-  globalvars[n] = pop();
-}
-static void execAsf(int n) {}
-static void execRsf() {}
-static void execPushl(int n) {}
-static void execPopl(int n) {}
 
 // Print functions
 static void printInst(char *inst) { printf("%03d:\t %s\n", lc - 1, inst); }
