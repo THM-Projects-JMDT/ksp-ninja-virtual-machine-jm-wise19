@@ -105,6 +105,16 @@ void execGe() {
   int n1 = pop();
   push(n1 >= n2);
 }
-void execJmp(int n) {}
-void execBrf(int n) {}
-void execBrt(int n) {}
+void execJmp(int n) { pc = n; }
+void execBrf(int n) {
+  int b = pop();
+  if (b == 0) {
+    execJmp(n);
+  }
+}
+void execBrt(int n) {
+  int b = pop();
+  if (b == 1) {
+    execJmp(n);
+  }
+}

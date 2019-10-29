@@ -4,7 +4,7 @@
 #include "../util/error.h"
 
 int haltProg = 0;
-static int pc = 0;
+int pc = 0;
 static int lc = 0;
 
 // Display all Instructions in Memory
