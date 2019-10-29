@@ -4,6 +4,8 @@
 #define SK_SIZE 10000
 
 static int sp = 0;
+static int fp = 0;
+
 static int stack[SK_SIZE];
 
 void push(int value) {
@@ -19,3 +21,18 @@ int pop() {
   sp--;
   return stack[sp];
 }
+
+void asf(int n) {
+  push(fp);
+  fp = sp;
+  sp = sp + n;
+}
+
+void rsf() {
+  sp = fp;
+  fp = pop();
+}
+
+void pushl(int n) { push(stack[fp + n]); }
+
+void popl(int n) { stack[fp + n] = pop(); }
