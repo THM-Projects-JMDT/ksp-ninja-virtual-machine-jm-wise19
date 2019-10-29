@@ -33,6 +33,18 @@ void rsf() {
   fp = pop();
 }
 
-void pushl(int n) { push(stack[fp + n]); }
+void pushl(int n) {
+  // check if asf where fist
+  if (fp == 0)
+    noStackFrameAllocatedError();
 
-void popl(int n) { stack[fp + n] = pop(); }
+  push(stack[fp + n]);
+}
+
+void popl(int n) {
+  // check if asf where fist
+  if (fp == 0)
+    noStackFrameAllocatedError();
+
+  stack[fp + n] = pop();
+}
