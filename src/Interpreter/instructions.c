@@ -105,7 +105,12 @@ void execGe() {
   int n1 = pop();
   push(n1 >= n2);
 }
-void execJmp(int n) { pc = n; }
+void execJmp(int n) {
+  if (n > memorySize) {
+    /// Fehlermeldung
+  }
+  pc = n;
+}
 void execBrf(int n) {
   int b = pop();
   if (b == 0) {
