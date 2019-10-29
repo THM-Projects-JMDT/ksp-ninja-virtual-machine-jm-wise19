@@ -106,9 +106,9 @@ void execGe() {
   push(n1 >= n2);
 }
 void execJmp(int n) {
-  if (n > memorySize) {
-    /// Fehlermeldung
-  }
+  if (n > memorySize)
+    outOfMemoryError();
+
   pc = n;
 }
 void execBrf(int n) {
