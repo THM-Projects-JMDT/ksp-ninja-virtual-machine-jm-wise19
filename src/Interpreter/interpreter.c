@@ -25,7 +25,16 @@ typedef enum inst {
   asf,
   rsf,
   pushl,
-  popl
+  popl,
+  eq,
+  ne,
+  lt,
+  le,
+  gt,
+  ge,
+  jmp,
+  brf,
+  brt
 } inst;
 
 // Find right Instruction
@@ -85,6 +94,33 @@ void execInst(const unsigned int inst, const int counter, const int dpMode) {
     break;
   case popl:
     dpMode ? printInstValue("popl", value, counter) : execPopl(value);
+    break;
+  case eq:
+    dpMode ? printInst("eq", counter) : execEq();
+    break;
+  case ne:
+    dpMode ? printInst("ne", counter) : execNe();
+    break;
+  case lt:
+    dpMode ? printInst("lt", counter) : execLt();
+    break;
+  case le:
+    dpMode ? printInst("le", counter) : execLe();
+    break;
+  case gt:
+    dpMode ? printInst("gt", counter) : execGt();
+    break;
+  case ge:
+    dpMode ? printInst("ge", counter) : execGe();
+    break;
+  case jmp:
+    dpMode ? printInstValue("jmp", value, counter) : execJmp(value);
+    break;
+  case brf:
+    dpMode ? printInstValue("brf", value, counter) : execBrf(value);
+    break;
+  case brt:
+    dpMode ? printInstValue("brt", value, counter) : execBrt(value);
     break;
   default:
     unknownInstructionError(opcode);

@@ -20,5 +20,14 @@ void execAsf(int n);
 void execRsf();
 void execPushl(int n);
 void execPopl(int n);
+void execEq();
+void execNe();
+void execLt();
+void execLe();
+void execGt();
+void execGe();
+void execJmp(int n);
+void execBrf(int n);
+void execBrt(int n);
 
 #endif

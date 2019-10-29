@@ -71,7 +71,16 @@ void execPopg(int n) {
 
   globalvars[n] = pop();
 }
-void execAsf(int n) {}
-void execRsf() {}
-void execPushl(int n) {}
-void execPopl(int n) {}
+void execAsf(int n) { asf(n); }
+void execRsf() { rsf(); }
+void execPushl(int n) { pushl(n); }
+void execPopl(int n) { popl(n); }
+void execEq() {}
+void execNe() {}
+void execLt() {}
+void execLe() {}
+void execGt() {}
+void execGe() {}
+void execJmp(int n) {}
+void execBrf(int n) {}
+void execBrt(int n) {}
