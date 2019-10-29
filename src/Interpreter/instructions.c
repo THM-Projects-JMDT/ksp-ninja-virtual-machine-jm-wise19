@@ -75,12 +75,36 @@ void execAsf(int n) { asf(n); }
 void execRsf() { rsf(); }
 void execPushl(int n) { pushl(n); }
 void execPopl(int n) { popl(n); }
-void execEq() {}
-void execNe() {}
-void execLt() {}
-void execLe() {}
-void execGt() {}
-void execGe() {}
+void execEq() {
+  int n2 = pop();
+  int n1 = pop();
+  push(n1 == n2);
+}
+void execNe() {
+  int n2 = pop();
+  int n1 = pop();
+  push(n1 != n2);
+}
+void execLt() {
+  int n2 = pop();
+  int n1 = pop();
+  push(n1 < n2);
+}
+void execLe() {
+  int n2 = pop();
+  int n1 = pop();
+  push(n1 <= n2);
+}
+void execGt() {
+  int n2 = pop();
+  int n1 = pop();
+  push(n1 > n2);
+}
+void execGe() {
+  int n2 = pop();
+  int n1 = pop();
+  push(n1 >= n2);
+}
 void execJmp(int n) {}
 void execBrf(int n) {}
 void execBrt(int n) {}
