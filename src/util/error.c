@@ -76,3 +76,6 @@ void invalidProgrammCodeError() { vmError(52, "Missing 'HALT' statement"); }
 void invalidGlobalVarPositionError(const int pos) {
   vmError(53, "The global var %d does not exsist", pos);
 }
+void invalidLocalVarPositionError(const int pos) {
+  vmError(54, "The Local var %d does not exsist", pos);
+}
