@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const int version = 2;
+const int version = 3;
 
 // Handle version argument
 static void displayVersion(const char *myself) {

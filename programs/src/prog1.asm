@@ -2,30 +2,60 @@
 // prog1.asm -- an assembler example with global variables
 //
 
+//
+// compute the gcd of two positive numbers
+//
 // global Integer x;
 // global Integer y;
-// x = 2;
-// y = x + 3;
-// x = 7 * y + x;
-// writeInteger(x + -33);
+// x = readInteger();
+// y = readInteger();
+// while (x != y) {
+//   if (x > y) {
+//     x = x - y;
+//   } else {
+//     y = y - x;
+//   }
+// }
+// writeInteger(x);
 // writeCharacter('\n');
 
-	pushc	2
+	// x = readInteger();
+	rdint
 	popg	0
-	pushg	0
-	pushc	3
-	add
+	// y = readInteger();
+	rdint
 	popg	1
-	pushc	7
+	// while ...
+L1:
+	// x != y
+	pushg	0
 	pushg	1
-	mul
+	ne
+	brf	L2
+	// if ...
 	pushg	0
-	add
+	pushg	1
+	gt
+	brf	L3
+	// x = x - y
+	pushg	0
+	pushg	1
+	sub
 	popg	0
+	jmp	L4
+L3:
+	// y = y - x
+	pushg	1
 	pushg	0
-	pushc	-33
-	add
+	sub
+	popg	1
+L4:
+	jmp	L1
+L2:
+	// writeInteger(x);
+	pushg	0
 	wrint
+	// writeCharacter('\n');
 	pushc	'\n'
 	wrchr
 	halt
