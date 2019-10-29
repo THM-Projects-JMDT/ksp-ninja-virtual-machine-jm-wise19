@@ -57,6 +57,7 @@ void loadprog(const char *path) {
   if (globalvars == NULL)
     outOfMemoryError();
 
-  // TODO vtl check int
-  fclose(fp);
+  // Close and Check if file Close is possible
+  if (fclose(fp) == EOF)
+    cantCloseCodeFileError();
 }

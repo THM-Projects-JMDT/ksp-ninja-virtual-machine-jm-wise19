@@ -55,6 +55,7 @@ void invalidCodeVersionError(int fileVs, int vmVs) {
   vmError(23, "Version %d of the NJBF is not supported, please use version %d",
           fileVs, vmVs);
 }
+void cantCloseCodeFileError() { vmError(24, "cantCloseCodeFileError"); }
 
 // Memory Errors 3x
 void outOfMemoryError() { vmError(30, "Vm run out of Memory"); }
