@@ -45,6 +45,10 @@ void execDiv() {
 void execMod() {
   int num2 = pop();
   int num1 = pop();
+
+  if (num2 == 0)
+    dividedByZeroError();
+
   push(num1 % num2);
 }
 void execRdint() {
