@@ -79,3 +79,6 @@ void invalidGlobalVarPositionError(const int pos) {
 void invalidLocalVarPositionError(const int pos) {
   vmError(54, "The Local var %d does not exsist", pos);
 }
+void invalidJumpDestinationError(const int destination) {
+  vmError(55, "The Jump Destination %d is invalid", destination);
+}

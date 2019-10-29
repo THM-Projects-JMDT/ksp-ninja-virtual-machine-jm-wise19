@@ -110,8 +110,8 @@ void execGe() {
   push(n1 >= n2);
 }
 void execJmp(int n) {
-  if (n > memorySize)
-    outOfMemoryError();
+  if (n < 0 || n > memorySize)
+    invalidJumpDestinationError(n);
 
   pc = n;
 }

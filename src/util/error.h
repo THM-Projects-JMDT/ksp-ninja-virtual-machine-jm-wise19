@@ -19,5 +19,6 @@ void invalidGlobalVarPositionError(const int pos);
 void noStackFrameAllocatedError();
 void cantCloseCodeFileError();
 void invalidLocalVarPositionError(const int pos);
+void invalidJumpDestinationError(const int destination);
 
 #endif
