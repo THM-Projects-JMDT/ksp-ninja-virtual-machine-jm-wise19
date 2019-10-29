@@ -35,7 +35,7 @@ void loadprog(const char *path) {
 
   // Verify that the version Number matches the current VM's version number
   if (header[0] != version)
-    invalidCodeVersion(header[0], version);
+    invalidCodeVersionError(header[0], version);
 
   // Reading Instructions
   programMemory = (unsigned int *)malloc(header[1] * sizeof(unsigned int));

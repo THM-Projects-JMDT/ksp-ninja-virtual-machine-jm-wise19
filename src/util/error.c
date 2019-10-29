@@ -51,7 +51,7 @@ void invalidFileSizeError() {
   vmError(21, "the document size does not correspond to the NJBF");
 }
 void invalidFileIdentifierError() { vmError(22, "invalid code File format"); }
-void invalidCodeVersion(int fileVs, int vmVs) {
+void invalidCodeVersionError(int fileVs, int vmVs) {
   vmError(23, "Version %d of the NJBF is not supported, please use version %d",
           fileVs, vmVs);
 }
@@ -62,6 +62,9 @@ void outOfMemoryError() { vmError(30, "Vm run out of Memory"); }
 // Stack Errors 4x
 void stackOverflowError() { vmError(40, "stackOverflowError"); }
 void stackUnderflowError() { vmError(41, "stackUnderflowError"); }
+void noStackFrameAllocatedError() {
+  vmError(42, "locale variable used without reserving memory beforehand");
+}
 
 // Runtime Errors 5x
 void unknownInstructionError(const int optCode) {
@@ -69,6 +72,6 @@ void unknownInstructionError(const int optCode) {
 }
 void dividedByZeroError() { vmError(51, "dividedByZeroError"); }
 void invalidProgrammCodeError() { vmError(52, "Missing 'HALT' statement"); }
-void invalidGlobalVarPosition(const int pos) {
+void invalidGlobalVarPositionError(const int pos) {
   vmError(53, "The global var %d does not exsist", pos);
 }

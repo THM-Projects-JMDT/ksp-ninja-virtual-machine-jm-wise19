@@ -61,13 +61,13 @@ void execRdchr() {
 void execWrchr() { printf("%c", pop()); }
 void execPushg(int n) {
   if (n < 0 || n == globalVarSize)
-    invalidGlobalVarPosition(n);
+    invalidGlobalVarPositionError(n);
 
   push(globalvars[n]);
 }
 void execPopg(int n) {
   if (n < 0 || n == globalVarSize)
-    invalidGlobalVarPosition(n);
+    invalidGlobalVarPositionError(n);
 
   globalvars[n] = pop();
 }
