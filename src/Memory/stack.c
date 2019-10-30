@@ -26,6 +26,9 @@ void asf(int n) {
   push(fp);
   fp = sp;
   sp = sp + n;
+
+  if (sp = SK_SIZE)
+    stackOverflowError();
 }
 
 void rsf() {
