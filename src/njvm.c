@@ -29,7 +29,7 @@ static void help(const char *myself) {
 }
 
 int main(int argc, char *argv[]) {
-  char *progFile;
+  int filePos = -1;
 
   for (int i = 1; i < argc; i++) {
     // argument version
@@ -49,20 +49,20 @@ int main(int argc, char *argv[]) {
       // Save file path
     } else {
       // If more than 1 file path -> error
-      if (progFile != NULL)
+      if (filePos > -1)
         moreThanOneInputError(argv[0]);
 
-      progFile = argv[i];
+      filePos = i;
     }
   }
 
   // check if progFile was Specified
-  if (progFile == NULL)
+  if (filePos == -1)
     noPathError(argv[0]);
 
   // Start Message
   printf("Ninja Virtual Machine started\n");
-  loadprog(progFile);
+  loadprog(argv[filePos]);
   execList();
   execprog();
 
