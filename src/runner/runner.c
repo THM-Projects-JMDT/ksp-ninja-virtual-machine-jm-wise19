@@ -3,9 +3,20 @@
 #include "../Memory/programMemory.h"
 #include "../util/error.h"
 
-int haltProg = 0;
-int pc = 0;
+static int haltProg = 0;
+static int pc = 0;
 static int lc = 0;
+
+// Stop Runner
+void stopProgramm() { haltProg = 1; }
+
+// Change Programm Counter
+void changePC(const int dest) {
+  if (dest < 0 || dest > memorySize)
+    invalidJumpDestinationError(dest);
+
+  pc = dest;
+}
 
 // Display all Instructions in Memory
 void execList() {

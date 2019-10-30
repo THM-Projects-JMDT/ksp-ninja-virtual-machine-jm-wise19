@@ -1,8 +1,8 @@
 #ifndef NJCM_RUNNER_H_INCLUDED
 #define NJCM_RUNNER_H_INCLUDED
 
-extern int haltProg;
-extern int pc;
+void stopProgramm();
+void changePC(const int dest);
 void execList();
 void execprog();
 
