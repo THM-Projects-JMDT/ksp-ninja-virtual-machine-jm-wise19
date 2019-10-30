@@ -1,4 +1,5 @@
 #include "error.h"
+#include "prettyPrint.h"
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -6,25 +7,25 @@
 void vmError(const int errc, const char *em, ...) {
   va_list parms;
 
-  if (errc < 10 || errc >= 20) {
-    // Change the Text Color to Red
-    fprintf(stderr, "\033[0;31m");
+  setFormat(stderr, RED);
 
-    fprintf(stderr, "An error occurred:\n");
+  fprintf(stderr, "An error occurred:\n");
 
-    // Reset Text Color
-    fprintf(stderr, "\033[0m");
+  setFormat(stderr, RESET_FORMAT);
 
-    // Print Error code
-    fprintf(stderr, "Error %d: \033[1m", errc);
-  }
+  // Print Error code
+  fprintf(stderr, "Error %d: ", errc);
+
+  setFormat(stderr, BOLD);
 
   // Print error
   va_start(parms, em);
   vfprintf(stderr, em, parms);
   va_end(parms);
 
-  fprintf(stderr, "\033[0m\n");
+  setFormat(stderr, RESET_FORMAT);
+
+  fprintf(stderr, "\n");
 
   // Exit error
   exit(errc);
