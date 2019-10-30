@@ -39,6 +39,8 @@ Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 ## erweiterungs ideen
 
 - Farben
+- promt "Debug$"
+- vtl nicht immer mögliche commands ausgeben
 - untermenü optionen direkt mit angeben
 - step [anzahl]?
 - mehrere breakpoints

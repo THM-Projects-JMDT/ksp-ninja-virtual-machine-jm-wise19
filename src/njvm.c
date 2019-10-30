@@ -1,4 +1,5 @@
 #include "Memory/programMemory.h"
+#include "debugger/debugger.h"
 #include "runner/runner.h"
 #include "util/error.h"
 #include "util/prettyPrint.h"
@@ -89,9 +90,9 @@ int main(int argc, char *argv[]) {
   // execList();
 
   // if debug mode is offline start Programm
-  if (debug) {
-    // TODO
-  } else
+  if (debug)
+    startDebug();
+  else
     execprog();
 
   // TODO maybe somewhere else
