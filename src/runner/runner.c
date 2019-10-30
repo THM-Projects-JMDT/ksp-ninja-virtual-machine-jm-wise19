@@ -2,6 +2,7 @@
 #include "../Interpreter/interpreter.h"
 #include "../Memory/programMemory.h"
 #include "../util/error.h"
+#include "../util/prettyPrint.h"
 
 static int haltProg = 0;
 static int pc = 0;
@@ -30,10 +31,14 @@ void execList() {
 
 // Run Programm in Memory
 void execprog() {
+  pprintf(GREEN, "======\n");
+
   while (!haltProg) {
     unsigned int ir = getInst(pc);
     pc++;
     execInst(ir, pc, 0);
   }
   pc = 0;
+
+  pprintf(GREEN, "======\n");
 }
