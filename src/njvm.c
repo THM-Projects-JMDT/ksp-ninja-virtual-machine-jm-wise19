@@ -1,6 +1,7 @@
 #include "Memory/programMemory.h"
 #include "runner/runner.h"
 #include "util/error.h"
+#include "util/prettyPrint.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -10,23 +11,36 @@ int debug = 0;
 
 // Handle version argument
 static void displayVersion(const char *myself) {
-  printf("Ninja Virtual Machine Version %d (compiled %s, %s)\n", version,
-         __DATE__, __TIME__);
+  pprintf(BOLD, "Ninja Virtual Machine Version %d (compiled %s, %s)\n", version,
+          __DATE__, __TIME__);
 }
 
+// TODO vtl in one FIle
 // Handle help argument
 static void help(const char *myself) {
-  printf("\033[1musage:\033[0m %s [options] ... [code file]\n"
-         "\033[1mOptions:\033[0m \n"
-         "\t\033[1m--version\033[0m \t show version and exit\n"
-         "\t\033[1m--help\033[0m \t\t show this text and exit\n"
-         "\033[1mError Codes:\033[0m \n"
-         "\t\033[1m1x:\033[0m Argument Errors codes\n"
-         "\t\033[1m2x:\033[0m File read Errors\n"
-         "\t\033[1m3x:\033[0m Memory Errors\n"
-         "\t\033[1m4x:\033[0m Stack Errors\n"
-         "\t\033[1m5x:\033[0m Runtime Errors\n",
-         myself);
+  // Print usage
+  pprintf(BOLD, "usage: ");
+  printf("%s [options] ... [code file]\n", myself);
+
+  // Print Options
+  pprintf(BOLD, "Options: \n");
+  pprintf(BOLD, "\t--version");
+  printf("\t show version and exit\n");
+  pprintf(BOLD, "\t--help");
+  printf("\t\t show this text and exit\n");
+
+  // Print Error Codes
+  pprintf(BOLD, "Error Codes\n");
+  pprintf(BOLD, "\t1x: ");
+  printf("Argument Errors\n");
+  pprintf(BOLD, "\t2x: ");
+  printf("File read Errors\n");
+  pprintf(BOLD, "\t3x: ");
+  printf("Memory Errors\n");
+  pprintf(BOLD, "\t4x: ");
+  printf("Stack Errors\n");
+  pprintf(BOLD, "\t5x: ");
+  printf("Runtime Errors\n");
 }
 
 int main(int argc, char *argv[]) {
@@ -69,7 +83,7 @@ int main(int argc, char *argv[]) {
   loadprog(argv[filePos]);
 
   // Start Message
-  printf("Ninja Virtual Machine started\n");
+  pprintf(BOLD, "Ninja Virtual Machine started\n");
 
   // TODO remove
   // execList();
@@ -85,5 +99,5 @@ int main(int argc, char *argv[]) {
   freeGlobVars();
 
   // Stop Message
-  printf("Ninja Virtual Machine stopped\n");
+  pprintf(BOLD, "Ninja Virtual Machine stopped\n");
 }
