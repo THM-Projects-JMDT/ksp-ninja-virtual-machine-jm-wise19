@@ -6,6 +6,7 @@
 #include <string.h>
 
 const int version = 3;
+int debug = 0;
 
 // Handle version argument
 static void displayVersion(const char *myself) {
@@ -41,10 +42,14 @@ int main(int argc, char *argv[]) {
     else if (strcmp(argv[i], "--help") == 0) {
       help(argv[0]);
       exit(0);
-      // argument prog 1-3
     }
+    // argument debug
+    else if (strcmp(argv[i], "--debug") == 0) {
+      debug = 1;
+    }
+
     // handle an invalid argument
-    else if ((argv[i][0] == '-' && argv[i][1] == '-')) {
+    else if (argv[i][0] == '-') {
       invalidArgumentError(argv[0], argv[i]);
       // Save file path
     } else {
@@ -60,11 +65,20 @@ int main(int argc, char *argv[]) {
   if (filePos == -1)
     noPathError(argv[0]);
 
+  // load programm in Memory
+  loadprog(argv[filePos]);
+
   // Start Message
   printf("Ninja Virtual Machine started\n");
-  loadprog(argv[filePos]);
-  execList();
-  execprog();
+
+  // TODO remove
+  // execList();
+
+  // if debug mode is offline start Programm
+  if (debug) {
+    // TODO
+  } else
+    execprog();
 
   // TODO maybe somewhere else
   freeProgMem();
