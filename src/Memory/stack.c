@@ -27,7 +27,7 @@ void asf(int n) {
   fp = sp;
   sp = sp + n;
 
-  if (sp = SK_SIZE)
+  if (sp == SK_SIZE)
     stackOverflowError();
 }
 
