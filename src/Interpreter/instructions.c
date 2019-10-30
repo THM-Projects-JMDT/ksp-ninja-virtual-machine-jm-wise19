@@ -63,18 +63,8 @@ void execRdchr() {
   push(myChar);
 }
 void execWrchr() { printf("%c", pop()); }
-void execPushg(int n) {
-  if (n < 0 || n == globalVarSize)
-    invalidGlobalVarPositionError(n);
-
-  push(globalvars[n]);
-}
-void execPopg(int n) {
-  if (n < 0 || n == globalVarSize)
-    invalidGlobalVarPositionError(n);
-
-  globalvars[n] = pop();
-}
+void execPushg(int n) { push(getGlobVar(n)); }
+void execPopg(int n) { setGlobVar(n, pop()); }
 void execAsf(int n) { asf(n); }
 void execRsf() { rsf(); }
 void execPushl(int n) { pushl(n); }

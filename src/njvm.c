@@ -67,10 +67,8 @@ int main(int argc, char *argv[]) {
   execprog();
 
   // TODO maybe somewhere else
-  free(programMemory);
-  memorySize = 0;
-  free(globalvars);
-  globalVarSize = 0;
+  freeProgMem();
+  freeGlobVars();
 
   // Stop Message
   printf("Ninja Virtual Machine stopped\n");

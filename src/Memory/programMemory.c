@@ -5,10 +5,48 @@
 #include <stdlib.h>
 #include <string.h>
 
-unsigned int *programMemory;
-int *globalvars;
+static unsigned int *programMemory;
+static int *globalvars;
 int memorySize;
 int globalVarSize;
+
+// get Program Memory at pos
+unsigned int getInst(const int pos) {
+  if (pos < 0 || pos == memorySize)
+    invalidProgrammCodeError();
+
+  return programMemory[pos];
+}
+
+// check global vars pos
+static void checkGlobalVars(const int pos) {
+  if (pos < 0 || pos == globalVarSize)
+    invalidGlobalVarPositionError(pos);
+}
+
+// get global var at Pos
+int getGlobVar(const int pos) {
+  checkGlobalVars(pos);
+  return globalvars[pos];
+}
+
+// set global var at Pos
+void setGlobVar(const int pos, const int val) {
+  checkGlobalVars(pos);
+  globalvars[pos] = val;
+}
+
+// free Program Memory
+void freeProgMem() {
+  free(programMemory);
+  memorySize = 0;
+}
+
+// free Global vars
+void freeGlobVars() {
+  free(globalvars);
+  globalVarSize = 0;
+}
 
 // Load programs
 void loadprog(const char *path) {

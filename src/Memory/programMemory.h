@@ -1,9 +1,12 @@
 #ifndef NJCM_PROGRAMMEMORY_H_INCLUDED
 #define NJCM_PROGRAMMEMORY_H_INCLUDED
 
-extern unsigned int *programMemory;
+unsigned int getInst(const int pos);
+void freeProgMem();
 extern int memorySize;
-extern int *globalvars;
+int getGlobVar(const int pos);
+void setGlobVar(const int pos, const int val);
+void freeGlobVars();
 extern int globalVarSize;
 
 void loadprog(const char *x);

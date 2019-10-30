@@ -21,7 +21,7 @@ void changePC(const int dest) {
 // Display all Instructions in Memory
 void execList() {
   while (lc < memorySize) {
-    unsigned int ir = programMemory[lc];
+    unsigned int ir = getInst(lc);
     lc++;
     execInst(ir, lc, 1);
   }
@@ -31,10 +31,7 @@ void execList() {
 // Run Programm in Memory
 void execprog() {
   while (!haltProg) {
-    if (pc == memorySize)
-      invalidProgrammCodeError();
-
-    unsigned int ir = programMemory[pc];
+    unsigned int ir = getInst(pc);
     pc++;
     execInst(ir, pc, 0);
   }
