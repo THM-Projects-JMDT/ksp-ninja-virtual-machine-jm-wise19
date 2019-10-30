@@ -7,6 +7,7 @@
 void vmError(const int errc, const char *em, ...) {
   va_list parms;
 
+  setFormat(stderr, BOLD);
   setFormat(stderr, RED);
 
   fprintf(stderr, "An error occurred:\n");
