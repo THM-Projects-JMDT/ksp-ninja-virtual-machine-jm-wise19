@@ -3,7 +3,7 @@
 #include "instructions.h"
 #include <stdio.h>
 
-#define GET_INST(i) (((i)&0xFF000000) >> 24)
+#define GET_INST(i) ((i) >> 24)
 #define SIGN_EXTEND(i) ((i)&0x00800000 ? (i) | 0xFF000000 : (i))
 #define GET_IMMEDIATE(i) ((i)&0x00FFFFFF)
 
