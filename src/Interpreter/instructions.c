@@ -3,12 +3,15 @@
 #include "../Memory/stack.h"
 #include "../runner/runner.h"
 #include "../util/error.h"
+#include "../util/prettyPrint.h"
 #include <stdio.h>
 
 // Print functions
-void printInst(char *inst, int ct) { printf("%04d:\t %s\n", ct - 1, inst); }
+void printInst(char *inst, int ct) {
+  pprintf(BOLD, "%04d:\t %s\n", ct - 1, inst);
+}
 void printInstValue(char *inst, int value, int ct) {
-  printf("%04d:\t %s\t %d\n", ct - 1, inst, value);
+  pprintf(BOLD, "%04d:\t %s\t %d\n", ct - 1, inst, value);
 }
 
 // Instructions Functions
