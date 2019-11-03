@@ -31,11 +31,10 @@ void cmdClear(char *self) {
 
 // Sub Commands Arrays
 debugCmd inspectSubCmds[] = {
-    {"stack", cmdStack, 0}, {"data", cmdData, 0}, {"quit", cmdReset, 0}};
+    {"stack", cmdStack}, {"data", cmdData}, {"quit", cmdReset}};
 int inspectSubCount = 3;
-debugCmd breakpointSubCmds[] = {{"address to set", cmdAddress, 0},
-                                {"clear", cmdClear, 0},
-                                {"quit", cmdReset, 0}};
+debugCmd breakpointSubCmds[] = {
+    {"address to set", cmdAddress}, {"clear", cmdClear}, {"quit", cmdReset}};
 int breakpointSubCount = 3;
 
 // Commands
@@ -62,9 +61,9 @@ void cmdRun(char *self) { printf("cmdRun\n"); }
 debugCmd cmds[] = {{"inspect", cmdInspect, 1},
                    {"list", cmdList},
                    {"breakpoint", cmdBreakpoint, 1},
-                   {"step", cmdStep, 0},
-                   {"run", cmdRun, 0},
-                   {"quit", stopDebugging, 0}};
+                   {"step", cmdStep},
+                   {"run", cmdRun},
+                   {"quit", stopDebugging}};
 int cmdsCount = 6;
 
 // Reset Function
