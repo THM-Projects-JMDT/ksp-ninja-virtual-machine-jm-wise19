@@ -1,4 +1,4 @@
-# KSP-Ninja Virtual Machine
+# KSP- [  ]Ninja Virtual Machine
 
 Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 
@@ -8,47 +8,47 @@ Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 
 ## von der referenz implementierung
 
-- beim start
-  - datei name
-  - anzahl instructions
-  - anzahl vars
-- nach jeder anweisung
-  - nächste instruction anzeigen
-  - nächste debug commands anzeigen
-- untermenüs
-  - inspect
-  - breakpoint
-- promt
-  - normal "Debug:"
-  - in (untermenü)  "Debug [untermenü]:"
-- bei commands nur ersten buchtaben testen
-- commands
-  - inspect
-    - stack
-    - data
-  - list
-    - wie ausgabe in vorherigen aufgaben
-  - breakpoint
-    - [num] (set at num)
-    - -1 (clear breakpoint)
-    - ret (no change)
-  - step
-  - run
-  - quit
+- [x] beim start
+  - [x] datei name
+  - [x] anzahl instructions
+  - [x] anzahl vars
+- [ ] nach jeder anweisung
+  - [ ] nächste instruction anzeigen
+  - [x] nächste debug commands anzeigen
+- [x] untermenüs
+  - [x] inspect
+  - [x] breakpoint
+- [x] promt
+  - [x] normal "Debug:"
+  - [x] in (untermenü)  "Debug [untermenü]:"
+- [x] bei commands nur ersten buchtaben testen
+- [x] commands
+  - [x] inspect
+    - [ ] stack
+    - [ ] data
+  - [x] list
+    - [x] wie ausgabe in vorherigen aufgaben
+  - [x] breakpoint
+    - [ ] [num] (set at num)
+    - [ ] - [ ]1 (clear breakpoint)
+    - [x] ret (no change)
+  - [ ] step
+  - [ ] run
+  - [x] quit
 
 ## erweiterungs ideen
 
-- Farben
-- promt "Debug$"
-- vtl nicht immer mögliche commands ausgeben
-- untermenü optionen direkt mit angeben
-- step [anzahl]?
-- mehrere breakpoints
-- einheitliches zurück (quit oder exit)
-- help command
-- list programm run (mit allen inst auch bei jmp) ?
-- die wiederkehrende Debug: commands nachicht besser hervorheben (oder command ausgaben) vtl. mit "==="
-- aktuelle locale vars anzeigen (ohne rest vom stack) ? (bzw alles über fp)
-- auszug vom stack / daten ?
-- wie mit Errors umgehen ? 
-- vtl var angeben, die nach jedem step angezeigt wird
+- [x] Farben
+- [x] promt "Debug$"
+- [ ] vtl nicht immer mögliche commands ausgeben
+- [ ] untermenü optionen direkt mit angeben
+- [ ] step [anzahl]?
+- [ ] mehrere breakpoints
+- [x] einheitliches zurück (quit oder exit)
+- [ ] help command
+- [ ] list programm run (mit allen inst auch bei jmp) ?
+- [ ] die wiederkehrende Debug: commands nachicht besser hervorheben (oder command ausgaben) vtl. mit "==="
+- [  ] aktuelle locale vars anzeigen (ohne rest vom stack) ? (bzw alles über fp)
+- [ ] auszug vom stack / daten ?
+- [ ] wie mit Errors umgehen ? 
+- [ ] vtl var angeben, die nach jedem step angezeigt wird
