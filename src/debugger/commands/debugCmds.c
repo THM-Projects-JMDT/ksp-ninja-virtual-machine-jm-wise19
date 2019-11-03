@@ -14,11 +14,15 @@ void setActCmds(int count, debugCmd newCmds[], char *command) {
   setSubPromt(command);
 }
 
-// Find Command and run Funktion
+// Find Command and run Command
 void findCmd(char *input) {
   for (int i = 0; i < cmdsCount; i++) {
     if (cmds[i].command[0] == input[0]) {
       cmds[i].action(cmds[i].command);
+
+      // Print next Instruction
+      printNextInst();
+      break;
     }
   }
 }

@@ -45,13 +45,11 @@ void showFileLoaded(const int codeSize, const int dataSize) {
 
 void startDebug() {
   cmdReset();
+  printNextInst();
+
+  // Debug Loop
   while (runDebug) {
     char input[INPUT_SIZE];
-    int cmdMatch = 1;
-
-    // Print next Instruction
-    if (1)
-      printNextInst();
 
     printCmds();
 

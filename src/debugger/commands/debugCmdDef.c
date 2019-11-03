@@ -1,5 +1,6 @@
 #include "debugCmdDef.h"
 #include "../../runner/runner.h"
+#include "../../util/prettyPrint.h"
 #include "../debugger.h"
 #include "debugCmds.h"
 #include <stdio.h>
@@ -42,7 +43,9 @@ void cmdInspect(char *self) {
 }
 void cmdList(char *self) {
   printSep();
+  pprintf(BLUE, "-- Program Code --\n");
   execList();
+  pprintf(BLUE, "-- end of Code --\n");
   printSep();
 }
 void cmdBreakpoint(char *self) {
