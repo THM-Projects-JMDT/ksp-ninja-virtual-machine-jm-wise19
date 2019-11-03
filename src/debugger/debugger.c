@@ -1,7 +1,7 @@
 #include "debugger.h"
 #include "../util/prettyPrint.h"
-#include "debugCmdDef.h"
-#include "debugInput.h"
+#include "commands/debugCmdDef.h"
+#include "commands/debugInput.h"
 #include <stdio.h>
 #include <string.h>
 

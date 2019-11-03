@@ -1,7 +1,7 @@
 #include "debugInput.h"
-#include "../util/prettyPrint.h"
+#include "../../util/prettyPrint.h"
+#include "../debugger.h"
 #include "debugCmdDef.h"
-#include "debugger.h"
 #include <stdio.h>
 
 #define INPUT_SIZE 20
