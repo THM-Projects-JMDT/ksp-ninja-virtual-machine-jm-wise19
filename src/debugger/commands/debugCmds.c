@@ -32,9 +32,9 @@ void findCmd(char *input) {
   int hasSub;
 
   for (int i = 0; i < cmdsCount; i++) {
-    if (cmds[i].command[0] == input[0]) {
+    if (cmds[i].check(input, cmds[i].command)) {
       hasSub = cmds[i].hasSubCmd;
-      cmds[i].action(cmds[i].command);
+      cmds[i].action(cmds[i].command, input);
 
       // If Cmd with no Sub -> print next instruction
       if (!hasSub)

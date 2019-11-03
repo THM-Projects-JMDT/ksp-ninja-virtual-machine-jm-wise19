@@ -4,7 +4,8 @@
 typedef struct
 {
   char command[30];
-  void (*action)(char *);
+  int (*check)(char *, char *);
+  void (*action)(char *, char *);
   int hasSubCmd;
 } debugCmd;
 
