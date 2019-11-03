@@ -22,6 +22,10 @@ void cmdData(char *self, char *input) {
   printf("cmdData\n");
   cmdReset();
 }
+void cmdFrame(char *self, char *input) {
+  printf("cmdFrame\n");
+  cmdReset();
+}
 
 // Breakpoint Sub
 void cmdAddress(char *self, char *input) {
@@ -35,9 +39,10 @@ void cmdClear(char *self, char *input) {
 
 // Sub Commands Arrays
 debugCmd inspectSubCmds[] = {{"stack", checkChar, cmdStack},
+                             {"frame", checkChar, cmdFrame},
                              {"data", checkChar, cmdData},
                              {"quit", checkChar, cmdReset}};
-int inspectSubCount = 3;
+int inspectSubCount = 4;
 debugCmd breakpointSubCmds[] = {{"address to set", checkInt, cmdAddress},
                                 {"clear", checkChar, cmdClear},
                                 {"quit", checkChar, cmdReset}};
