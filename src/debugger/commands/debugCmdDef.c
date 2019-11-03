@@ -31,10 +31,11 @@ void cmdClear(char *self) {
 
 // Sub Commands Arrays
 debugCmd inspectSubCmds[] = {
-    {"stack", cmdStack}, {"data", cmdData}, {"quit", cmdReset}};
+    {"stack", cmdStack, 0}, {"data", cmdData, 0}, {"quit", cmdReset, 0}};
 int inspectSubCount = 3;
-debugCmd breakpointSubCmds[] = {
-    {"address to set", cmdAddress}, {"clear", cmdClear}, {"quit", cmdReset}};
+debugCmd breakpointSubCmds[] = {{"address to set", cmdAddress, 0},
+                                {"clear", cmdClear, 0},
+                                {"quit", cmdReset, 0}};
 int breakpointSubCount = 3;
 
 // Commands
@@ -46,18 +47,24 @@ void cmdList(char *self) {
   pprintf(BLUE, "-- Program Code --\n");
   execList();
   pprintf(BLUE, "-- end of Code --\n");
-  printSep();
 }
 void cmdBreakpoint(char *self) {
   setActCmds(breakpointSubCount, breakpointSubCmds, self);
+
+  printMsPromt();
+  // TODO print seted Brakpoints
+  pprintf(BOLD, "cleared\n");
 }
 void cmdStep(char *self) { printf("cmdStep\n"); }
 void cmdRun(char *self) { printf("cmdRun\n"); }
 
 // Commands Array
-debugCmd cmds[] = {
-    {"inspect", cmdInspect}, {"list", cmdList}, {"breakpoint", cmdBreakpoint},
-    {"step", cmdStep},       {"run", cmdRun},   {"quit", stopDebugging}};
+debugCmd cmds[] = {{"inspect", cmdInspect, 1},
+                   {"list", cmdList},
+                   {"breakpoint", cmdBreakpoint, 1},
+                   {"step", cmdStep, 0},
+                   {"run", cmdRun, 0},
+                   {"quit", stopDebugging, 0}};
 int cmdsCount = 6;
 
 // Reset Function

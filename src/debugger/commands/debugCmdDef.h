@@ -5,6 +5,7 @@ typedef struct
 {
   char command[30];
   void (*action)(char *);
+  int hasSubCmd;
 } debugCmd;
 
 void cmdReset();

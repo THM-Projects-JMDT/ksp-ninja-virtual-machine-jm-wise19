@@ -16,12 +16,16 @@ void setActCmds(int count, debugCmd newCmds[], char *command) {
 
 // Find Command and run Command
 void findCmd(char *input) {
+  int hasSub;
+
   for (int i = 0; i < cmdsCount; i++) {
     if (cmds[i].command[0] == input[0]) {
+      hasSub = cmds[i].hasSubCmd;
       cmds[i].action(cmds[i].command);
 
-      // Print next Instruction
-      printNextInst();
+      // If command not has Sub Commands print next Instruction
+      if (!hasSub)
+        printNextInst();
       break;
     }
   }
