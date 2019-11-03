@@ -1,11 +1,19 @@
 #include "debugger.h"
+#include "../Interpreter/interpreter.h"
+#include "../Memory/programMemory.h"
+#include "../runner/runner.h"
 #include "../util/prettyPrint.h"
 #include "commands/debugCmdDef.h"
-#include "commands/debugInput.h"
+#include "commands/debugCmds.h"
 #include <stdio.h>
 #include <string.h>
 
+#define INPUT_SIZE 20
+
+static int runDebug = 1;
 char *promt[2] = {"NJVM-DEBUG"};
+
+void stopDebugging() { runDebug = 0; }
 
 // TODo change
 void setSubPromt(char *sub) { promt[1] = sub; }
@@ -22,6 +30,11 @@ void printPromt() {
   pprintf(GREEN, "%s$ ", promt[0]);
 }
 void printSep() { pprintf(BLUE, "======\n"); }
+void printNextInst() {
+  printSep();
+  execInst(getInst(getPC()), getPC() + 1, 1);
+  printSep();
+}
 
 void showFileLoaded(const int codeSize, const int dataSize) {
   printMsPromt();
@@ -32,15 +45,24 @@ void showFileLoaded(const int codeSize, const int dataSize) {
 
 void startDebug() {
   cmdReset();
-  cmdLoop();
+  while (runDebug) {
+    char input[INPUT_SIZE];
+    int cmdMatch = 1;
 
-  /*
+    // Print next Instruction
+    if (1)
+      printNextInst();
 
-  printSep();
-  pprintf(BOLD, "0000:\trdint\n");
-  printSep();
+    printCmds();
 
-  printSep();
-  execList();
-  printSep(); */
+    // Read input
+    printPromt();
+    fgets(input, INPUT_SIZE, stdin);
+
+    // check input
+    if (input == NULL)
+      continue;
+
+    findCmd(input);
+  }
 }

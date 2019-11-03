@@ -10,5 +10,7 @@ void printPromt();
 void printMsPromt();
 void setSubPromt(char *new);
 void resetSubPromt();
+void printNextInst();
+void stopDebugging();
 
 #endif

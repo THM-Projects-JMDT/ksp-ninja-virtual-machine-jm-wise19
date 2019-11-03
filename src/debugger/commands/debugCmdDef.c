@@ -1,7 +1,7 @@
 #include "debugCmdDef.h"
 #include "../../runner/runner.h"
 #include "../debugger.h"
-#include "debugInput.h"
+#include "debugCmds.h"
 #include <stdio.h>
 
 // Init Declaration

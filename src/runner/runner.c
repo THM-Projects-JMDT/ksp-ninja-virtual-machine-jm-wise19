@@ -10,6 +10,7 @@ static int lc = 0;
 
 // Stop Runner
 void stopProgramm() { haltProg = 1; }
+int getPC() { return pc; }
 
 // Change Programm Counter
 void changePC(const int dest) {

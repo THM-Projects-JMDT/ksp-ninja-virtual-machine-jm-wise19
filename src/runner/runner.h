@@ -5,5 +5,6 @@ void stopProgramm();
 void changePC(const int dest);
 void execList();
 void execprog();
+int getPC();
 
 #endif
