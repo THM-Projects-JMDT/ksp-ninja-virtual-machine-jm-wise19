@@ -5,5 +5,10 @@
 
 void showFileLoaded(const int codeSize, const int dataSize);
 void startDebug();
+void printSep();
+void printPromt();
+void printMsPromt();
+void setSubPromt(char *new);
+void resetSubPromt();
 
 #endif
