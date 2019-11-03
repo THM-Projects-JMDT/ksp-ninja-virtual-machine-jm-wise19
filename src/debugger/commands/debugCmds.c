@@ -2,7 +2,10 @@
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"
 #include "debugCmdDef.h"
+#include "string.h"
 #include <stdio.h>
+
+#define CMD_DELIMITER " "
 
 static debugCmd *cmds;
 static int cmdsCount;
@@ -14,6 +17,16 @@ void setActCmds(int count, debugCmd newCmds[], char *command) {
   setSubPromt(command);
 }
 
+// tests if subcommand was entered directly
+void checkSubAsArg(char *input) {
+  char *subCmd;
+  strtok(input, CMD_DELIMITER);
+  subCmd = strtok(NULL, CMD_DELIMITER);
+
+  if (subCmd != NULL)
+    findCmd(subCmd);
+}
+
 // Find Command and run Command
 void findCmd(char *input) {
   int hasSub;
@@ -23,9 +36,13 @@ void findCmd(char *input) {
       hasSub = cmds[i].hasSubCmd;
       cmds[i].action(cmds[i].command);
 
-      // If command not has Sub Commands print next Instruction
+      // If Cmd with no Sub -> print next instruction
       if (!hasSub)
         printNextInst();
+      // else check sub Cmd
+      else
+        checkSubAsArg(input);
+
       break;
     }
   }

@@ -6,7 +6,6 @@
 #include "commands/debugCmdDef.h"
 #include "commands/debugCmds.h"
 #include <stdio.h>
-#include <string.h>
 
 #define INPUT_SIZE 20
 

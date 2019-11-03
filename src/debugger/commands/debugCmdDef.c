@@ -51,8 +51,8 @@ void cmdBreakpoint(char *self) {
   setActCmds(breakpointSubCount, breakpointSubCmds, self);
 
   printMsPromt();
-  // TODO print seted Brakpoints
-  pprintf(BOLD, "cleared\n");
+  // TODO print seted Breakpoints
+  pprintf(BOLD, "Current Breakpoints: cleared\n");
 }
 void cmdStep(char *self) { printf("cmdStep\n"); }
 void cmdRun(char *self) { printf("cmdRun\n"); }
