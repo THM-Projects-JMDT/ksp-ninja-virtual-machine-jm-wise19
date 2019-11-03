@@ -43,16 +43,16 @@ void cmdInspect(char *self) {
 }
 void cmdList(char *self) {
   printSep();
-  pprintf(BLUE, "-- Program Code --\n");
+  pprintf(YELLOW, "-- Program Code --\n");
   execList();
-  pprintf(BLUE, "-- end of Code --\n");
+  pprintf(YELLOW, "-- end of Code --\n");
 }
 void cmdBreakpoint(char *self) {
   setActCmds(breakpointSubCount, breakpointSubCmds, self);
 
   printMsPromt();
   // TODO print seted Breakpoints
-  pprintf(BOLD, "Current Breakpoints: cleared\n");
+  pprintf(YELLOW, "Current Breakpoints: cleared\n");
 }
 void cmdStep(char *self) { printf("cmdStep\n"); }
 void cmdRun(char *self) { printf("cmdRun\n"); }
