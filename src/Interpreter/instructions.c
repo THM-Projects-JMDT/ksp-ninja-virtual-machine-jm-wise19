@@ -1,6 +1,7 @@
 #include "instructions.h"
 #include "../Memory/programMemory.h"
 #include "../Memory/stack.h"
+#include "../debugger/debugger.h"
 #include "../runner/runner.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
@@ -15,7 +16,10 @@ void printInstValue(char *inst, int value, int ct) {
 }
 
 // Instructions Functions
-void execHalt() { stopProgramm(); }
+void execHalt() {
+  stopProgramm();
+  stopDebugging();
+}
 void execPushc(int value) { push(value); }
 void execAdd() {
   int num2 = pop();

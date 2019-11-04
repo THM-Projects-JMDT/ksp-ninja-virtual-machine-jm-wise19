@@ -7,6 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Helper vars
+static int breakPoint = -1;
+
 // Init Declaration
 void cmdReset();
 int checkChar(char *input, char *cmd);
@@ -29,11 +32,15 @@ void cmdFrame(char *self, char *input) {
 
 // Breakpoint Sub
 void cmdAddress(char *self, char *input) {
-  printf("cmdAddress %d\n", atoi(input));
+  breakPoint = atoi(input);
+  printMsPromt();
+  pprintf(YELLOW, "breakpoint now set at %d\n", breakPoint);
   cmdReset();
 }
 void cmdClear(char *self, char *input) {
-  printf("cmdClear\n");
+  breakPoint = -1;
+  printMsPromt();
+  pprintf(YELLOW, "breakpoint now cleared\n");
   cmdReset();
 }
 
@@ -61,12 +68,20 @@ void cmdList(char *self, char *input) {
 void cmdBreakpoint(char *self, char *input) {
   setActCmds(breakpointSubCount, breakpointSubCmds, self);
 
+  // Print current breakpoint
   printMsPromt();
-  // TODO print seted Breakpoints
-  pprintf(YELLOW, "Current Breakpoints: cleared\n");
+  pprintf(YELLOW, "Current Breakpoint: ");
+
+  if (breakPoint == -1)
+    pprintf(YELLOW, "cleared\n");
+  else
+    pprintf(YELLOW, "%d\n", breakPoint);
 }
-void cmdStep(char *self, char *input) { printf("cmdStep\n"); }
-void cmdRun(char *self, char *input) { printf("cmdRun\n"); }
+void cmdStep(char *self, char *input) {
+  step();
+  // Todo if somethig was printed print \n and vlt. sepeareter
+}
+void cmdRun(char *self, char *input) { execProgBreak(breakPoint); }
 
 // Command Help functions
 int checkChar(char *input, char *cmd) { return cmd[0] == input[0]; }

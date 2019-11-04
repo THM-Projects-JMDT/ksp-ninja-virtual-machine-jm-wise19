@@ -22,12 +22,19 @@ void changePC(const int dest) {
 
 // Display all Instructions in Memory
 void execList() {
+  lc = 0;
+
   while (lc < memorySize) {
     unsigned int ir = getInst(lc);
     lc++;
     execInst(ir, lc, 1);
   }
-  lc = 0;
+}
+
+void step() {
+  unsigned int ir = getInst(pc);
+  pc++;
+  execInst(ir, pc, 0);
 }
 
 // Run Programm in Memory
@@ -35,11 +42,16 @@ void execprog() {
   pprintf(GREEN, "======\n");
 
   while (!haltProg) {
-    unsigned int ir = getInst(pc);
-    pc++;
-    execInst(ir, pc, 0);
+    step();
   }
-  pc = 0;
 
   pprintf(GREEN, "======\n");
+}
+
+void execProgBreak(int b) {
+  while (!haltProg) {
+    step();
+    if (pc == b)
+      return;
+  }
 }

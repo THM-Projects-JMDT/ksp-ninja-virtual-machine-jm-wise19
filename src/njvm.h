@@ -2,6 +2,6 @@
 #define NJVM_H_INCLUDED
 
 extern const int version;
-extern const int debug;
+extern int debug;
 
 #endif

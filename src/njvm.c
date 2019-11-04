@@ -25,6 +25,8 @@ static void help(const char *myself) {
 
   // Print Options
   pprintf(BOLD, "Options: \n");
+  pprintf(BOLD, "\t--debug");
+  printf("\t\t start debug mode\n");
   pprintf(BOLD, "\t--version");
   printf("\t show version and exit\n");
   pprintf(BOLD, "\t--help");

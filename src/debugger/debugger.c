@@ -1,6 +1,7 @@
 #include "debugger.h"
 #include "../Interpreter/interpreter.h"
 #include "../Memory/programMemory.h"
+#include "../njvm.h"
 #include "../runner/runner.h"
 #include "../util/prettyPrint.h"
 #include "commands/debugCmdDef.h"
@@ -9,10 +10,9 @@
 
 #define INPUT_SIZE 20
 
-static int runDebug = 1;
 char *promt[2] = {"NJVM-DEBUG"};
 
-void stopDebugging() { runDebug = 0; }
+void stopDebugging() { debug = 0; }
 
 // TODo change
 void setSubPromt(char *sub) { promt[1] = sub; }
@@ -30,9 +30,13 @@ void printPromt() {
 }
 void printSep() { pprintf(BLUE, "======\n"); }
 void printNextInst() {
-  printSep();
-  execInst(getInst(getPC()), getPC() + 1, 1);
-  printSep();
+  // TODO vtl anderst lösen
+  // check if debugger is still runnig
+  if (debug) {
+    printSep();
+    execInst(getInst(getPC()), getPC() + 1, 1);
+    printSep();
+  }
 }
 
 void showFileLoaded(const int codeSize, const int dataSize) {
@@ -47,7 +51,7 @@ void startDebug() {
   printNextInst();
 
   // Debug Loop
-  while (runDebug) {
+  while (debug) {
     char input[INPUT_SIZE];
 
     printCmds();

@@ -1,4 +1,4 @@
-# KSP- [  ]Ninja Virtual Machine
+# KSP-Ninja Virtual Machine
 
 Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 
@@ -12,8 +12,8 @@ Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
   - [x] datei name
   - [x] anzahl instructions
   - [x] anzahl vars
-- [ ] nach jeder anweisung
-  - [ ] nächste instruction anzeigen
+- [x] nach jeder anweisung
+  - [x] nächste instruction anzeigen
   - [x] nächste debug commands anzeigen
 - [x] untermenüs
   - [x] inspect
@@ -29,11 +29,11 @@ Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
   - [x] list
     - [x] wie ausgabe in vorherigen aufgaben
   - [x] breakpoint
-    - [ ] [num] (set at num)
-    - [ ] - [ ]1 (clear breakpoint)
+    - [x] [num] (set at num)
+    - [x] -1 (clear breakpoint)
     - [x] ret (no change)
-  - [ ] step
-  - [ ] run
+  - [x] step
+  - [x] run
   - [x] quit
 
 ## erweiterungs ideen
