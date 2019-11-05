@@ -24,8 +24,8 @@ Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 - [x] bei commands nur ersten buchtaben testen
 - [x] commands
   - [x] inspect
-    - [ ] stack
-    - [ ] data
+    - [x] stack
+    - [X] data
   - [x] list
     - [x] wie ausgabe in vorherigen aufgaben
   - [x] breakpoint
@@ -47,8 +47,8 @@ Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 - [x] einheitliches zurück (quit oder exit)
 - [ ] help command
 - [ ] list programm run (mit allen inst auch bei jmp) ?
-- [ ] die wiederkehrende Debug: commands nachicht besser hervorheben (oder command ausgaben) vtl. mit "==="
-- [ ] aktuelle locale vars anzeigen (ohne rest vom stack) ? (bzw alles über fp)
+- [x] die wiederkehrende Debug: commands nachicht besser hervorheben (oder command ausgaben) vtl. mit "==="
+- [x] aktuelle locale vars anzeigen (ohne rest vom stack) ? (bzw alles über fp)
 - [ ] auszug vom stack / daten ?
 - [ ] wie mit Errors umgehen ? 
 - [ ] vtl var angeben, die nach jedem step angezeigt wird

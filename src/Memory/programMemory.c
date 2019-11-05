@@ -107,6 +107,9 @@ void loadprog(const char *path) {
 }
 
 void printglobalvars() {
+  if (globalVarSize == 0)
+    pprintf(BOLD, "No global Variables pressent\n");
+
   for (int i = 0; i < globalVarSize; i++) {
     pprintf(BOLD, "data[%04d]:     %d\n", i, globalvars[i]);
   }
