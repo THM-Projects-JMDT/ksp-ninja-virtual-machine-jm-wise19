@@ -1,4 +1,5 @@
 #include "debugCmdDef.h"
+#include "../../Memory/programMemory.h"
 #include "../../runner/runner.h"
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"
@@ -22,7 +23,11 @@ void cmdStack(char *self, char *input) {
   cmdReset();
 }
 void cmdData(char *self, char *input) {
-  printf("cmdData\n");
+  printSep();
+  pprintf(YELLOW, "----Beginn of Data----\n");
+  printglobalvars();
+  pprintf(YELLOW, "----End of Data----\n");
+
   cmdReset();
 }
 void cmdFrame(char *self, char *input) {
