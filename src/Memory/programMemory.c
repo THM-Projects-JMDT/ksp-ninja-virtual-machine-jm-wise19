@@ -2,6 +2,7 @@
 #include "../debugger/debugger.h"
 #include "../njvm.h"
 #include "../util/error.h"
+#include "../util/prettyPrint.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -103,4 +104,10 @@ void loadprog(const char *path) {
   // If debug mode is on Print File loaded Message
   if (debug)
     showFileLoaded(memorySize, globalVarSize);
+}
+
+void printglobalvars() {
+  for (int i = 0; i < globalVarSize; i++) {
+    pprintf(BOLD, "data[%04d]:     %d\n", i, globalvars[i]);
+  }
 }
