@@ -7,5 +7,6 @@ void asf(int value);
 void rsf();
 void pushl(int n);
 void popl(int n);
+void printStack(int atFrame);
 
 #endif

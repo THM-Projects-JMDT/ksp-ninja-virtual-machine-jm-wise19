@@ -1,6 +1,7 @@
 #include "stack.h"
 #include "../util/error.h"
-
+#include "../util/prettyPrint.h"
+#include <stdio.h>
 #define SK_SIZE 10000
 
 static int sp = 0;
@@ -58,4 +59,29 @@ void popl(int n) {
     invalidLocalVarPositionError(n);
 
   stack[fp + n] = pop();
+}
+
+void printStack(int atFrame) {
+  int bottom = 0;
+
+  // if atFrame is true just print Current stack frame
+  if (atFrame)
+    bottom = fp;
+
+  // If Stack pointer = Frampointer print both
+  if (sp == fp)
+    pprintf(BOLD, "sp, fp  --->  ");
+  else
+    pprintf(BOLD, "sp --->  ");
+
+  pprintf(BOLD, "%04d:\txxxx\n", sp);
+  for (int i = sp - 1; i >= bottom; i--) {
+    // Print Frame Point
+    if (i == fp)
+      pprintf(BOLD, "fp --->  ");
+    else
+      printf("\t ");
+
+    pprintf(BOLD, "%04d:\t%d\n", i, stack[i]);
+  }
 }

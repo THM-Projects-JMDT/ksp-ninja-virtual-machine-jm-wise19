@@ -1,4 +1,5 @@
 #include "debugCmdDef.h"
+#include "../../Memory/stack.h"
 #include "../../runner/runner.h"
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"
@@ -18,7 +19,10 @@ int checkInt(char *input, char *cmd);
 // Sub Commands
 // Inspect Sub
 void cmdStack(char *self, char *input) {
-  printf("cmdStack\n");
+  printSep();
+  pprintf(YELLOW, "-- Stack --\n");
+  printStack(0);
+  pprintf(YELLOW, "-- bottom of Stack --\n");
   cmdReset();
 }
 void cmdData(char *self, char *input) {
@@ -26,7 +30,10 @@ void cmdData(char *self, char *input) {
   cmdReset();
 }
 void cmdFrame(char *self, char *input) {
-  printf("cmdFrame\n");
+  printSep();
+  pprintf(YELLOW, "-- Current Stack Frame --\n");
+  printStack(1);
+  pprintf(YELLOW, "-- bottom of Frame --\n");
   cmdReset();
 }
 
