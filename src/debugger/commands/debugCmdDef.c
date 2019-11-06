@@ -108,5 +108,5 @@ debugCmd cmds[] = {{"inspect", checkChar, cmdInspect, 1},
                    {"quit", checkChar, stopDebugging}};
 int cmdsCount = 6;
 
-// Reset Function
+// Reset Function (no (void) -> to use it in the debugCmd struct)
 void cmdReset() { setActCmds(cmdsCount, cmds, NULL); }

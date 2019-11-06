@@ -4,13 +4,13 @@
 #include <stdio.h>
 
 void showFileLoaded(const int codeSize, const int dataSize);
-void startDebug();
-void printSep();
-void printPromt();
-void printMsPromt();
+void startDebug(void);
+void printSep(void);
+void printPromt(void);
+void printMsPromt(void);
 void setSubPromt(char *new);
-void resetSubPromt();
-void printNextInst();
+void resetSubPromt(void);
+void printNextInst(void);
 void stopDebugging();
 
 #endif

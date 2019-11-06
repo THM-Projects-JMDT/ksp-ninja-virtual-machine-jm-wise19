@@ -49,23 +49,25 @@ void invalidPathError(const char *path) {
   vmError(20, "can not open code File '%s'", path);
 }
 // TODO vtl with line or bytes
-void invalidFileSizeError() {
+void invalidFileSizeError(void) {
   vmError(21, "the document size does not correspond to the NJBF");
 }
-void invalidFileIdentifierError() { vmError(22, "invalid code File format"); }
+void invalidFileIdentifierError(void) {
+  vmError(22, "invalid code File format");
+}
 void invalidCodeVersionError(int fileVs, int vmVs) {
   vmError(23, "Version %d of the NJBF is not supported, please use version %d",
           fileVs, vmVs);
 }
-void cantCloseCodeFileError() { vmError(24, "cantCloseCodeFileError"); }
+void cantCloseCodeFileError(void) { vmError(24, "cantCloseCodeFileError"); }
 
 // Memory Errors 3x
-void outOfMemoryError() { vmError(30, "Vm run out of Memory"); }
+void outOfMemoryError(void) { vmError(30, "Vm run out of Memory"); }
 
 // Stack Errors 4x
-void stackOverflowError() { vmError(40, "stackOverflowError"); }
-void stackUnderflowError() { vmError(41, "stackUnderflowError"); }
-void noStackFrameAllocatedError() {
+void stackOverflowError(void) { vmError(40, "stackOverflowError"); }
+void stackUnderflowError(void) { vmError(41, "stackUnderflowError"); }
+void noStackFrameAllocatedError(void) {
   vmError(42, "locale variable used without reserving memory beforehand");
 }
 
@@ -73,8 +75,8 @@ void noStackFrameAllocatedError() {
 void unknownInstructionError(const int optCode) {
   vmError(50, "Opcode '%d' does not exist", optCode);
 }
-void dividedByZeroError() { vmError(51, "dividedByZeroError"); }
-void invalidProgrammCodeError() { vmError(52, "Missing 'HALT' statement"); }
+void dividedByZeroError(void) { vmError(51, "dividedByZeroError"); }
+void invalidProgrammCodeError(void) { vmError(52, "Missing 'HALT' statement"); }
 void invalidGlobalVarPositionError(const int pos) {
   vmError(53, "The global var %d does not exsist", pos);
 }

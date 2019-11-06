@@ -39,13 +39,13 @@ void setGlobVar(const int pos, const int val) {
 }
 
 // free Program Memory
-void freeProgMem() {
+void freeProgMem(void) {
   free(programMemory);
   memorySize = 0;
 }
 
 // free Global vars
-void freeGlobVars() {
+void freeGlobVars(void) {
   free(globalvars);
   globalVarSize = 0;
 }
@@ -106,7 +106,7 @@ void loadprog(const char *path) {
     showFileLoaded(memorySize, globalVarSize);
 }
 
-void printglobalvars() {
+void printglobalvars(void) {
   if (globalVarSize == 0)
     pprintf(BOLD, "No global Variables pressent\n");
 

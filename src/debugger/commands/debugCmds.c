@@ -49,7 +49,7 @@ void findCmd(char *input) {
 }
 
 // Print Actual Commands
-void printCmds() {
+void printCmds(void) {
   // Set Format
   printMsPromt();
   setFormat(stdout, BOLD);

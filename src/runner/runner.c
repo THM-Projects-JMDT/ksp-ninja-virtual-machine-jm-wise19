@@ -2,15 +2,14 @@
 #include "../Interpreter/interpreter.h"
 #include "../Memory/programMemory.h"
 #include "../util/error.h"
-#include "../util/prettyPrint.h"
 
 static int haltProg = 0;
 static int pc = 0;
 static int lc = 0;
 
 // Stop Runner
-void stopProgramm() { haltProg = 1; }
-int getPC() { return pc; }
+void stopProgramm(void) { haltProg = 1; }
+int getPC(void) { return pc; }
 
 // Change Programm Counter
 void changePC(const int dest) {
@@ -21,7 +20,7 @@ void changePC(const int dest) {
 }
 
 // Display all Instructions in Memory
-void execList() {
+void execList(void) {
   lc = 0;
 
   while (lc < memorySize) {
@@ -31,21 +30,17 @@ void execList() {
   }
 }
 
-void step() {
+void step(void) {
   unsigned int ir = getInst(pc);
   pc++;
   execInst(ir, pc, 0);
 }
 
 // Run Programm in Memory
-void execprog() {
-  pprintf(GREEN, "======\n");
-
+void execprog(void) {
   while (!haltProg) {
     step();
   }
-
-  pprintf(GREEN, "======\n");
 }
 
 void execProgBreak(int b) {

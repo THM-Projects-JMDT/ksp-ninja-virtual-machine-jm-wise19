@@ -12,24 +12,25 @@
 
 char *promt[2] = {"NJVM-DEBUG"};
 
+// Stop Debugging (no (void) -> to use it in the debugCmd struct)
 void stopDebugging() { debug = 0; }
 
 // TODo change
 void setSubPromt(char *sub) { promt[1] = sub; }
 
-void printMsPromt() {
+void printMsPromt(void) {
   pprintf(GREEN, "[%s] ", promt[0]);
   if (promt[1] != NULL)
     pprintf(GREEN, "[%s] ", promt[1]);
 }
-void printPromt() {
+void printPromt(void) {
   if (promt[1] != NULL)
     pprintf(GREEN, "%s@", promt[1]);
 
   pprintf(GREEN, "%s$ ", promt[0]);
 }
-void printSep() { pprintf(BLUE, "======\n"); }
-void printNextInst() {
+void printSep(void) { pprintf(BLUE, "======\n"); }
+void printNextInst(void) {
   // TODO vtl anderst lösen
   // check if debugger is still runnig
   if (debug) {
@@ -46,7 +47,7 @@ void showFileLoaded(const int codeSize, const int dataSize) {
   printf(" loaded (code size = %d, data size = %d)\n", codeSize, dataSize);
 }
 
-void startDebug() {
+void startDebug(void) {
   cmdReset();
   printNextInst();
 

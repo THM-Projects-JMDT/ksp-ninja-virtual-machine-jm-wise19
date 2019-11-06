@@ -1,12 +1,12 @@
 #ifndef NJCM_RUNNER_H_INCLUDED
 #define NJCM_RUNNER_H_INCLUDED
 
-void stopProgramm();
+void stopProgramm(void);
 void changePC(const int dest);
-void execList();
-void step();
-void execprog();
+void execList(void);
+void step(void);
+void execprog(void);
 void execProgBreak(int b);
-int getPC();
+int getPC(void);
 
 #endif

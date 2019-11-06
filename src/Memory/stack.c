@@ -16,7 +16,7 @@ void push(int value) {
   sp++;
 }
 
-int pop() {
+int pop(void) {
   if (sp == 0)
     stackUnderflowError();
   sp--;
@@ -32,7 +32,7 @@ void asf(int n) {
     stackOverflowError();
 }
 
-void rsf() {
+void rsf(void) {
   sp = fp;
   fp = pop();
 }

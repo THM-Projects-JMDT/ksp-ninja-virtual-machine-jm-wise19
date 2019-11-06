@@ -3,7 +3,7 @@
 
 #include "debugCmdDef.h"
 
-void printCmds();
+void printCmds(void);
 void findCmd(char *input);
 void setActCmds(int count, debugCmd newCmds[], char *command);
 
