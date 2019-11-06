@@ -66,7 +66,7 @@ void loadprog(const char *path) {
     invalidFileSizeError();
 
   // Verify the format identifier
-  if (strcmp(format, "NJBF") != 0)
+  if (strncmp(format, "NJBF", 4) != 0)
     invalidFileIdentifierError();
 
   // read header (version, instructions count, global vars count)
