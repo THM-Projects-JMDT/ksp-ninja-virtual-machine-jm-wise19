@@ -49,23 +49,18 @@ static void help(const char *myself) {
 int main(int argc, char *argv[]) {
   int filePos = -1;
 
+  // check arguments
   for (int i = 1; i < argc; i++) {
-    // argument version
     if (strcmp(argv[i], "--version") == 0) {
       displayVersion(argv[0]);
       exit(0);
-    }
-    // argument help
-    else if (strcmp(argv[i], "--help") == 0) {
+    } else if (strcmp(argv[i], "--help") == 0) {
       help(argv[0]);
       exit(0);
-    }
-    // argument debug
-    else if (strcmp(argv[i], "--debug") == 0) {
+    } else if (strcmp(argv[i], "--debug") == 0) {
       debug = 1;
     }
-
-    // handle an invalid argument
+    // invalid argument
     else if (argv[i][0] == '-') {
       invalidArgumentError(argv[0], argv[i]);
       // Save file path
@@ -85,11 +80,7 @@ int main(int argc, char *argv[]) {
   // load programm in Memory
   loadprog(argv[filePos]);
 
-  // Start Message
   pprintf(BOLD, "Ninja Virtual Machine started\n");
-
-  // TODO remove
-  // execList();
 
   // if debug mode is offline start Programm
   if (debug)
@@ -101,6 +92,5 @@ int main(int argc, char *argv[]) {
   freeProgMem();
   freeGlobVars();
 
-  // Stop Message
   pprintf(BOLD, "Ninja Virtual Machine stopped\n");
 }

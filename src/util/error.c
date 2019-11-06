@@ -80,9 +80,6 @@ void invalidProgrammCodeError(void) { vmError(52, "Missing 'HALT' statement"); }
 void invalidGlobalVarPositionError(const int pos) {
   vmError(53, "The global var %d does not exsist", pos);
 }
-void invalidLocalVarPositionError(const int pos) {
-  vmError(54, "The Local var %d does not exsist", pos);
-}
 void invalidJumpDestinationError(const int destination) {
-  vmError(55, "The Jump Destination %d is invalid", destination);
+  vmError(54, "The Jump Destination %d is invalid", destination);
 }

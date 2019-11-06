@@ -18,7 +18,6 @@ void invalidCodeVersionError(int fileVs, int vmVs);
 void invalidGlobalVarPositionError(const int pos);
 void noStackFrameAllocatedError(void);
 void cantCloseCodeFileError(void);
-void invalidLocalVarPositionError(const int pos);
 void invalidJumpDestinationError(const int destination);
 
 #endif

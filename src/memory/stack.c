@@ -42,10 +42,6 @@ void pushl(int n) {
   if (fp == 0)
     noStackFrameAllocatedError();
 
-  // check if n in not negativ
-  if (fp < 0)
-    invalidLocalVarPositionError(n);
-
   push(stack[fp + n]);
 }
 
@@ -53,10 +49,6 @@ void popl(int n) {
   // check if asf where fist
   if (fp == 0)
     noStackFrameAllocatedError();
-
-  // check if n in not negativ
-  if (fp < 0)
-    invalidLocalVarPositionError(n);
 
   stack[fp + n] = pop();
 }

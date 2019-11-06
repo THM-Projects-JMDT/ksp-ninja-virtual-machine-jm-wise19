@@ -51,7 +51,6 @@ void startDebug(void) {
   cmdReset();
   printNextInst();
 
-  // Debug Loop
   while (debug) {
     char input[INPUT_SIZE];
 
