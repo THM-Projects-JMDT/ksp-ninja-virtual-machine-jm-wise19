@@ -1,6 +1,6 @@
 #include "debugCmdDef.h"
-#include "../../Memory/programMemory.h"
-#include "../../Memory/stack.h"
+#include "../../memory/programMemory.h"
+#include "../../memory/stack.h"
 #include "../../runner/runner.h"
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"

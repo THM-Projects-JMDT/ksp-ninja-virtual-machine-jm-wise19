@@ -1,6 +1,6 @@
 #include "debugger.h"
-#include "../Interpreter/interpreter.h"
-#include "../Memory/programMemory.h"
+#include "../interpreter/interpreter.h"
+#include "../memory/programMemory.h"
 #include "../njvm.h"
 #include "../runner/runner.h"
 #include "../util/prettyPrint.h"

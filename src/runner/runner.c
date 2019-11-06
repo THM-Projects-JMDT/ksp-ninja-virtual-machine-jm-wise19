@@ -1,6 +1,6 @@
 #include "runner.h"
-#include "../Interpreter/interpreter.h"
-#include "../Memory/programMemory.h"
+#include "../interpreter/interpreter.h"
+#include "../memory/programMemory.h"
 #include "../util/error.h"
 
 static int haltProg = 0;
