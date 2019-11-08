@@ -30,10 +30,10 @@ void execJmp(int n);
 void execBrf(int n);
 void execBrt(int n);
 void execCall(int n);
-void execRet();
+void execRet(void);
 void execDrop(int n);
-void execPushr();
-void execPopr();
-void execDup();
+void execPushr(void);
+void execPopr(void);
+void execDup(void);
 
 #endif
