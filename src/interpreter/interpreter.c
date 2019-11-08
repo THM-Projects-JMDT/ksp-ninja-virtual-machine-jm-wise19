@@ -34,7 +34,13 @@ typedef enum inst {
   ge,
   jmp,
   brf,
-  brt
+  brt,
+  call,
+  ret,
+  drop,
+  pushr,
+  popr,
+  dup
 } inst;
 
 // Find right Instruction
@@ -121,6 +127,24 @@ void execInst(const unsigned int inst, const int counter, const int dpMode) {
     break;
   case brt:
     dpMode ? printInstValue("brt", value, counter) : execBrt(value);
+    break;
+  case call:
+    dpMode ? printInstValue("call", value, counter) : execCall(value);
+    break;
+  case ret:
+    dpMode ? printInst("ret", counter) : execRet();
+    break;
+  case drop:
+    dpMode ? printInstValue("drop", value, counter) : execDrop(value);
+    break;
+  case pushr:
+    dpMode ? printInst("pushr", counter) : execPushr();
+    break;
+  case popr:
+    dpMode ? printInst("popr", counter) : execPopr();
+    break;
+  case dup:
+    dpMode ? printInst("dup", counter) : execDup();
     break;
   default:
     unknownInstructionError(opcode);

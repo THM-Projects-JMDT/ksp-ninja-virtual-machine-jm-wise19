@@ -119,3 +119,9 @@ void execBrt(int n) {
     execJmp(n);
   }
 }
+void execCall(int n) {}
+void execRet() {}
+void execDrop(int n) {}
+void execPushr() {}
+void execDropr() {}
+void execDup() {}

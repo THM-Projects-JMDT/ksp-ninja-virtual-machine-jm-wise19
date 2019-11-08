@@ -1,5 +1,5 @@
-#include "Memory/programMemory.h"
 #include "debugger/debugger.h"
+#include "memory/programMemory.h"
 #include "runner/runner.h"
 #include "util/error.h"
 #include "util/prettyPrint.h"

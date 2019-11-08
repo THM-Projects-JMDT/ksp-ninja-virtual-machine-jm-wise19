@@ -29,5 +29,11 @@ void execGe(void);
 void execJmp(int n);
 void execBrf(int n);
 void execBrt(int n);
+void execCall(int n);
+void execRet();
+void execDrop(int n);
+void execPushr();
+void execDropr();
+void execDup();
 
 #endif
