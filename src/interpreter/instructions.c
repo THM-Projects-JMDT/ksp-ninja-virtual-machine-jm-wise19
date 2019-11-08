@@ -109,15 +109,15 @@ void execGe(void) {
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
   int b = pop();
-  if (b == 0) {
-    execJmp(n);
-  }
+  if (b == 0)
+    changePC(n);
 }
 void execBrt(int n) {
   int b = pop();
-  if (b == 1) {
-    execJmp(n);
-  }
+  if (b == 0)
+    return;
+
+  changePC(n);
 }
 void execCall(int n) {}
 void execRet(void) {}
