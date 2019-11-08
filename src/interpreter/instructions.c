@@ -124,4 +124,8 @@ void execRet() {}
 void execDrop(int n) {}
 void execPushr() {}
 void execPopr() {}
-void execDup() {}
+void execDup() {
+  int i = pop();
+  push(i);
+  push(i);
+}
