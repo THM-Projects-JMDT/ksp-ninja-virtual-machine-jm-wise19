@@ -123,5 +123,5 @@ void execCall(int n) {}
 void execRet() {}
 void execDrop(int n) {}
 void execPushr() {}
-void execDropr() {}
+void execPopr() {}
 void execDup() {}
