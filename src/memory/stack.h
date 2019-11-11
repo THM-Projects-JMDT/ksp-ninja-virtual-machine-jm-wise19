@@ -8,5 +8,7 @@ void rsf(void);
 void pushl(int n);
 void popl(int n);
 void printStack(int atFrame);
+void pushr(void);
+void popr(void);
 
 #endif

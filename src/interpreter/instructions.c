@@ -8,38 +8,45 @@
 #include <stdio.h>
 
 // Print functions
-void printInst(char *inst, int ct) {
+void printInst(char *inst, int ct)
+{
   pprintf(BOLD, "%04d:\t %s\n", ct - 1, inst);
 }
-void printInstValue(char *inst, int value, int ct) {
+void printInstValue(char *inst, int value, int ct)
+{
   pprintf(BOLD, "%04d:\t %s\t %d\n", ct - 1, inst, value);
 }
 
 // Instructions Functions
-void execHalt(void) {
+void execHalt(void)
+{
   stopProgramm();
   stopDebugging();
 }
 void execPushc(int value) { push(value); }
-void execAdd(void) {
+void execAdd(void)
+{
   int num2 = pop();
   int num1 = pop();
 
   push(num1 + num2);
 }
-void execSub(void) {
+void execSub(void)
+{
   int num2 = pop();
   int num1 = pop();
 
   push(num1 - num2);
 }
-void execMul(void) {
+void execMul(void)
+{
   int num2 = pop();
   int num1 = pop();
 
   push(num1 * num2);
 }
-void execDiv(void) {
+void execDiv(void)
+{
   // Check if Secound nummber is Zero
   int num2 = pop();
   int num1 = pop();
@@ -49,7 +56,8 @@ void execDiv(void) {
 
   push(num1 / num2);
 }
-void execMod(void) {
+void execMod(void)
+{
   int num2 = pop();
   int num1 = pop();
 
@@ -58,13 +66,15 @@ void execMod(void) {
 
   push(num1 % num2);
 }
-void execRdint(void) {
+void execRdint(void)
+{
   int myInt;
   scanf("%d", &myInt);
   push(myInt);
 }
 void execWrint(void) { printf("%d", pop()); }
-void execRdchr(void) {
+void execRdchr(void)
+{
   char myChar;
   scanf("%c", &myChar);
   push(myChar);
@@ -76,53 +86,81 @@ void execAsf(int n) { asf(n); }
 void execRsf(void) { rsf(); }
 void execPushl(int n) { pushl(n); }
 void execPopl(int n) { popl(n); }
-void execEq(void) {
+void execEq(void)
+{
   int n2 = pop();
   int n1 = pop();
   push(n1 == n2);
 }
-void execNe(void) {
+void execNe(void)
+{
   int n2 = pop();
   int n1 = pop();
   push(n1 != n2);
 }
-void execLt(void) {
+void execLt(void)
+{
   int n2 = pop();
   int n1 = pop();
   push(n1 < n2);
 }
-void execLe(void) {
+void execLe(void)
+{
   int n2 = pop();
   int n1 = pop();
   push(n1 <= n2);
 }
-void execGt(void) {
+void execGt(void)
+{
   int n2 = pop();
   int n1 = pop();
   push(n1 > n2);
 }
-void execGe(void) {
+void execGe(void)
+{
   int n2 = pop();
   int n1 = pop();
   push(n1 >= n2);
 }
 void execJmp(int n) { changePC(n); }
-void execBrf(int n) {
+void execBrf(int n)
+{
   int b = pop();
   if (!b)
     changePC(n);
 }
-void execBrt(int n) {
+void execBrt(int n)
+{
   int b = pop();
   if (b)
     changePC(n);
 }
-void execCall(int n) {}
-void execRet(void) {}
-void execDrop(int n) {}
-void execPushr(void) {}
-void execPopr(void) {}
-void execDup(void) {
+void execCall(int n)
+{
+  push(getPC());
+  changePC(n);
+}
+void execRet(void)
+{
+  changePC(pop());
+}
+void execDrop(int n)
+{
+  for (int i = 0; i < n; i++)
+  {
+    pop();
+  }
+}
+void execPushr(void)
+{
+  pushr();
+}
+void execPopr(void)
+{
+  popr();
+}
+void execDup(void)
+{
   int i = pop();
   push(i);
   push(i);
