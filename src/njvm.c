@@ -11,16 +11,14 @@ const int version = 4;
 int debug = 0;
 
 // Handle version argument
-static void displayVersion(const char *myself)
-{
+static void displayVersion(const char *myself) {
   pprintf(BOLD, "Ninja Virtual Machine Version %d (compiled %s, %s)\n", version,
           __DATE__, __TIME__);
 }
 
 // TODO vtl in one FIle
 // Handle help argument
-static void help(const char *myself)
-{
+static void help(const char *myself) {
   // Print usage
   pprintf(BOLD, "usage: ");
   printf("%s [options] ... [code file]\n", myself);
@@ -48,35 +46,25 @@ static void help(const char *myself)
   printf("Runtime Errors\n");
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
   int filePos = -1;
 
   // check arguments
-  for (int i = 1; i < argc; i++)
-  {
-    if (strcmp(argv[i], "--version") == 0)
-    {
+  for (int i = 1; i < argc; i++) {
+    if (strcmp(argv[i], "--version") == 0) {
       displayVersion(argv[0]);
       exit(0);
-    }
-    else if (strcmp(argv[i], "--help") == 0)
-    {
+    } else if (strcmp(argv[i], "--help") == 0) {
       help(argv[0]);
       exit(0);
-    }
-    else if (strcmp(argv[i], "--debug") == 0)
-    {
+    } else if (strcmp(argv[i], "--debug") == 0) {
       debug = 1;
     }
     // invalid argument
-    else if (argv[i][0] == '-')
-    {
+    else if (argv[i][0] == '-') {
       invalidArgumentError(argv[0], argv[i]);
       // Save file path
-    }
-    else
-    {
+    } else {
       // If more than 1 file path -> error
       if (filePos > -1)
         moreThanOneInputError(argv[0]);
