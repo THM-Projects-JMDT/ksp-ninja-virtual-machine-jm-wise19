@@ -96,7 +96,7 @@ void execInst(const unsigned int inst, const int counter, const int dpMode) {
     dpMode ? printInst("rsf", counter) : execRsf();
     break;
   case pushl:
-    dpMode ? printInstValue("wrchr", value, counter) : execPushl(value);
+    dpMode ? printInstValue("pushl", value, counter) : execPushl(value);
     break;
   case popl:
     dpMode ? printInstValue("popl", value, counter) : execPopl(value);
