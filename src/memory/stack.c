@@ -10,24 +10,21 @@ static int fp = 0;
 static int stack[SK_SIZE];
 static int return_value_register;
 
-void push(int value)
-{
+void push(int value) {
   if (sp == SK_SIZE)
     stackOverflowError();
   stack[sp] = value;
   sp++;
 }
 
-int pop(void)
-{
+int pop(void) {
   if (sp == 0)
     stackUnderflowError();
   sp--;
   return stack[sp];
 }
 
-void asf(int n)
-{
+void asf(int n) {
   push(fp);
   fp = sp;
   sp = sp + n;
@@ -36,14 +33,12 @@ void asf(int n)
     stackOverflowError();
 }
 
-void rsf(void)
-{
+void rsf(void) {
   sp = fp;
   fp = pop();
 }
 
-void pushl(int n)
-{
+void pushl(int n) {
   // check if asf where fist
   if (fp == 0)
     noStackFrameAllocatedError();
@@ -51,26 +46,25 @@ void pushl(int n)
   push(stack[fp + n]);
 }
 
-void popl(int n)
-{
+void popl(int n) {
   // check if asf where fist
   if (fp == 0)
     noStackFrameAllocatedError();
 
   stack[fp + n] = pop();
 }
-void pushr(void)
-{
-  push(return_value_register);
+void drop(const int n) {
+  sp = sp - n;
+
+  if (sp < 0)
+    stackUnderflowError();
 }
 
-void popr(void)
-{
-  return_value_register = pop();
-}
+void pushr(void) { push(return_value_register); }
 
-void printStack(int atFrame)
-{
+void popr(void) { return_value_register = pop(); }
+
+void printStack(int atFrame) {
   int bottom = 0;
 
   // if atFrame is true just print Current stack frame
@@ -84,8 +78,7 @@ void printStack(int atFrame)
     pprintf(BOLD, "sp --->  ");
 
   pprintf(BOLD, "%04d:\txxxx\n", sp);
-  for (int i = sp - 1; i >= bottom; i--)
-  {
+  for (int i = sp - 1; i >= bottom; i--) {
     // Print Frame Point
     if (i == fp)
       pprintf(BOLD, "fp --->  ");
