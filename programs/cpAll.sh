@@ -10,9 +10,12 @@ tmpFile=$(mktemp ./njasm.XXXXXX)
 
 # Loop throw all files
 for file in src/**/*; do
+   # get filePath wihtout src
+   out=bin/${file#src/}
+
     # compile asm files
     if [[ $file =~ \.asm$ ]]; then
-       compiler/nja $file prog${count}
+       compiler/nja $file ${out%.*}
        ((count++))
     # compile nj files
     elif [[ $file =~ \.nj$ ]]; then
@@ -21,8 +24,11 @@ for file in src/**/*; do
        compiler/njc $file > $tmpFile
        
        # ASM -> BIN
-       compiler/nja $tmpFile prog${count}
+       compiler/nja $tmpFile ${out%.*}
        ((count++))
+    else
+      # create dir if not exsits
+      mkdir -p bin/${file#src/} 
     fi
 done
 
