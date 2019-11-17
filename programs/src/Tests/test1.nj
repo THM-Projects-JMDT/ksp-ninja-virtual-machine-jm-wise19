@@ -1,0 +1,18 @@
+//
+// Test prog 1
+//
+
+void main() {
+  local Integer n1;
+  local Integer n2;
+
+  n1 = 4;
+  n2 = getNum();
+
+  writeInteger(n1 * n2);
+  writeCharacter('\n');
+}
+
+Integer getNum() {
+  return 10;
+}
