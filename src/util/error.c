@@ -12,10 +12,12 @@ void vmError(const int errc, const char *em, ...) {
 
   fprintf(stderr, "An error occurred:\n");
 
-  setFormat(stderr, RESET_FORMAT);
+  setFormat(stderr, BLACK);
 
   // Print Error code
   fprintf(stderr, "Error %d: ", errc);
+
+  setFormat(stderr, RESET_FORMAT);
 
   setFormat(stderr, BOLD);
 
@@ -24,9 +26,9 @@ void vmError(const int errc, const char *em, ...) {
   vfprintf(stderr, em, parms);
   va_end(parms);
 
-  setFormat(stderr, RESET_FORMAT);
-
   fprintf(stderr, "\n");
+
+  setFormat(stderr, RESET_FORMAT);
 
   // Exit error
   exit(errc);

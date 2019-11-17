@@ -21,7 +21,7 @@ static void displayVersion(const char *myself) {
 static void help(const char *myself) {
   // Print usage
   pprintf(BOLD, "usage: ");
-  printf("%s [options] ... [code file]\n", myself);
+  printf("%s [options] [code file]\n", myself);
 
   // Print Options
   pprintf(BOLD, "Options: \n");
