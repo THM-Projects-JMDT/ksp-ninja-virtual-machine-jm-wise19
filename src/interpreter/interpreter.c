@@ -41,7 +41,7 @@ typedef enum inst {
   pushr,
   popr,
   dup
-} inst;
+} Inst;
 
 // Find right Instruction
 void execInst(const unsigned int inst, const int counter, const int dpMode) {

@@ -57,12 +57,12 @@ void cmdClear(char *self, char *input) {
 }
 
 // Sub Commands Arrays
-debugCmd inspectSubCmds[] = {{"stack", checkChar, cmdStack},
+DebugCmd inspectSubCmds[] = {{"stack", checkChar, cmdStack},
                              {"frame", checkChar, cmdFrame},
                              {"data", checkChar, cmdData},
                              {"quit", checkChar, cmdReset}};
 int inspectSubCount = 4;
-debugCmd breakpointSubCmds[] = {{"address to set", checkInt, cmdAddress},
+DebugCmd breakpointSubCmds[] = {{"address to set", checkInt, cmdAddress},
                                 {"clear", checkChar, cmdClear},
                                 {"quit", checkChar, cmdReset}};
 int breakpointSubCount = 3;
@@ -100,7 +100,7 @@ int checkChar(char *input, char *cmd) { return cmd[0] == input[0]; }
 int checkInt(char *input, char *cmd) { return isdigit(input[0]); }
 
 // Commands Array
-debugCmd cmds[] = {{"inspect", checkChar, cmdInspect, 1},
+DebugCmd cmds[] = {{"inspect", checkChar, cmdInspect, 1},
                    {"list", checkChar, cmdList},
                    {"breakpoint", checkChar, cmdBreakpoint, 1},
                    {"step", checkChar, cmdStep},
@@ -108,5 +108,5 @@ debugCmd cmds[] = {{"inspect", checkChar, cmdInspect, 1},
                    {"quit", checkChar, stopDebugging}};
 int cmdsCount = 6;
 
-// Reset Function (no (void) -> to use it in the debugCmd struct)
+// Reset Function (no (void) -> to use it in the DebugCmd struct)
 void cmdReset() { setActCmds(cmdsCount, cmds, NULL); }

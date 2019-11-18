@@ -3,8 +3,7 @@
 
 #include <stdio.h>
 
-typedef enum
-{
+typedef enum {
   RESET_FORMAT,
   BOLD,
   UNDERLINE = 4,
@@ -25,9 +24,9 @@ typedef enum
   BG_MAGENTA,
   BG_CYAN,
   BG_WHITE,
-} formats;
+} Formats;
 
-void pprintf(const formats color, const char *msg, ...);
-void setFormat(FILE *stream, const formats format);
+void pprintf(const Formats color, const char *msg, ...);
+void setFormat(FILE *stream, const Formats format);
 
 #endif

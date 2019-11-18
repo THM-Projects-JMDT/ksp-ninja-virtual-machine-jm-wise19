@@ -5,6 +5,6 @@
 
 void printCmds(void);
 void findCmd(char *input);
-void setActCmds(int count, debugCmd newCmds[], char *command);
+void setActCmds(int count, DebugCmd newCmds[], char *command);
 
 #endif

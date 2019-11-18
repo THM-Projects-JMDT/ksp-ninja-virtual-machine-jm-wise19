@@ -7,11 +7,11 @@
 
 #define CMD_DELIMITER " "
 
-static debugCmd *cmds;
+static DebugCmd *cmds;
 static int cmdsCount;
 
 // change Actual Commands
-void setActCmds(int count, debugCmd newCmds[], char *command) {
+void setActCmds(int count, DebugCmd newCmds[], char *command) {
   cmds = newCmds;
   cmdsCount = count;
   setSubPromt(command);

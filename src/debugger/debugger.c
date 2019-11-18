@@ -12,7 +12,7 @@
 
 char *promt[2] = {"NJVM-DEBUG"};
 
-// Stop Debugging (no (void) -> to use it in the debugCmd struct)
+// Stop Debugging (no (void) -> to use it in the DebugCmd struct)
 void stopDebugging() { debug = 0; }
 
 // TODo change
