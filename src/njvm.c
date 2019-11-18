@@ -16,7 +16,7 @@ static void displayVersion(const char *myself) {
           __DATE__, __TIME__);
 }
 
-// TODO vtl in one FIle
+// TODO vtl in own File
 // Handle help argument
 static void help(const char *myself) {
   // Print usage
