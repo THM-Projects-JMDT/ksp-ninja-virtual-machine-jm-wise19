@@ -2,53 +2,17 @@
 
 Praktikums Projekt für *Konzepte systemnaher Programmierung WS 19/20*.
 
-# Debuger
+# Debugger
 
-## Ideen
-
-## von der referenz implementierung
-
-- [x] beim start
-  - [x] datei name
-  - [x] anzahl instructions
-  - [x] anzahl vars
-- [x] nach jeder anweisung
-  - [x] nächste instruction anzeigen
-  - [x] nächste debug commands anzeigen
-- [x] untermenüs
-  - [x] inspect
-  - [x] breakpoint
-- [x] promt
-  - [x] normal "Debug:"
-  - [x] in (untermenü)  "Debug [untermenü]:"
-- [x] bei commands nur ersten buchtaben testen
-- [x] commands
-  - [x] inspect
-    - [x] stack
-    - [X] data
-  - [x] list
-    - [x] wie ausgabe in vorherigen aufgaben
-  - [x] breakpoint
-    - [x] [num] (set at num)
-    - [x] -1 (clear breakpoint)
-    - [x] ret (no change)
-  - [x] step
-  - [x] run
-  - [x] quit
+Die **Debugger Spezifikation** ist [hier](debug.txt) zu finden. 
 
 ## erweiterungs ideen
 
-- [x] Farben
-- [x] promt "Debug$"
 - [ ] vtl nicht immer mögliche commands ausgeben
-- [x] untermenü optionen direkt mit angeben
 - [ ] step [anzahl]?
 - [ ] mehrere breakpoints
-- [x] einheitliches zurück (quit oder exit)
 - [ ] help command
 - [ ] list programm run (mit allen inst auch bei jmp) ?
-- [x] die wiederkehrende Debug: commands nachicht besser hervorheben (oder command ausgaben) vtl. mit "==="
-- [x] aktuelle locale vars anzeigen (ohne rest vom stack) ? (bzw alles über fp)
 - [ ] auszug vom stack / daten ?
 - [ ] wie mit Errors umgehen ? 
 - [ ] vtl var angeben, die nach jedem step angezeigt wird
