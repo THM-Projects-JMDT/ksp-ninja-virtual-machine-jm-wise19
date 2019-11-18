@@ -27,5 +27,8 @@ run:
 Führt das Programm aus bis zu einem breakpoint, sollte kein breakpoint gesetzt sein, so wird das Programm
 bis zum Ende ausgeführt.
 
+quit:
+Beendet das Programm und den Debuger vorzeitig
+
 
 
