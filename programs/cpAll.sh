@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd ${0%/*.*}/
+
 # Make sure globstar is enabled
 shopt -s globstar
 
