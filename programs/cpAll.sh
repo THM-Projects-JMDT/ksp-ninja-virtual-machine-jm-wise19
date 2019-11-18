@@ -28,7 +28,7 @@ for file in src/**/*; do
        # ASM -> BIN
        compiler/nja $tmpFile ${out%.*}
        ((count++))
-    else
+    elif [[ -d $file ]]; then
       # create dir if not exsits
       mkdir -p bin/${file#src/} 
     fi
