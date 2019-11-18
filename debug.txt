@@ -1,0 +1,34 @@
+Der Debugger kann wie der Referenzdebugger mit --debug aufgerufen werden
+
+Er besitzt folgende Grundlegenden Funktionen:
+inspect, list, breakpoint, step, run, quit
+
+Hinweiß: Anstatt den gesamten Befehlt in die Konsole einzutippen genügt es den Anfangsbuchstaben 
+einzugeben also statt step einfach nur s.
+
+inspect:
+Mit inspect kann man sich den derzeitigen stack, frame und die globalen Variablen anschauen.
+Dies erfolgt durch eingabe von stack, fram oder data.
+Mit quit kommt man wieder zum Menü der Grundlegenden Funktionen
+
+list:
+Gibt Alle Instruktionen des Programms aus.
+
+breakpoint:
+Im Breakpoint Menü kann man breakpoints setzen, //mir fällt kein andres wort ein
+dies geht simpel indem man einfach die Nummer der Instruktion eintippt die man als breakpoint setzen möchte.
+Außerdem kann man im Untermenü auch clear eintippen sollte man einen alten breakpoint löschen wollen.
+Mit quit kommt man wieder zum Menü der Grundlegenden Funktionen.
+
+step:
+Führt genau eine Instruktion aus.
+
+run:
+Führt das Programm aus bis zu einem breakpoint, sollte kein breakpoint gesetzt sein, so wird das Programm
+bis zum Ende ausgeführt.
+
+quit:
+Beendet das Programm und den Debuger vorzeitig
+
+
+
