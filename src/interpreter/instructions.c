@@ -63,7 +63,7 @@ void execRdint(void) {
   scanf("%d", &myInt);
   push(createObjRefInt(myInt));
 }
-void execWrint(void) { printf("%ld", (intptr_t)pop()); }
+void execWrint(void) { printf("%d", (intptr_t)pop()); }
 void execRdchr(void) {
   char myChar;
   scanf("%c", &myChar);
