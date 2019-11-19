@@ -72,6 +72,8 @@ void stackUnderflowError(void) { vmError(41, "stackUnderflowError"); }
 void noStackFrameAllocatedError(void) {
   vmError(42, "locale variable used without reserving memory beforehand");
 }
+void noObjRefError(void) { vmError(43, "Stack Entry is not from Type ObjRef"); }
+void noIntError(void) { vmError(44, "Stack Entry is not from Type int"); }
 
 // Runtime Errors 5x
 void unknownInstructionError(const int optCode) {

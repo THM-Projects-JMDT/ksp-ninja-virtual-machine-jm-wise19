@@ -4,6 +4,8 @@
 void vmError(const int errc, const char *em, ...);
 void stackOverflowError(void);
 void stackUnderflowError(void);
+void noObjRefError(void);
+void noIntError(void);
 void unknownInstructionError(const int optCode);
 void dividedByZeroError(void);
 void outOfMemoryError(void);
