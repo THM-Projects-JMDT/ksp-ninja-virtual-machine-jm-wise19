@@ -8,8 +8,6 @@ typedef struct {
   unsigned char data[1]; /* payload data , size as needed */
 } * ObjRef;
 
-ObjRef createObjRefInt(int value);
-ObjRef createObjRefChar(char value);
-ObjRef createObjRefBool(bool value);
+ObjRef newIntObj(int value);
 
 #endif
