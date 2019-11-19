@@ -10,17 +10,25 @@ static int fp = 0;
 static StackSlot stack[SK_SIZE];
 static ObjRef return_value_register;
 
-void push(ObjRef value) {
-  if (sp == SK_SIZE)
+// Check Stack Size
+void checkOverflow() {
+  if (sp >= SK_SIZE)
     stackOverflowError();
+}
+void checkUnderflow() {
+  if (sp == 0)
+    stackUnderflowError();
+}
+
+void push(ObjRef value) {
+  checkOverflow();
 
   stack[sp].isObjRef = true;
   stack[sp].u.objRef = value;
   sp++;
 }
-void pushint(int value) {
-  if (sp == SK_SIZE)
-    stackOverflowError();
+void pushInt(int value) {
+  checkOverflow();
 
   stack[sp].isObjRef = false;
   stack[sp].u.number = value;
@@ -28,30 +36,33 @@ void pushint(int value) {
 }
 
 ObjRef pop(void) {
-  if (sp == 0)
-    stackUnderflowError();
+  checkUnderflow();
+
   sp--;
+
   if (stack[sp].isObjRef == false)
     noObjRefError();
+
   return stack[sp].u.objRef;
 }
 
 int popint(void) {
-  if (sp == 0)
-    stackUnderflowError();
+  checkUnderflow();
+
   sp--;
+
   if (stack[sp].isObjRef == true)
     noIntError();
+
   return stack[sp].u.number;
 }
 
 void asf(int n) {
-  pushint(fp);
+  pushInt(fp);
   fp = sp;
   sp = sp + n;
 
-  if (sp >= SK_SIZE)
-    stackOverflowError();
+  checkOverflow();
 }
 
 void rsf(void) {

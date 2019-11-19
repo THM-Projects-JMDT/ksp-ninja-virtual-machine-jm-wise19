@@ -4,8 +4,7 @@
 #include "obj.h"
 #include <stdbool.h>
 
-typedef struct
-{
+typedef struct {
   bool isObjRef; /* slot used for object reference? */
   union {
     ObjRef objRef; /* used if isObjRef=TRUE */
@@ -14,7 +13,7 @@ typedef struct
 } StackSlot;
 
 void push(ObjRef value);
-void pushint(int value);
+void pushInt(int value);
 ObjRef pop(void);
 int popint(void);
 void asf(int value);
