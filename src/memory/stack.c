@@ -7,25 +7,46 @@
 static int sp = 0;
 static int fp = 0;
 
-static int stack[SK_SIZE];
-static int return_value_register;
+static StackSlot stack[SK_SIZE];
+static ObjRef return_value_register;
 
-void push(int value) {
+void push(ObjRef value) {
   if (sp == SK_SIZE)
     stackOverflowError();
-  stack[sp] = value;
+
+  stack[sp].isObjRef = true;
+  stack[sp].u.objRef = value;
+  sp++;
+}
+void pushint(int value) {
+  if (sp == SK_SIZE)
+    stackOverflowError();
+
+  stack[sp].isObjRef = false;
+  stack[sp].u.number = value;
   sp++;
 }
 
-int pop(void) {
+ObjRef pop(void) {
   if (sp == 0)
     stackUnderflowError();
   sp--;
-  return stack[sp];
+  if (stack[sp].isObjRef == false)
+    noObjRefError();
+  return stack[sp].u.objRef;
+}
+
+int popint(void) {
+  if (sp == 0)
+    stackUnderflowError();
+  sp--;
+  if (stack[sp].isObjRef == true)
+    noIntError();
+  return stack[sp].u.number;
 }
 
 void asf(int n) {
-  push(fp);
+  pushint(fp);
   fp = sp;
   sp = sp + n;
 
@@ -35,7 +56,7 @@ void asf(int n) {
 
 void rsf(void) {
   sp = fp;
-  fp = pop();
+  fp = popint();
 }
 
 void pushl(int n) {
@@ -43,7 +64,7 @@ void pushl(int n) {
   if (fp == 0)
     noStackFrameAllocatedError();
 
-  push(stack[fp + n]);
+  push(stack[fp + n].u.objRef);
 }
 
 void popl(int n) {
@@ -51,7 +72,8 @@ void popl(int n) {
   if (fp == 0)
     noStackFrameAllocatedError();
 
-  stack[fp + n] = pop();
+  stack[fp + n].isObjRef = true;
+  stack[fp + n].u.objRef = pop();
 }
 void drop(const int n) {
   sp = sp - n;
