@@ -20,58 +20,58 @@ void execHalt(void) {
   stopProgramm();
   stopDebugging();
 }
-void execPushc(int value) { push(value); }
+void execPushc(int value) { push(createObjRefInt(value)); }
 void execAdd(void) {
-  int num2 = pop();
-  int num1 = pop();
+  ObjRef num2 = pop();
+  ObjRef num1 = pop();
 
-  push(num1 + num2);
+  push((int)num2 + (int)num1);
 }
 void execSub(void) {
-  int num2 = pop();
-  int num1 = pop();
+  ObjRef num2 = pop();
+  ObjRef num1 = pop();
 
-  push(num1 - num2);
+  push((int)num1 - (int)num2);
 }
 void execMul(void) {
-  int num2 = pop();
-  int num1 = pop();
+  ObjRef num2 = pop();
+  ObjRef num1 = pop();
 
-  push(num1 * num2);
+  push((int)num1 * (int)num2);
 }
 void execDiv(void) {
   // Check if Secound nummber is Zero
-  int num2 = pop();
-  int num1 = pop();
+  ObjRef num2 = pop();
+  ObjRef num1 = pop();
 
   if (num2 == 0)
     dividedByZeroError();
 
-  push(num1 / num2);
+  push((int)num1 / (int)num2);
 }
 void execMod(void) {
-  int num2 = pop();
-  int num1 = pop();
+  ObjRef num2 = pop();
+  ObjRef num1 = pop();
 
   if (num2 == 0)
     dividedByZeroError();
 
-  push(num1 % num2);
+  push((int)num1 % (int)num2);
 }
 void execRdint(void) {
   int myInt;
   scanf("%d", &myInt);
-  push(myInt);
+  push(createObjRefInt(myInt));
 }
-void execWrint(void) { printf("%d", pop()); }
+void execWrint(void) { printf("%d", (int)pop()); }
 void execRdchr(void) {
   char myChar;
   scanf("%c", &myChar);
-  push(myChar);
+  push(createObjRefChar(myChar));
 }
-void execWrchr(void) { printf("%c", pop()); }
-void execPushg(int n) { push(getGlobVar(n)); }
-void execPopg(int n) { setGlobVar(n, pop()); }
+void execWrchr(void) { printf("%c", (int)pop()); }
+void execPushg(int n) { push(createObjRefInt(getGlobVar(n))); }
+void execPopg(int n) { setGlobVar(n, (int)pop()); }
 void execAsf(int n) { asf(n); }
 void execRsf(void) { rsf(); }
 void execPushl(int n) { pushl(n); }
@@ -108,25 +108,25 @@ void execGe(void) {
 }
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
-  int b = pop();
+  bool b = (bool)pop();
   if (!b)
     changePC(n);
 }
 void execBrt(int n) {
-  int b = pop();
+  bool b = (bool)pop();
   if (b)
     changePC(n);
 }
 void execCall(int n) {
-  push(getPC());
+  pushInt(getPC());
   changePC(n);
 }
-void execRet(void) { changePC(pop()); }
+void execRet(void) { changePC(popint()); }
 void execDrop(int n) { drop(n); }
 void execPushr(void) { pushr(); }
 void execPopr(void) { popr(); }
 void execDup(void) {
-  int i = pop();
+  ObjRef i = pop();
   push(i);
   push(i);
 }
