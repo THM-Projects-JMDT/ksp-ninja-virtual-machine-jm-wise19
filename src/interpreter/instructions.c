@@ -5,6 +5,7 @@
 #include "../runner/runner.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
+#include <stdint.h>
 #include <stdio.h>
 
 // Print functions
@@ -24,30 +25,29 @@ void execPushc(int value) { push(createObjRefInt(value)); }
 void execAdd(void) {
   ObjRef num2 = pop();
   ObjRef num1 = pop();
-
-  push((int)num2 + (int)num1);
+  push(createObjRefInt((intptr_t)num2 + (intptr_t)num1));
 }
 void execSub(void) {
   ObjRef num2 = pop();
   ObjRef num1 = pop();
 
-  push((int)num1 - (int)num2);
+  push(createObjRefInt((intptr_t)num1 - (intptr_t)num2));
 }
 void execMul(void) {
   ObjRef num2 = pop();
   ObjRef num1 = pop();
 
-  push((int)num1 * (int)num2);
+  push(createObjRefInt((intptr_t)num1 * (intptr_t)num2));
 }
 void execDiv(void) {
   // Check if Secound nummber is Zero
   ObjRef num2 = pop();
   ObjRef num1 = pop();
 
-  if (num2 == 0)
+  if ((intptr_t)num2 == 0)
     dividedByZeroError();
 
-  push((int)num1 / (int)num2);
+  push(createObjRefInt((intptr_t)num1 / (intptr_t)num2));
 }
 void execMod(void) {
   ObjRef num2 = pop();
@@ -56,55 +56,61 @@ void execMod(void) {
   if (num2 == 0)
     dividedByZeroError();
 
-  push((int)num1 % (int)num2);
+  push(createObjRefInt((intptr_t)num1 % (intptr_t)num2));
 }
 void execRdint(void) {
   int myInt;
   scanf("%d", &myInt);
   push(createObjRefInt(myInt));
 }
-void execWrint(void) { printf("%d", (int)pop()); }
+void execWrint(void) { printf("%ld", (intptr_t)pop()); }
 void execRdchr(void) {
   char myChar;
   scanf("%c", &myChar);
   push(createObjRefChar(myChar));
 }
-void execWrchr(void) { printf("%c", (int)pop()); }
+void execWrchr(void) { printf("%c", (char)pop()); }
 void execPushg(int n) { push(createObjRefInt(getGlobVar(n))); }
-void execPopg(int n) { setGlobVar(n, (int)pop()); }
+void execPopg(int n) { setGlobVar(n, (intptr_t)pop()); }
 void execAsf(int n) { asf(n); }
 void execRsf(void) { rsf(); }
 void execPushl(int n) { pushl(n); }
 void execPopl(int n) { popl(n); }
 void execEq(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 == n2);
+  ObjRef n2 = pop();
+  ObjRef n1 = pop();
+  push((intptr_t)n1 == (intptr_t)n2 ? createObjRefBool(true)
+                                    : createObjRefBool(false));
 }
 void execNe(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 != n2);
+  ObjRef n2 = pop();
+  ObjRef n1 = pop();
+  push((intptr_t)n1 != (intptr_t)n2 ? createObjRefBool(true)
+                                    : createObjRefBool(false));
 }
 void execLt(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 < n2);
+  ObjRef n2 = pop();
+  ObjRef n1 = pop();
+  push((intptr_t)n1 < (intptr_t)n2 ? createObjRefBool(true)
+                                   : createObjRefBool(false));
 }
 void execLe(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 <= n2);
+  ObjRef n2 = pop();
+  ObjRef n1 = pop();
+  push((intptr_t)n1 <= (intptr_t)n2 ? createObjRefBool(true)
+                                    : createObjRefBool(false));
 }
 void execGt(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 > n2);
+  ObjRef n2 = pop();
+  ObjRef n1 = pop();
+  push((intptr_t)n1 > (intptr_t)n2 ? createObjRefBool(true)
+                                   : createObjRefBool(false));
 }
 void execGe(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 >= n2);
+  ObjRef n2 = pop();
+  ObjRef n1 = pop();
+  push((intptr_t)n1 >= (intptr_t)n2 ? createObjRefBool(true)
+                                    : createObjRefBool(false));
 }
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
