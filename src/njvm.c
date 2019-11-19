@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
   // load programm in Memory
   loadprog(argv[filePos]);
 
-  pprintf(BOLD, "Ninja Virtual Machine started\n");
+  printf("Ninja Virtual Machine started\n");
 
   // if debug mode is offline start Programm
   if (debug)
@@ -92,5 +92,5 @@ int main(int argc, char *argv[]) {
   freeProgMem();
   freeGlobVars();
 
-  pprintf(BOLD, "Ninja Virtual Machine stopped\n");
+  printf("Ninja Virtual Machine stopped\n");
 }
