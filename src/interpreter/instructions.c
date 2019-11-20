@@ -45,7 +45,7 @@ void execDiv(void) {
   int num2 = popInt();
   int num1 = popInt();
 
-  if ((intptr_t)num2 == 0)
+  if (num2 == 0)
     dividedByZeroError();
 
   pushInt(num1 / num2);
