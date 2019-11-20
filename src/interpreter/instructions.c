@@ -60,7 +60,7 @@ void execMod(void) {
   pushInt(num1 % num2);
 }
 void execRdint(void) {
-  int myInt;
+  int myInt = 0;
   scanf("%d", &myInt);
   pushInt(myInt);
 }
