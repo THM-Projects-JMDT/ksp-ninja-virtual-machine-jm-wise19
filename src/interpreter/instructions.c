@@ -5,6 +5,7 @@
 #include "../runner/runner.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
+#include <stdint.h>
 #include <stdio.h>
 
 // Print functions
@@ -44,7 +45,7 @@ void execDiv(void) {
   int num2 = popInt();
   int num1 = popInt();
 
-  if (num2 == 0)
+  if ((intptr_t)num2 == 0)
     dividedByZeroError();
 
   pushInt(num1 / num2);
