@@ -3,12 +3,13 @@
 #include "../njvm.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
+#include "obj.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 static unsigned int *programMemory;
-static int *globalvars;
+static ObjRef *globalvars;
 int memorySize;
 int globalVarSize;
 
@@ -27,13 +28,13 @@ static void checkGlobalVars(const int pos) {
 }
 
 // get global var at Pos
-int getGlobVar(const int pos) {
+ObjRef getGlobVar(const int pos) {
   checkGlobalVars(pos);
   return globalvars[pos];
 }
 
 // set global var at Pos
-void setGlobVar(const int pos, const int val) {
+void setGlobVar(const int pos, const ObjRef val) {
   checkGlobalVars(pos);
   globalvars[pos] = val;
 }
@@ -91,7 +92,7 @@ void loadprog(const char *path) {
 
   // Setting amount of global Varibales
   globalVarSize = header[2];
-  globalvars = (int *)malloc(globalVarSize * sizeof(int));
+  globalvars = (ObjRef *)malloc(globalVarSize * sizeof(int));
 
   // Check if Memory was Allocated
   if (globalvars == NULL)
@@ -111,6 +112,6 @@ void printglobalvars(void) {
     pprintf(BOLD, "No global Variables pressent\n");
 
   for (int i = 0; i < globalVarSize; i++) {
-    pprintf(BOLD, "data[%04d]:     %d\n", i, globalvars[i]);
+    pprintf(BOLD, "data[%04d]:     %p\n", i, globalvars[i]);
   }
 }
