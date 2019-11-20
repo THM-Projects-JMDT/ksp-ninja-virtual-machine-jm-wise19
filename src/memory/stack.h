@@ -15,7 +15,7 @@ typedef struct {
 void push(ObjRef value);
 void pushInt(int value);
 ObjRef pop(void);
-int popint(void);
+int popInt(void);
 void asf(int value);
 void rsf(void);
 void pushl(int n);

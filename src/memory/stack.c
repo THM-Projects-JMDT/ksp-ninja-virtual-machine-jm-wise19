@@ -15,6 +15,7 @@ void checkOverflow() {
   if (sp >= SK_SIZE)
     stackOverflowError();
 }
+
 void checkUnderflow() {
   if (sp == 0)
     stackUnderflowError();
@@ -27,7 +28,10 @@ void push(ObjRef value) {
   stack[sp].u.objRef = value;
   sp++;
 }
-void pushInt(int value) {
+
+void pushInt(int value) { push(newIntObj(value)); }
+
+void pushNoRef(int value) {
   checkOverflow();
 
   stack[sp].isObjRef = false;
@@ -46,7 +50,9 @@ ObjRef pop(void) {
   return stack[sp].u.objRef;
 }
 
-int popint(void) {
+int popInt(void) { return *(int *)pop()->data; }
+
+int popNoRef(void) {
   checkUnderflow();
 
   sp--;
@@ -58,7 +64,7 @@ int popint(void) {
 }
 
 void asf(int n) {
-  pushInt(fp);
+  pushNoRef(fp);
   fp = sp;
   sp = sp + n;
 
@@ -67,7 +73,7 @@ void asf(int n) {
 
 void rsf(void) {
   sp = fp;
-  fp = popint();
+  fp = popNoRef();
 }
 
 void pushl(int n) {
@@ -118,6 +124,11 @@ void printStack(int atFrame) {
     else
       printf("\t ");
 
-    pprintf(BOLD, "%04d:\t%d\n", i, stack[i]);
+    pprintf(BOLD, "%04d:\t", i);
+
+    if (stack[i].isObjRef)
+      pprintf(BOLD, "%p\n", stack[i].u.objRef);
+    else
+      pprintf(BOLD, "%d\n", stack[i].u.number);
   }
 }
