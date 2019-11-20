@@ -20,56 +20,57 @@ void execHalt(void) {
   stopProgramm();
   stopDebugging();
 }
-void execPushc(int value) { push(value); }
+void execPushc(int value) { pushInt(value); }
 void execAdd(void) {
-  int num2 = pop();
-  int num1 = pop();
+  int num2 = popInt();
+  int num1 = popInt();
 
-  push(num1 + num2);
+  pushInt(num1 + num2);
 }
 void execSub(void) {
-  int num2 = pop();
-  int num1 = pop();
+  int num2 = popInt();
+  int num1 = popInt();
 
-  push(num1 - num2);
+  pushInt(num1 - num2);
 }
 void execMul(void) {
-  int num2 = pop();
-  int num1 = pop();
+  int num2 = popInt();
+  int num1 = popInt();
 
-  push(num1 * num2);
+  pushInt(num1 * num2);
 }
 void execDiv(void) {
   // Check if Secound nummber is Zero
-  int num2 = pop();
-  int num1 = pop();
+  int num2 = popInt();
+  int num1 = popInt();
 
   if (num2 == 0)
     dividedByZeroError();
 
-  push(num1 / num2);
+  pushInt(num1 / num2);
 }
 void execMod(void) {
-  int num2 = pop();
-  int num1 = pop();
+  int num2 = popInt();
+  int num1 = popInt();
 
   if (num2 == 0)
     dividedByZeroError();
 
-  push(num1 % num2);
+  pushInt(num1 % num2);
 }
 void execRdint(void) {
   int myInt;
   scanf("%d", &myInt);
-  push(myInt);
+  printf("%d", myInt);
+  pushInt(myInt);
 }
-void execWrint(void) { printf("%d", pop()); }
+void execWrint(void) { printf("%d", popInt()); }
 void execRdchr(void) {
   char myChar;
   scanf("%c", &myChar);
-  push(myChar);
+  pushInt(myChar);
 }
-void execWrchr(void) { printf("%c", pop()); }
+void execWrchr(void) { printf("%c", popInt()); }
 void execPushg(int n) { push(getGlobVar(n)); }
 void execPopg(int n) { setGlobVar(n, pop()); }
 void execAsf(int n) { asf(n); }
@@ -77,56 +78,56 @@ void execRsf(void) { rsf(); }
 void execPushl(int n) { pushl(n); }
 void execPopl(int n) { popl(n); }
 void execEq(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 == n2);
+  int n2 = popInt();
+  int n1 = popInt();
+  pushInt(n1 == n2);
 }
 void execNe(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 != n2);
+  int n2 = popInt();
+  int n1 = popInt();
+  pushInt(n1 != n2);
 }
 void execLt(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 < n2);
+  int n2 = popInt();
+  int n1 = popInt();
+  pushInt(n1 < n2);
 }
 void execLe(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 <= n2);
+  int n2 = popInt();
+  int n1 = popInt();
+  pushInt(n1 <= n2);
 }
 void execGt(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 > n2);
+  int n2 = popInt();
+  int n1 = popInt();
+  pushInt(n1 > n2);
 }
 void execGe(void) {
-  int n2 = pop();
-  int n1 = pop();
-  push(n1 >= n2);
+  int n2 = popInt();
+  int n1 = popInt();
+  pushInt(n1 >= n2);
 }
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
-  int b = pop();
+  int b = popInt();
   if (!b)
     changePC(n);
 }
 void execBrt(int n) {
-  int b = pop();
+  int b = popInt();
   if (b)
     changePC(n);
 }
 void execCall(int n) {
-  push(getPC());
+  pushInt(getPC());
   changePC(n);
 }
-void execRet(void) { changePC(pop()); }
+void execRet(void) { changePC(popInt()); }
 void execDrop(int n) { drop(n); }
 void execPushr(void) { pushr(); }
 void execPopr(void) { popr(); }
 void execDup(void) {
-  int i = pop();
-  push(i);
-  push(i);
+  int i = popInt();
+  pushInt(i);
+  pushInt(i);
 }
