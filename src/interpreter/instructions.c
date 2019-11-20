@@ -119,10 +119,10 @@ void execBrt(int n) {
     changePC(n);
 }
 void execCall(int n) {
-  pushInt(getPC());
+  pushNoRef(getPC());
   changePC(n);
 }
-void execRet(void) { changePC(popInt()); }
+void execRet(void) { changePC(popNoRef()); }
 void execDrop(int n) { drop(n); }
 void execPushr(void) { pushr(); }
 void execPopr(void) { popr(); }
