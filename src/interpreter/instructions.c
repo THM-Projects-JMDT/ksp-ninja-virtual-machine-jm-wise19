@@ -62,7 +62,6 @@ void execMod(void) {
 void execRdint(void) {
   int myInt;
   scanf("%d", &myInt);
-  printf("%d", myInt);
   pushInt(myInt);
 }
 void execWrint(void) { printf("%d", popInt()); }
