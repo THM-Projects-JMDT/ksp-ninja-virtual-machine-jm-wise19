@@ -29,10 +29,13 @@ void cmdStack(char *self, char *input) {
 }
 void cmdObject(char *self, char *input) {
   pprintf(BLACK, "Object Refernece?\n");
-  char a[14] = "";
-  scanf("%s", a);
+  void *p = NULL;
+  scanf("%p", &p);
   pprintf(YELLOW, "-- Object --\n");
-  printf("value =  %s\n", a);
+  // TODO check if pointer is valid
+  // TODO mit nicht int Werte
+  printf("value = %d\n", *(int *)((ObjRef)p)->data);
+
   pprintf(YELLOW, "-- End of Object --\n");
   cmdReset();
 }
