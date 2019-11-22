@@ -116,7 +116,7 @@ void printStack(int atFrame) {
   else
     pprintf(BOLD, "sp --->  ");
 
-  pprintf(BOLD, "%04d:\txxxx\n", sp);
+  pprintf(BOLD, "%04d:\t(xxxxxx)\txxxx\n", sp);
   for (int i = sp - 1; i >= bottom; i--) {
     // Print Frame Point
     if (i == fp)
@@ -127,8 +127,8 @@ void printStack(int atFrame) {
     pprintf(BOLD, "%04d:\t", i);
 
     if (stack[i].isObjRef)
-      pprintf(BOLD, "%p\n", stack[i].u.objRef);
+      pprintf(BOLD, "(objref)\t%p\n", stack[i].u.objRef);
     else
-      pprintf(BOLD, "%d\n", stack[i].u.number);
+      pprintf(BOLD, "(number)\t%d\n", stack[i].u.number);
   }
 }

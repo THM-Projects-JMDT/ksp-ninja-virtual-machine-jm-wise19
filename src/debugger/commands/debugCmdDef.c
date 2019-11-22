@@ -1,4 +1,5 @@
 #include "debugCmdDef.h"
+#include "../../memory/obj.h"
 #include "../../memory/programMemory.h"
 #include "../../memory/stack.h"
 #include "../../runner/runner.h"
@@ -26,14 +27,23 @@ void cmdStack(char *self, char *input) {
   pprintf(YELLOW, "-- bottom of Stack --\n");
   cmdReset();
 }
+void cmdObject(char *self, char *input) {
+  pprintf(BLACK, "Object Refernece?\n");
+  char a[14] = "";
+  scanf("%s", a);
+  pprintf(YELLOW, "-- Object --\n");
+  printf("value =  %s\n", a);
+  pprintf(YELLOW, "-- End of Object --\n");
+  cmdReset();
+}
 void cmdData(char *self, char *input) {
   printSep();
   pprintf(YELLOW, "----Beginn of Data----\n");
   printglobalvars();
   pprintf(YELLOW, "----End of Data----\n");
-
   cmdReset();
 }
+
 void cmdFrame(char *self, char *input) {
   printSep();
   pprintf(YELLOW, "-- Current Stack Frame --\n");
@@ -60,8 +70,9 @@ void cmdClear(char *self, char *input) {
 DebugCmd inspectSubCmds[] = {{"stack", checkChar, cmdStack},
                              {"frame", checkChar, cmdFrame},
                              {"data", checkChar, cmdData},
+                             {"object", checkChar, cmdObject},
                              {"quit", checkChar, cmdReset}};
-int inspectSubCount = 4;
+int inspectSubCount = 5;
 DebugCmd breakpointSubCmds[] = {{"address to set", checkInt, cmdAddress},
                                 {"clear", checkChar, cmdClear},
                                 {"quit", checkChar, cmdReset}};
