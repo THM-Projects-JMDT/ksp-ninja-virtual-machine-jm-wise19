@@ -17,6 +17,10 @@ static int breakPoint = -1;
 void cmdReset();
 int checkChar(char *input, char *cmd);
 int checkInt(char *input, char *cmd);
+int checkHex(char *input, char *cmd);
+void cmdInspect(char *input, char *cmd);
+extern DebugCmd objectSubCmds[];
+extern int objectSubCount;
 
 // Sub Commands
 // Inspect Sub
@@ -28,17 +32,7 @@ void cmdStack(char *self, char *input) {
   cmdReset();
 }
 void cmdObject(char *self, char *input) {
-  pprintf(BLACK, "Object Refernece?\n");
-  void *p = NULL;
-  scanf("%p", &p);
-  printSep();
-  pprintf(YELLOW, "-- Object --\n");
-  // TODO check if pointer is valid
-  // TODO mit nicht int Werte
-  pprintf(BOLD, "%p -> %d\n", p, *(int *)((ObjRef)p)->data);
-
-  pprintf(YELLOW, "-- End of Object --\n");
-  cmdReset();
+  setActCmds(objectSubCount, objectSubCmds, "inspect-object");
 }
 void cmdData(char *self, char *input) {
   printSep();
@@ -53,6 +47,22 @@ void cmdFrame(char *self, char *input) {
   pprintf(YELLOW, "-- Current Stack Frame --\n");
   printStack(1);
   pprintf(YELLOW, "-- bottom of Frame --\n");
+  cmdReset();
+}
+
+// Inspect Object sub
+void cmdGetValue(char *self, char *input) {
+  void *p = NULL;
+  // Get Pointer from char
+  sscanf(input, "%p", &p);
+  printSep();
+  pprintf(YELLOW, "-- Object --\n");
+  // TODO check if pointer is valid
+  // TODO mit nicht int Werte
+  if (p != NULL)
+    pprintf(BOLD, "(objref)%p -> %d\n", p, *(int *)((ObjRef)p)->data);
+
+  pprintf(YELLOW, "-- End of Object --\n");
   cmdReset();
 }
 
@@ -74,9 +84,12 @@ void cmdClear(char *self, char *input) {
 DebugCmd inspectSubCmds[] = {{"stack", checkChar, cmdStack},
                              {"frame", checkChar, cmdFrame},
                              {"data", checkChar, cmdData},
-                             {"object", checkChar, cmdObject},
+                             {"object", checkChar, cmdObject, 1},
                              {"quit", checkChar, cmdReset}};
 int inspectSubCount = 5;
+DebugCmd objectSubCmds[] = {{"pointer to Object", checkHex, cmdGetValue},
+                            {"quit", checkChar, cmdReset}};
+int objectSubCount = 2;
 DebugCmd breakpointSubCmds[] = {{"address to set", checkInt, cmdAddress},
                                 {"clear", checkChar, cmdClear},
                                 {"quit", checkChar, cmdReset}};
@@ -113,6 +126,7 @@ void cmdRun(char *self, char *input) { execProgBreak(breakPoint); }
 // Command Help functions
 int checkChar(char *input, char *cmd) { return cmd[0] == input[0]; }
 int checkInt(char *input, char *cmd) { return isdigit(input[0]); }
+int checkHex(char *input, char *cmd) { return isxdigit(input[0]); }
 
 // Commands Array
 DebugCmd cmds[] = {{"inspect", checkChar, cmdInspect, 1},

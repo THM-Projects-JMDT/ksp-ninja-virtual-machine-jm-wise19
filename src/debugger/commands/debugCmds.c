@@ -5,7 +5,7 @@
 #include "string.h"
 #include <stdio.h>
 
-#define CMD_DELIMITER " "
+#define CMD_DELIMITER ' '
 
 static DebugCmd *cmds;
 static int cmdsCount;
@@ -20,11 +20,11 @@ void setActCmds(int count, DebugCmd newCmds[], char *command) {
 // tests if subcommand was entered directly
 void checkSubAsArg(char *input) {
   char *subCmd;
-  strtok(input, CMD_DELIMITER);
-  subCmd = strtok(NULL, CMD_DELIMITER);
+  subCmd = strchr(input, CMD_DELIMITER);
 
   if (subCmd != NULL)
-    findCmd(subCmd);
+    // Get SubCmd without blank
+    findCmd(&subCmd[1]);
 }
 
 // Find Command and run Command
