@@ -31,10 +31,11 @@ void cmdObject(char *self, char *input) {
   pprintf(BLACK, "Object Refernece?\n");
   void *p = NULL;
   scanf("%p", &p);
+  printSep();
   pprintf(YELLOW, "-- Object --\n");
   // TODO check if pointer is valid
   // TODO mit nicht int Werte
-  printf("value = %d\n", *(int *)((ObjRef)p)->data);
+  pprintf(BOLD, "%p -> %d\n", p, *(int *)((ObjRef)p)->data);
 
   pprintf(YELLOW, "-- End of Object --\n");
   cmdReset();
