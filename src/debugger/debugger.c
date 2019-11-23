@@ -20,12 +20,19 @@ void setSubPromt(char *sub) { promt[1] = sub; }
 
 void printMsPromt(void) {
   pprintf(GREEN, "[%s] ", promt[0]);
-  if (promt[1] != NULL)
-    pprintf(GREEN, "[%s] ", promt[1]);
+
+  // Print sub Promt
+  if (promt[1] != NULL) {
+    setFormat(stdout, BOLD);
+    pprintf(BLACK, "[%s] ", promt[1]);
+  }
 }
 void printPromt(void) {
-  if (promt[1] != NULL)
-    pprintf(GREEN, "%s@", promt[1]);
+  // Print sub Promt
+  if (promt[1] != NULL) {
+    setFormat(stdout, BOLD);
+    pprintf(BLACK, "%s@", promt[1]);
+  }
 
   pprintf(GREEN, "%s$ ", promt[0]);
 }
@@ -58,6 +65,7 @@ void startDebug(void) {
 
     // Read input
     printPromt();
+    // Rest stdin buffer
     fgets(input, INPUT_SIZE, stdin);
 
     // check input
