@@ -5,6 +5,7 @@
 #include "../runner/runner.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
+#include <bigint.h>
 #include <stdint.h>
 #include <stdio.h>
 
@@ -21,24 +22,27 @@ void execHalt(void) {
   stopProgramm();
   stopDebugging();
 }
-void execPushc(int value) { pushInt(value); }
+void execPushc(int value) {
+  bigFromInt(value);
+  push(bip.res);
+}
 void execAdd(void) {
-  int num2 = popInt();
-  int num1 = popInt();
+  bip.op2 = pop();
+  bip.op1 = pop();
 
-  pushInt(num1 + num2);
+  pushInt(bip.res);
 }
 void execSub(void) {
-  int num2 = popInt();
-  int num1 = popInt();
+  bip.op2 = pop();
+  bip.op1 = pop();
 
-  pushInt(num1 - num2);
+  pushInt(bip.res);
 }
 void execMul(void) {
-  int num2 = popInt();
-  int num1 = popInt();
+  bip.op2 = pop();
+  bip.op1 = pop();
 
-  pushInt(num1 * num2);
+  pushInt(bip.res);
 }
 void execDiv(void) {
   // Check if Secound nummber is Zero
@@ -62,13 +66,15 @@ void execMod(void) {
 void execRdint(void) {
   int myInt = 0;
   scanf("%d", &myInt);
-  pushInt(myInt);
+  bigFromInt(myInt);
+  push(bip.res);
 }
 void execWrint(void) { printf("%d", popInt()); }
 void execRdchr(void) {
   char myChar;
   scanf("%c", &myChar);
-  pushInt(myChar);
+  bigFromInt(myChar);
+  push(bip.res);
 }
 void execWrchr(void) { printf("%c", popInt()); }
 void execPushg(int n) { push(getGlobVar(n)); }
