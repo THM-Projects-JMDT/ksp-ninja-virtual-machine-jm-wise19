@@ -5,10 +5,10 @@
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"
 #include "debugCmds.h"
+#include <bigint.h>
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <support.h>
 
 // Helper vars
 static int breakPoint = -1;
@@ -58,9 +58,11 @@ void cmdGetValue(char *self, char *input) {
   printSep();
   pprintf(YELLOW, "-- Object --\n");
   // TODO check if pointer is valid
-  // TODO mit nicht int Werte
-  if (p != NULL)
-    pprintf(BOLD, "(objref)%p -> %d\n", p, *(int *)((ObjRef)p)->data);
+  // TODO mit nicht bigint Werten
+  if (p != NULL) {
+    bip.op1 = (ObjRef)p;
+    pprintf(BOLD, "(objref)%p -> %d\n", p, bigToInt());
+  }
 
   pprintf(YELLOW, "-- End of Object --\n");
   cmdReset();
