@@ -2,6 +2,7 @@
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
 #include <stdio.h>
+#include <support.h>
 #define SK_SIZE 10000
 
 static int sp = 0;
@@ -29,7 +30,11 @@ void push(ObjRef value) {
   sp++;
 }
 
-void pushInt(int value) { push(newIntObj(value)); }
+void pushInt(int value) {
+  ObjRef obj = newPrimObject(sizeof(int));
+  *(int *)obj->data = value;
+  push(obj);
+}
 
 void pushNoRef(int value) {
   checkOverflow();

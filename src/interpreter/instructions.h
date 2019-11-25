@@ -1,7 +1,7 @@
 #ifndef NJCM_INSTRUCTIONS_H_INCLUDED
 #define NJCM_INSTRUCTIONS_H_INCLUDED
 
-#include "../memory/obj.h"
+#include <support.h>
 
 void printInst(char *inst, int ct);
 void printInstValue(char *inst, int value, int ct);

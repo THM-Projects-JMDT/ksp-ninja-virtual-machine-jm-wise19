@@ -1,5 +1,4 @@
 #include "debugCmdDef.h"
-#include "../../memory/obj.h"
 #include "../../memory/programMemory.h"
 #include "../../memory/stack.h"
 #include "../../runner/runner.h"
@@ -9,6 +8,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <support.h>
 
 // Helper vars
 static int breakPoint = -1;

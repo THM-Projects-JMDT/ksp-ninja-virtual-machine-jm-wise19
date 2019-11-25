@@ -1,9 +1,9 @@
-#include "obj.h"
-#include "../util/error.h"
+#include "../../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <support.h>
 
-ObjRef newIntObj(int value) {
+ObjRef newPrimObject(int dataSize) {
   ObjRef objRef = malloc(sizeof(unsigned int) + sizeof(int));
 
   // check if malloc worked
@@ -11,7 +11,9 @@ ObjRef newIntObj(int value) {
     outOfMemoryError();
 
   objRef->size = sizeof(int);
-  *(int *)objRef->data = value;
 
   return objRef;
+}
+
+void fatalError(char *msg) { /*TODO*/
 }

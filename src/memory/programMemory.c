@@ -3,10 +3,10 @@
 #include "../njvm.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
-#include "obj.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <support.h>
 
 static unsigned int *programMemory;
 static ObjRef *globalvars;

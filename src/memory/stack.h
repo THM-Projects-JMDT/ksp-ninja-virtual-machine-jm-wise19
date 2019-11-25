@@ -1,8 +1,8 @@
 #ifndef NJCM_STACK_H_INCLUDED
 #define NJCM_STACK_H_INCLUDED
 
-#include "obj.h"
 #include <stdbool.h>
+#include <support.h>
 
 typedef struct {
   bool isObjRef; /* slot used for object reference? */

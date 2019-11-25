@@ -1,7 +1,7 @@
 #ifndef NJCM_PROGRAMMEMORY_H_INCLUDED
 #define NJCM_PROGRAMMEMORY_H_INCLUDED
 
-#include "obj.h"
+#include <support.h>
 
 unsigned int getInst(const int pos);
 void freeProgMem(void);
