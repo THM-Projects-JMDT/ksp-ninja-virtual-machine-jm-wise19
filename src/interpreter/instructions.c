@@ -72,14 +72,12 @@ void execMod(void) {
   push(bip.rem);
 }
 void execRdint(void) {
-  int myInt = 0;
-  scanf("%d", &myInt);
-  bigFromInt(myInt);
+  bigRead(stdin);
   push(bip.res);
 }
 void execWrint(void) {
   bip.op1 = pop();
-  printf("%d", bigToInt());
+  bigPrint(stdout);
 }
 void execRdchr(void) {
   char myChar;

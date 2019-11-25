@@ -5,14 +5,12 @@
 void main() {
   local Integer n1;
   local Integer n2;
-  local Integer n3;
 
-  n1 = 4;
-  n2 = getNum(n1);
-  n3 = n1 * n2;
-
-  writeInteger(n3);
-  writeCharacter('\n');
+  n1 = 1;
+  n2 = 5;
+  if(n1 < n2) {
+    n2 = 3;
+  }
 }
 
 Integer getNum(Integer n1) {
