@@ -15,5 +15,4 @@ ObjRef newPrimObject(int dataSize) {
   return objRef;
 }
 
-void fatalError(char *msg) { /*TODO*/
-}
+void fatalError(char *msg) { vmError(55, msg); }

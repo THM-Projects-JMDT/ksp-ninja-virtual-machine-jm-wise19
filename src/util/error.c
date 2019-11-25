@@ -87,3 +87,4 @@ void invalidGlobalVarPositionError(const int pos) {
 void invalidJumpDestinationError(const int destination) {
   vmError(54, "The Jump Destination %d is invalid", destination);
 }
+// Runtime Error 55 -> bigInt error (in Support.c)
