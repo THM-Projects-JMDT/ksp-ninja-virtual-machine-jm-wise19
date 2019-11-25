@@ -98,43 +98,45 @@ void execRsf(void) { rsf(); }
 void execPushl(int n) { pushl(n); }
 void execPopl(int n) { popl(n); }
 void execEq(void) {
-  int n2 = popInt();
-  int n1 = popInt();
-  pushInt(n1 == n2);
+  bip.op2 = pop();
+  bip.op1 = pop();
+  execPushc(bigCmp() == 0);
 }
 void execNe(void) {
-  int n2 = popInt();
-  int n1 = popInt();
-  pushInt(n1 != n2);
+  bip.op2 = pop();
+  bip.op1 = pop();
+  execPushc(bigCmp() != 0);
 }
 void execLt(void) {
-  int n2 = popInt();
-  int n1 = popInt();
-  pushInt(n1 < n2);
+  bip.op2 = pop();
+  bip.op1 = pop();
+  execPushc(bigCmp() < 0);
 }
 void execLe(void) {
-  int n2 = popInt();
-  int n1 = popInt();
-  pushInt(n1 <= n2);
+  bip.op2 = pop();
+  bip.op1 = pop();
+  execPushc(bigCmp() <= 0);
 }
 void execGt(void) {
-  int n2 = popInt();
-  int n1 = popInt();
-  pushInt(n1 > n2);
+  bip.op2 = pop();
+  bip.op1 = pop();
+  execPushc(bigCmp() > 0);
 }
 void execGe(void) {
-  int n2 = popInt();
-  int n1 = popInt();
-  pushInt(n1 >= n2);
+  bip.op2 = pop();
+  bip.op1 = pop();
+  execPushc(bigCmp() >= 0);
 }
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
-  int b = popInt();
+  bip.op1 = pop();
+  int b = bigToInt();
   if (!b)
     changePC(n);
 }
 void execBrt(int n) {
-  int b = popInt();
+  bip.op1 = pop();
+  int b = bigToInt();
   if (b)
     changePC(n);
 }
