@@ -4,7 +4,7 @@
 #include <support.h>
 
 ObjRef newPrimObject(int dataSize) {
-  ObjRef objRef = malloc(sizeof(unsigned int) + sizeof(int));
+  ObjRef objRef = malloc(sizeof(unsigned int) + dataSize);
 
   // check if malloc worked
   if (objRef == NULL)
