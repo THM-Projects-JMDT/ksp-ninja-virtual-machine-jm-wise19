@@ -29,39 +29,47 @@ void execPushc(int value) {
 void execAdd(void) {
   bip.op2 = pop();
   bip.op1 = pop();
+  bigAdd();
 
-  pushInt(bip.res);
+  push(bip.res);
 }
 void execSub(void) {
   bip.op2 = pop();
   bip.op1 = pop();
+  bigSub();
 
-  pushInt(bip.res);
+  push(bip.res);
 }
 void execMul(void) {
   bip.op2 = pop();
   bip.op1 = pop();
+  bigMul();
 
-  pushInt(bip.res);
+  push(bip.res);
 }
 void execDiv(void) {
-  // Check if Secound nummber is Zero
-  int num2 = popInt();
-  int num1 = popInt();
+  bip.op2 = pop();
+  bip.op1 = bip.op2;
 
-  if (num2 == 0)
+  // Check if Secound nummber is Zero
+  if (bigToInt() == 0)
     dividedByZeroError();
 
-  pushInt(num1 / num2);
+  bip.op1 = pop();
+  bigDiv();
+  push(bip.res);
 }
 void execMod(void) {
-  int num2 = popInt();
-  int num1 = popInt();
+  bip.op2 = pop();
+  bip.op1 = bip.op2;
 
-  if (num2 == 0)
+  // Check if Secound nummber is Zero
+  if (bigToInt() == 0)
     dividedByZeroError();
 
-  pushInt(num1 % num2);
+  bip.op1 = pop();
+  bigDiv();
+  push(bip.rem);
 }
 void execRdint(void) {
   int myInt = 0;
@@ -69,14 +77,20 @@ void execRdint(void) {
   bigFromInt(myInt);
   push(bip.res);
 }
-void execWrint(void) { printf("%d", popInt()); }
+void execWrint(void) {
+  bip.op1 = pop();
+  printf("%d", bigToInt());
+}
 void execRdchr(void) {
   char myChar;
   scanf("%c", &myChar);
   bigFromInt(myChar);
   push(bip.res);
 }
-void execWrchr(void) { printf("%c", popInt()); }
+void execWrchr(void) {
+  bip.op1 = pop();
+  printf("%c", bigToInt());
+}
 void execPushg(int n) { push(getGlobVar(n)); }
 void execPopg(int n) { setGlobVar(n, pop()); }
 void execAsf(int n) { asf(n); }
@@ -135,7 +149,7 @@ void execDrop(int n) { drop(n); }
 void execPushr(void) { pushr(); }
 void execPopr(void) { popr(); }
 void execDup(void) {
-  int i = popInt();
-  pushInt(i);
-  pushInt(i);
+  ObjRef objRef = pop();
+  push(objRef);
+  push(objRef);
 }
