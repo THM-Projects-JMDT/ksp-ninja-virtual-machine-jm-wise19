@@ -61,7 +61,11 @@ void cmdGetValue(char *self, char *input) {
   // TODO mit nicht bigint Werten
   if (p != NULL) {
     bip.op1 = (ObjRef)p;
-    pprintf(BOLD, "(objref)%p -> %d\n", p, bigToInt());
+    setFormat(stdout, BOLD);
+    printf("(objref)%p -> ", p);
+    bigPrint(stdout);
+    printf("\n");
+    setFormat(stdout, RESET_FORMAT);
   }
 
   pprintf(YELLOW, "-- End of Object --\n");
