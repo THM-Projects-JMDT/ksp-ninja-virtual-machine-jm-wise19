@@ -49,10 +49,11 @@ void execMul(void) {
 }
 void execDiv(void) {
   bip.op2 = pop();
-  bip.op1 = bip.op2;
+  bigFromInt(0);
+  bip.op1 = bip.res;
 
   // Check if Secound nummber is Zero
-  if (bigToInt() == 0)
+  if (bigCmp() == 0)
     dividedByZeroError();
 
   bip.op1 = pop();
@@ -61,10 +62,11 @@ void execDiv(void) {
 }
 void execMod(void) {
   bip.op2 = pop();
-  bip.op1 = bip.op2;
+  bigFromInt(0);
+  bip.op1 = bip.res;
 
   // Check if Secound nummber is Zero
-  if (bigToInt() == 0)
+  if (bigCmp() == 0)
     dividedByZeroError();
 
   bip.op1 = pop();
