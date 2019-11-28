@@ -151,3 +151,13 @@ void execDup(void) {
   push(objRef);
   push(objRef);
 }
+
+void execGetf(int n) {}
+void execPutf(int n) {}
+void execNewa(void) {}
+void execGetfa(void) {}
+void execPutfa(void) {}
+void execGetsz(void) {}
+void execPushn(void) {}
+void execRefeq(void) {}
+void execRefne(void) {}

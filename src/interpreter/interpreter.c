@@ -40,7 +40,17 @@ typedef enum inst {
   drop,
   pushr,
   popr,
-  dup
+  dup,
+  new,
+  getf,
+  putf,
+  newa,
+  getfa,
+  putfa,
+  getsz,
+  pushn,
+  refeq,
+  refne,
 } Inst;
 
 // Find right Instruction
@@ -145,6 +155,36 @@ void execInst(const unsigned int inst, const int counter, const int dpMode) {
     break;
   case dup:
     dpMode ? printInst("dup", counter) : execDup();
+    break;
+  case new:
+    dpMode ? printInstValue("new", value, counter) : execNew(value);
+    break;
+  case getf:
+    dpMode ? printInstValue("getf", value, counter) : execGetf(value);
+    break;
+  case putf:
+    dpMode ? printInstValue("putf", value, counter) : execPutf(value);
+    break;
+  case newa:
+    dpMode ? printInst("newa", counter) : execNewa();
+    break;
+  case getfa:
+    dpMode ? printInst("getfa", counter) : execGetfa();
+    break;
+  case putfa:
+    dpMode ? printInst("putfa", counter) : execPutfa();
+    break;
+  case getsz:
+    dpMode ? printInst("getsz", counter) : execGetsz();
+    break;
+  case pushn:
+    dpMode ? printInst("pushn", counter) : execPushn();
+    break;
+  case refeq:
+    dpMode ? printInst("refeq", counter) : execRefeq();
+    break;
+  case refne:
+    dpMode ? printInst("refne", counter) : execRefne();
     break;
   default:
     unknownInstructionError(opcode);

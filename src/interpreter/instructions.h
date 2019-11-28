@@ -37,5 +37,15 @@ void execDrop(int n);
 void execPushr(void);
 void execPopr(void);
 void execDup(void);
+void execNew(int n);
+void execGetf(int n);
+void execPutf(int n);
+void execNewa(void);
+void execGetfa(void);
+void execPutfa(void);
+void execGetsz(void);
+void execPushn(void);
+void execRefeq(void);
+void execRefne(void);
 
 #endif
