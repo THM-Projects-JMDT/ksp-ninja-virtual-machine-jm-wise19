@@ -166,6 +166,16 @@ void execNewa(void) {}
 void execGetfa(void) {}
 void execPutfa(void) {}
 void execGetsz(void) {}
-void execPushn(void) {}
-void execRefeq(void) {}
-void execRefne(void) {}
+void execPushn(void) { push(NULL); }
+void execRefeq(void) {
+  ObjRef objRef2 = pop();
+  ObjRef objRef1 = pop();
+  bigFromInt(objRef2 == objRef1);
+  push(bip.res);
+}
+void execRefne(void) {
+  ObjRef objRef2 = pop();
+  ObjRef objRef1 = pop();
+  bigFromInt(objRef2 != objRef1);
+  push(bip.res);
+}
