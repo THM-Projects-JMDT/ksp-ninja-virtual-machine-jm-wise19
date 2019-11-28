@@ -30,12 +30,6 @@ void push(ObjRef value) {
   sp++;
 }
 
-void pushInt(int value) {
-  ObjRef obj = newPrimObject(sizeof(int));
-  *(int *)obj->data = value;
-  push(obj);
-}
-
 void pushNoRef(int value) {
   checkOverflow();
 
@@ -54,8 +48,6 @@ ObjRef pop(void) {
 
   return stack[sp].u.objRef;
 }
-
-int popInt(void) { return *(int *)pop()->data; }
 
 int popNoRef(void) {
   checkUnderflow();

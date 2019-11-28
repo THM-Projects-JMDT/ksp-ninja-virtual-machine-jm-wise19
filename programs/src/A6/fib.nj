@@ -1,0 +1,52 @@
+// Calculat the Fibonacci sequence
+
+global Integer n;
+
+void main() {
+  n = readInteger();
+  
+  // Check if n >= 0 
+  if(n < 0)
+    exit();
+
+  printFib();
+  writeInteger(fib());
+  writeCharacter('\n');
+}
+
+void printFib() {
+  writeCharacter('F');
+  writeCharacter('(');
+  writeInteger(n);
+  writeCharacter(')');
+  writeCharacter(' ');
+  writeCharacter('=');
+  writeCharacter(' ');
+}
+
+Integer fib() {
+  local Integer i;
+  local Integer fib;
+  local Integer fib1;
+
+  // if F(0) || F(1) return
+  if(n < 2)
+    return n;
+
+  // Var inits
+  i = 2;
+  fib = 0;
+  fib1 = 1;
+  
+  // Calculate fib
+  while(i <= n) {
+    if(i % 2 == 0)
+      fib = fib1 + fib;
+    else
+      fib1 = fib1 + fib;
+
+    i = i + 1;
+  }
+
+  return fib;
+}

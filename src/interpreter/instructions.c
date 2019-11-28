@@ -49,10 +49,11 @@ void execMul(void) {
 }
 void execDiv(void) {
   bip.op2 = pop();
-  bip.op1 = bip.op2;
+  bigFromInt(0);
+  bip.op1 = bip.res;
 
   // Check if Secound nummber is Zero
-  if (bigToInt() == 0)
+  if (bigCmp() == 0)
     dividedByZeroError();
 
   bip.op1 = pop();
@@ -61,10 +62,11 @@ void execDiv(void) {
 }
 void execMod(void) {
   bip.op2 = pop();
-  bip.op1 = bip.op2;
+  bigFromInt(0);
+  bip.op1 = bip.res;
 
   // Check if Secound nummber is Zero
-  if (bigToInt() == 0)
+  if (bigCmp() == 0)
     dividedByZeroError();
 
   bip.op1 = pop();
@@ -128,14 +130,20 @@ void execGe(void) {
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
   bip.op1 = pop();
-  int b = bigToInt();
-  if (!b)
+  // Add dummy null to check op1
+  bigFromInt(0);
+  bip.op2 = bip.res;
+
+  if (bigCmp() == 0)
     changePC(n);
 }
 void execBrt(int n) {
   bip.op1 = pop();
-  int b = bigToInt();
-  if (b)
+  // Add dummy null to check op1
+  bigFromInt(0);
+  bip.op2 = bip.res;
+
+  if (bigCmp() != 0)
     changePC(n);
 }
 void execCall(int n) {

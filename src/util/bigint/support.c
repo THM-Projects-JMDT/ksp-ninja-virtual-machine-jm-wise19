@@ -10,7 +10,7 @@ ObjRef newPrimObject(int dataSize) {
   if (objRef == NULL)
     outOfMemoryError();
 
-  objRef->size = sizeof(int);
+  objRef->size = dataSize;
 
   return objRef;
 }

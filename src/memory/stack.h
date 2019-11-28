@@ -13,10 +13,8 @@ typedef struct {
 } StackSlot;
 
 void push(ObjRef value);
-void pushInt(int value);
 void pushNoRef(int value);
 ObjRef pop(void);
-int popInt(void);
 int popNoRef(void);
 void asf(int value);
 void rsf(void);

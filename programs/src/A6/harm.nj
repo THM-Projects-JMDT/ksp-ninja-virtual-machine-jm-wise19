@@ -1,0 +1,72 @@
+global Integer z;
+global Integer n;
+
+void main() {
+  local Integer input;
+  local Integer g;
+
+  input = readInteger();
+
+  harm(input);
+  g = gcd(n, z);
+  z = z / g;
+  n = n / g;
+  
+  printHarm(input);
+}
+
+Integer gcd(Integer x, Integer y) {
+  while (x != y) {
+    if (x > y) {
+      x = x - y;
+    } else {
+      y = y - x;
+    }
+  }
+
+  return x;
+}
+
+void harm(Integer s) {
+  local Integer n1;
+  local Integer z1;
+  local Integer i;
+  
+  n = 1;
+  z = 1;
+
+  i = 2;
+  
+  while(i <= s) {
+    z1 = 1;
+    n1 = i;
+
+    // Gleichnahmig machen
+    z = z * n1;
+    z1 = z1 * n;
+    n = n1 * n;
+    n1 = n;
+
+    // addieren
+    z = z1 + z;
+
+    i = i + 1;
+  }
+}
+
+void printHarm(Integer input) {
+  writeCharacter('H');
+  writeCharacter('a');
+  writeCharacter('r');
+  writeCharacter('m');
+  writeCharacter('(');
+  writeInteger(input);
+  writeCharacter(')');
+  writeCharacter(' ');
+  writeCharacter('=');
+  writeCharacter(' ');
+  writeInteger(z);
+  writeCharacter('/');
+  writeInteger(n);
+  writeCharacter('\n');
+}
