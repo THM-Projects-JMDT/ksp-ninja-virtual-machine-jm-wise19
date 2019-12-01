@@ -101,3 +101,9 @@ void invalidJumpDestinationError(const int destination) {
   vmError(54, "The Jump Destination %d is invalid", destination);
 }
 // Runtime Error 55 -> bigInt error (in Support.c)
+void ilegalNilRefecenceError(void) { vmError(56, "Invalid 'nil reference'"); }
+void notACompundObjectError(void) {
+  vmError(
+      57,
+      "Invalid attempt to use a 'Primitive Object' as an 'Compound Object'");
+}
