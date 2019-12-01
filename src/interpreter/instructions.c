@@ -159,9 +159,22 @@ void execDup(void) {
   push(objRef);
   push(objRef);
 }
-void execNew(int n) {}
-void execGetf(int n) {}
-void execPutf(int n) {}
+void execNew(int n) { push(newCompoundObject(n)); }
+void execGetf(int n) {
+  ObjRef obj = pop();
+
+  checkIsCompundObject(obj);
+
+  push(CP_OBj_VALUE(obj));
+}
+void execPutf(int n) {
+  ObjRef value = pop();
+  ObjRef obj = pop();
+
+  checkIsCompundObject(obj);
+
+  CP_OBj_VALUE(obj) = value;
+}
 void execNewa(void) {}
 void execGetfa(void) {}
 void execPutfa(void) {}
