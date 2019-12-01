@@ -62,12 +62,12 @@ void cmdGetValue(char *self, char *input) {
   if (p != NULL) {
     ObjRef obj = (ObjRef)p;
     // If is CompoundObject
-    if (Get_MSB(obj->size)) {
+    if (!IS_PRIM(obj)) {
       pprintf(YELLOW, "-- Compound Object --\n");
       setFormat(stdout, BOLD);
 
-      for (int i = 0; i < GET_SIZE(obj->size); i++) {
-        printf("obj[%04d] -> (objref) %p\n", i, (void *)CP_OBj_VALUE(obj));
+      for (int i = 0; i < GET_SIZE(obj); i++) {
+        printf("obj[%04d] -> (objref) %p\n", i, (void *)GET_REF(obj));
       }
     } else {
       pprintf(YELLOW, "-- Primitive Object --\n");

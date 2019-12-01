@@ -12,7 +12,7 @@ ObjRef newCompoundObject(int numObjRefs) {
     outOfMemoryError();
 
   // set size to numObjRefs and set MSB to 1
-  objRef->size = numObjRefs | 0x80000000;
+  objRef->size = numObjRefs | MSB;
 
   return objRef;
 }
@@ -22,6 +22,6 @@ void checkIsCompundObject(ObjRef obj) {
     ilegalNilRefecenceError();
 
   // If is no CompundObject -> error
-  if (!Get_MSB(obj->size))
+  if (IS_PRIM(obj))
     notACompundObjectError();
 }

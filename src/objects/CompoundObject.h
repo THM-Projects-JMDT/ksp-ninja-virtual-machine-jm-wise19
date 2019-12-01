@@ -4,9 +4,10 @@
 #include <Support.h>
 #include <stdio.h>
 
-#define GET_SIZE(s) ((s) & (0xFFFFFFFF >> 1))
-#define Get_MSB(s) (((s) & (0x80000000)) >> 31)
-#define CP_OBj_VALUE(o) (((ObjRef *)((o)->data))[i])
+#define MSB (1 << (8 * sizeof(unsigned int) - 1))
+#define GET_SIZE(obj) ((obj)->size & ~MSB)
+#define IS_PRIM(obj) (((obj)->size & MSB) == 0)
+#define GET_REF(obj) (((ObjRef *)((obj)->data))[i])
 
 ObjRef newCompoundObject(int numObjRefs);
 void checkIsCompundObject(ObjRef obj);

@@ -166,7 +166,7 @@ void execGetf(int i) {
 
   checkIsCompundObject(obj);
 
-  push(CP_OBj_VALUE(obj));
+  push(GET_REF(obj));
 }
 void execPutf(int i) {
   ObjRef value = pop();
@@ -174,7 +174,7 @@ void execPutf(int i) {
 
   checkIsCompundObject(obj);
 
-  CP_OBj_VALUE(obj) = value;
+  GET_REF(obj) = value;
 }
 void execNewa(void) {}
 void execGetfa(void) {}
@@ -186,8 +186,8 @@ void execGetsz(void) {
     ilegalNilRefecenceError();
 
   // If is CompoundObject -> push size
-  if (Get_MSB(obj->size))
-    execPushc(GET_SIZE(obj->size));
+  if (!IS_PRIM(obj))
+    execPushc(GET_SIZE(obj));
   else
     execPushc(-1);
 }
