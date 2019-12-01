@@ -5,6 +5,7 @@ void vmError(const int errc, const char *em, ...);
 void stackOverflowError(void);
 void stackUnderflowError(void);
 void noObjRefError(void);
+void localNoObjRefError(const int var);
 void noIntError(void);
 void unknownInstructionError(const int optCode);
 void dividedByZeroError(void);

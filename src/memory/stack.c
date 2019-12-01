@@ -78,6 +78,9 @@ void pushl(int n) {
   if (fp == 0)
     noStackFrameAllocatedError();
 
+  if (!stack[fp + n].isObjRef)
+    localNoObjRefError(n);
+
   push(stack[fp + n].u.objRef);
 }
 
@@ -86,7 +89,9 @@ void popl(int n) {
   if (fp == 0)
     noStackFrameAllocatedError();
 
-  stack[fp + n].isObjRef = true;
+  if (!stack[fp + n].isObjRef)
+    localNoObjRefError(n);
+
   stack[fp + n].u.objRef = pop();
 }
 void drop(const int n) {
