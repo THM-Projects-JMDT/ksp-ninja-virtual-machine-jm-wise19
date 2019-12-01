@@ -1,4 +1,5 @@
 #include "debugCmdDef.h"
+#include "../../Objects/CompoundObject.h"
 #include "../../memory/programMemory.h"
 #include "../../memory/stack.h"
 #include "../../runner/runner.h"
@@ -56,19 +57,33 @@ void cmdGetValue(char *self, char *input) {
   // Get Pointer from char
   sscanf(input, "%p", &p);
   printSep();
-  pprintf(YELLOW, "-- Object --\n");
+
   // TODO check if pointer is valid
-  // TODO mit nicht bigint Werten
   if (p != NULL) {
-    bip.op1 = (ObjRef)p;
-    setFormat(stdout, BOLD);
-    printf("(objref)%p -> ", p);
-    bigPrint(stdout);
-    printf("\n");
+    ObjRef obj = (ObjRef)p;
+    // If is CompoundObject
+    if (Get_MSB(obj->size)) {
+      pprintf(YELLOW, "-- Compound Object --\n");
+      setFormat(stdout, BOLD);
+
+      for (int i = 0; i < GET_SIZE(obj->size); i++) {
+        printf("obj[%04d] -> (objref) %p\n", i, (void *)CP_OBj_VALUE(obj));
+      }
+    } else {
+      pprintf(YELLOW, "-- Primitive Object --\n");
+
+      bip.op1 = obj;
+      setFormat(stdout, BOLD);
+      printf("(objref)%p -> ", p);
+      bigPrint(stdout);
+
+      printf("\n");
+    }
+
     setFormat(stdout, RESET_FORMAT);
+    pprintf(YELLOW, "-- End of Object --\n");
   }
 
-  pprintf(YELLOW, "-- End of Object --\n");
   cmdReset();
 }
 
