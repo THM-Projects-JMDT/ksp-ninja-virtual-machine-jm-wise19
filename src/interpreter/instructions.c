@@ -161,14 +161,14 @@ void execDup(void) {
   push(objRef);
 }
 void execNew(int n) { push(newCompoundObject(n)); }
-void execGetf(int n) {
+void execGetf(int i) {
   ObjRef obj = pop();
 
   checkIsCompundObject(obj);
 
   push(CP_OBj_VALUE(obj));
 }
-void execPutf(int n) {
+void execPutf(int i) {
   ObjRef value = pop();
   ObjRef obj = pop();
 
