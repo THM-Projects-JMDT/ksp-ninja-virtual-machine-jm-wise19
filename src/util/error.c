@@ -80,9 +80,9 @@ void noStackFrameAllocatedError(void) {
 }
 void noObjRefError(void) { vmError(43, "Stack Entry is not from Type ObjRef"); }
 void localNoObjRefError(const int var) {
-  vmError(44, " %s '%d' is not from Type ObjRef",
+  vmError(44, " %s is not from Type ObjRef",
           // Check if is var or parm
-          var < 0 ? "Parameter" : "Local Variable", var);
+          var < 0 ? "Parameter" : "Local Variable");
 }
 void noIntError(void) { vmError(45, "Stack Entry is not from Type int"); }
 
