@@ -34,6 +34,7 @@ void execBrt(int n);
 void execCall(int n);
 void execRet(void);
 void execDrop(int n);
+void execNew(int n);
 void execPushr(void);
 void execPopr(void);
 void execDup(void);

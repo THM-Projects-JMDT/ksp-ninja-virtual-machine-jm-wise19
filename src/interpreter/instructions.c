@@ -159,7 +159,7 @@ void execDup(void) {
   push(objRef);
   push(objRef);
 }
-
+void execNew(int n) {}
 void execGetf(int n) {}
 void execPutf(int n) {}
 void execNewa(void) {}
