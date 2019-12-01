@@ -63,9 +63,11 @@ int popNoRef(void) {
 void asf(int n) {
   pushNoRef(fp);
   fp = sp;
-  sp = sp + n;
 
-  checkOverflow();
+  // init local vars with null
+  for (int i = 0; i < n; i++) {
+    push(NULL);
+  }
 }
 
 void rsf(void) {
