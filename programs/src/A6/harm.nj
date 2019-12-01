@@ -68,5 +68,14 @@ void printHarm(Integer input) {
   writeInteger(z);
   writeCharacter('/');
   writeInteger(n);
+  writeCharacter(' ');
+  writeCharacter('=');
+  writeCharacter(' ');
+  printDec();
   writeCharacter('\n');
+}
+
+void printDec() {
+  writeInteger(z / n);
+  writeCharacter(',');
 }

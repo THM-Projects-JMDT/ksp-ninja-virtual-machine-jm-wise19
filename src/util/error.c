@@ -32,7 +32,8 @@ void vmError(const int errc, const char *em, ...) {
 
   setFormat(stderr, RESET_FORMAT);
 
-  if (debug)
+  // If debug and error is not arg or file error
+  if (debug && errc >= 30)
     printErrorInst();
 
   // Exit error
