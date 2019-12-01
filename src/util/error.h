@@ -22,5 +22,7 @@ void invalidGlobalVarPositionError(const int pos);
 void noStackFrameAllocatedError(void);
 void cantCloseCodeFileError(void);
 void invalidJumpDestinationError(const int destination);
+void ilegalNilRefecenceError(void);
+void notACompundObjectError(void);
 
 #endif
