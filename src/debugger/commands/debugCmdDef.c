@@ -1,7 +1,7 @@
 #include "debugCmdDef.h"
-#include "../../Objects/CompoundObject.h"
 #include "../../memory/programMemory.h"
 #include "../../memory/stack.h"
+#include "../../objects/CompoundObject.h"
 #include "../../runner/runner.h"
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"
