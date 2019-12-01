@@ -79,7 +79,7 @@ void loadprog(const char *path) {
     invalidCodeVersionError(header[0], version);
 
   // Reading Instructions
-  programMemory = (unsigned int *)malloc(header[1] * sizeof(unsigned int));
+  programMemory = malloc(header[1] * sizeof(unsigned int));
 
   // Check if Memory was Allocated
   if (programMemory == NULL)
@@ -92,7 +92,7 @@ void loadprog(const char *path) {
 
   // Setting amount of global Varibales
   globalVarSize = header[2];
-  globalvars = (ObjRef *)malloc(globalVarSize * sizeof(int));
+  globalvars = malloc(globalVarSize * sizeof(int));
 
   // Check if Memory was Allocated
   if (globalvars == NULL)
