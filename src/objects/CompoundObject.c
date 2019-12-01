@@ -5,7 +5,7 @@
 
 ObjRef newCompoundObject(int numObjRefs) {
   // u int size + pointer size
-  ObjRef objRef = malloc(sizeof(unsigned int) + numObjRefs * sizeof(NULL));
+  ObjRef objRef = malloc(sizeof(unsigned int) + numObjRefs * sizeof(ObjRef));
 
   // check if malloc worked
   if (objRef == NULL)

@@ -92,7 +92,7 @@ void loadprog(const char *path) {
 
   // Setting amount of global Varibales
   globalVarSize = header[2];
-  globalvars = malloc(globalVarSize * sizeof(int));
+  globalvars = malloc(globalVarSize * sizeof(ObjRef));
 
   // Check if Memory was Allocated
   if (globalvars == NULL)
