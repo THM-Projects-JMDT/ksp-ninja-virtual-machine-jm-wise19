@@ -1,2 +1,5 @@
-pushc 10 
+new 100
+getsz
 wrint
+halt
+

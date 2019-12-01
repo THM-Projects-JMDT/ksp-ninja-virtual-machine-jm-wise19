@@ -1,4 +1,5 @@
 #include "instructions.h"
+#include "../Objects/CompoundObject.h"
 #include "../debugger/debugger.h"
 #include "../memory/programMemory.h"
 #include "../memory/stack.h"
@@ -178,7 +179,17 @@ void execPutf(int n) {
 void execNewa(void) {}
 void execGetfa(void) {}
 void execPutfa(void) {}
-void execGetsz(void) {}
+void execGetsz(void) {
+  ObjRef obj = pop();
+
+  if (obj == NULL)
+    ilegalNilRefecenceError();
+
+  if (Get_MSB(obj->size))
+    execPushc(GET_SIZE(obj->size));
+  else
+    execPushc(-1);
+}
 void execPushn(void) { push(NULL); }
 void execRefeq(void) {
   ObjRef objRef2 = pop();
