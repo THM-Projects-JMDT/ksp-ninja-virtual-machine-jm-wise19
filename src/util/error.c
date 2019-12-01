@@ -1,4 +1,6 @@
 #include "error.h"
+#include "../debugger/debugger.h"
+#include "../njvm.h"
 #include "prettyPrint.h"
 #include <stdarg.h>
 #include <stdio.h>
@@ -29,6 +31,9 @@ void vmError(const int errc, const char *em, ...) {
   fprintf(stderr, "\n");
 
   setFormat(stderr, RESET_FORMAT);
+
+  if (debug)
+    printErrorInst();
 
   // Exit error
   exit(errc);

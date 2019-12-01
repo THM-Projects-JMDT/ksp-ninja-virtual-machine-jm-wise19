@@ -37,14 +37,25 @@ void printPromt(void) {
   pprintf(GREEN, "%s$ ", promt[0]);
 }
 void printSep(void) { pprintf(BLUE, "======\n"); }
+
+void printDebugInst(const int pc) {
+  printSep();
+  execInst(getInst(pc), pc + 1, 1);
+  printSep();
+}
+
+void printErrorInst(void) {
+  printMsPromt();
+  pprintf(BOLD, "Error caused by instruction:\n");
+  printDebugInst(getPC() - 1);
+  printMsPromt();
+  pprintf(RED, "Debugger stopped\n");
+}
 void printNextInst(void) {
   // TODO vtl anderst lösen
   // check if debugger is still runnig
-  if (debug) {
-    printSep();
-    execInst(getInst(getPC()), getPC() + 1, 1);
-    printSep();
-  }
+  if (debug)
+    printDebugInst(getPC());
 }
 
 void showFileLoaded(const int codeSize, const int dataSize) {
