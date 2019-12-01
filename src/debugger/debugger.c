@@ -53,7 +53,7 @@ void printErrorInst(const int code) {
   }
 
   printMsPromt();
-  pprintf(RED, "Debugger stopped\n");
+  pprintf(RED, "Debugger stopped with errors\n");
 }
 void printNextInst(void) {
   // TODO vtl anderst lösen
