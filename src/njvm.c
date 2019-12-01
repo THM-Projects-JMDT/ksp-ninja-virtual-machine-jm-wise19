@@ -33,7 +33,7 @@ static void help(const char *myself) {
   printf("\t\t show this text and exit\n");
 
   // Print Error Codes
-  pprintf(BOLD, "Error Codes\n");
+  pprintf(BOLD, "Error Codes:\n");
   pprintf(BOLD, "\t1x: ");
   printf("Argument Errors\n");
   pprintf(BOLD, "\t2x: ");
