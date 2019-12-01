@@ -44,10 +44,14 @@ void printDebugInst(const int pc) {
   printSep();
 }
 
-void printErrorInst(void) {
-  printMsPromt();
-  pprintf(BOLD, "Error caused by instruction:\n");
-  printDebugInst(getPC() - 1);
+void printErrorInst(const int code) {
+  // if error is not arg or file error
+  if (code >= 30) {
+    printMsPromt();
+    pprintf(BOLD, "Error caused by instruction:\n");
+    printDebugInst(getPC() - 1);
+  }
+
   printMsPromt();
   pprintf(RED, "Debugger stopped\n");
 }

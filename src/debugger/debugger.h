@@ -10,7 +10,7 @@ void printPromt(void);
 void printMsPromt(void);
 void setSubPromt(char *new);
 void resetSubPromt(void);
-void printErrorInst(void);
+void printErrorInst(const int code);
 void printNextInst(void);
 void stopDebugging();
 
