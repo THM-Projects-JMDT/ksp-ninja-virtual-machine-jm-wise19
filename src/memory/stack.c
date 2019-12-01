@@ -43,8 +43,8 @@ ObjRef pop(void) {
 
   sp--;
 
-  if (stack[sp].isObjRef == false)
-    noObjRefError();
+  if (!stack[sp].isObjRef)
+    popNoObjRefError();
 
   return stack[sp].u.objRef;
 }
@@ -54,7 +54,7 @@ int popNoRef(void) {
 
   sp--;
 
-  if (stack[sp].isObjRef == true)
+  if (stack[sp].isObjRef)
     noIntError();
 
   return stack[sp].u.number;
