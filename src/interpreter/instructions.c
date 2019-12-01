@@ -185,6 +185,7 @@ void execGetsz(void) {
   if (obj == NULL)
     ilegalNilRefecenceError();
 
+  // If is CompoundObject -> push size
   if (Get_MSB(obj->size))
     execPushc(GET_SIZE(obj->size));
   else

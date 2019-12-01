@@ -21,6 +21,7 @@ void checkIsCompundObject(ObjRef obj) {
   if (obj == NULL)
     ilegalNilRefecenceError();
 
+  // If is no CompundObject -> error
   if (!Get_MSB(obj->size))
     notACompundObjectError();
 }
