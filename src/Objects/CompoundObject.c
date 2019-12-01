@@ -16,3 +16,11 @@ ObjRef newCompoundObject(int numObjRefs) {
 
   return objRef;
 }
+
+void checkIsCompundObject(ObjRef obj) {
+  if (obj == NULL)
+    ilegalNilRefecenceError();
+
+  if (!Get_MSB(obj->size))
+    notACompundObjectError();
+}
