@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const int version = 6;
+const int version = 7;
 int debug = 0;
 
 // Handle version argument
