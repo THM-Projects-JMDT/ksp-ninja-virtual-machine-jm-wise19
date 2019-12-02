@@ -1,3 +1,8 @@
+/*
+ * debugCmdDef.c -- All functions that execute the debug commands and the debug
+ * command definitions
+ */
+
 #include "debugCmdDef.h"
 #include "../../memory/programMemory.h"
 #include "../../memory/stack.h"

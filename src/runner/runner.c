@@ -1,3 +1,7 @@
+/*
+ * runner.c -- Functions that execute or display the program
+ */
+
 #include "runner.h"
 #include "../interpreter/interpreter.h"
 #include "../memory/programMemory.h"

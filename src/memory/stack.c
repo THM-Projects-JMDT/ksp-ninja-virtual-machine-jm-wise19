@@ -1,3 +1,7 @@
+/*
+ * stack.c -- All Stack suport Functions
+ */
+
 #include "stack.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"

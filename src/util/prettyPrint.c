@@ -1,3 +1,7 @@
+/*
+ * prettyPrint.c -- Functions for formatted prints
+ */
+
 #include "prettyPrint.h"
 #include <stdarg.h>
 #include <stdio.h>

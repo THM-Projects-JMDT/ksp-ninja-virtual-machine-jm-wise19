@@ -1,3 +1,7 @@
+/*
+ * error.h -- Functions for all errors cases
+ */
+
 #ifndef NJCM_ERROR_H_INCLUDED
 #define NJCM_ERROR_H_INCLUDED
 

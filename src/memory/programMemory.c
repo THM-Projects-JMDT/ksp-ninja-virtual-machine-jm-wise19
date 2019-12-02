@@ -1,3 +1,8 @@
+/*
+ * programMemory.c -- All Functions that handle the VM Program Memory and Global
+ * var Memory
+ */
+
 #include "programMemory.h"
 #include "../debugger/debugger.h"
 #include "../njvm.h"

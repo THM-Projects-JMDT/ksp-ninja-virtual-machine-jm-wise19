@@ -1,3 +1,7 @@
+/*
+ * prettyPrint.h -- Functions for formatted prints and a Formats type
+ */
+
 #ifndef NJVM_PRETTYPRITN_H_INCLUDED
 #define NJVM_PRETTYPRITN_H_INCLUDED
 

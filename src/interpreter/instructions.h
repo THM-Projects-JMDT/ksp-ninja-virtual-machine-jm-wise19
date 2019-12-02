@@ -1,3 +1,7 @@
+/*
+ * instructions.h -- All Functions that handle the VM  Instructions
+ */
+
 #ifndef NJCM_INSTRUCTIONS_H_INCLUDED
 #define NJCM_INSTRUCTIONS_H_INCLUDED
 

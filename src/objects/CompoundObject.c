@@ -1,10 +1,14 @@
+/*
+ * compoundObject.c -- Compound Object support Functions
+ */
+
 #include "CompoundObject.h"
 #include "../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 ObjRef newCompoundObject(int numObjRefs) {
-  // u int size + pointer size
+  // int size + pointer size
   ObjRef objRef = malloc(sizeof(unsigned int) + numObjRefs * sizeof(ObjRef));
 
   // check if malloc worked

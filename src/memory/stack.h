@@ -1,3 +1,7 @@
+/*
+ * stack.h -- All Stack suport Functions
+ */
+
 #ifndef NJCM_STACK_H_INCLUDED
 #define NJCM_STACK_H_INCLUDED
 

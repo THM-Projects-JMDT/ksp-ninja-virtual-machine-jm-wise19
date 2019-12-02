@@ -1,3 +1,7 @@
+/*
+ * compoundObject.h -- Compound Object support Functions
+ */
+
 #ifndef NJCM_COMPOUNDOBJECT_H_INCLUDED
 #define NJCM_COMPOUNDOBJECT_H_INCLUDED
 

@@ -1,3 +1,7 @@
+/*
+ * debugCmd.h -- debug Commands support functions
+ */
+
 #ifndef NJVM_DEBUGCMDs_H_INCLUDED
 #define NJVM_DEBUGCMDs_H_INCLUDED
 

@@ -1,3 +1,7 @@
+/*
+ * debugCmd.c -- debug Commands support functions
+ */
+
 #include "debugCmds.h"
 #include "../../util/prettyPrint.h"
 #include "../debugger.h"

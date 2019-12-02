@@ -1,3 +1,7 @@
+/*
+ * support.c -- object representation and support functions
+ */
+
 #include "../../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>

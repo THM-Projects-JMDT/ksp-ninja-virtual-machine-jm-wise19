@@ -1,3 +1,7 @@
+/*
+ *  njvm.h -- Configurations Variables
+ */
+
 #ifndef NJVM_H_INCLUDED
 #define NJVM_H_INCLUDED
 

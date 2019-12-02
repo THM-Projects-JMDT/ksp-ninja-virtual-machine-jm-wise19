@@ -1,3 +1,7 @@
+/*
+ * debugger.c -- Main debugger Loop and debugger help functions
+ */
+
 #include "debugger.h"
 #include "../interpreter/interpreter.h"
 #include "../memory/programMemory.h"

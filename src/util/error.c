@@ -1,3 +1,7 @@
+/*
+ * error.c -- Functions for all errors cases
+ */
+
 #include "error.h"
 #include "../debugger/debugger.h"
 #include "../njvm.h"

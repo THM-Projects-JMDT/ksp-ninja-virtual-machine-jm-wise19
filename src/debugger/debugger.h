@@ -1,3 +1,7 @@
+/*
+ * debugger.h -- Main debugger Loop and debugger help functions
+ */
+
 #ifndef NJVM_DEBUGGER_H_INCLUDED
 #define NJVM_DEBUGGER_H_INCLUDED
 

@@ -1,3 +1,8 @@
+/*
+ * debugCmdDef.h -- All functions that execute the debug commands and the debug
+ * command definitions
+ */
+
 #ifndef NJVM_DEBUGCmdDef_H_INCLUDED
 #define NJVM_DEBUGCmdDef_H_INCLUDED
 

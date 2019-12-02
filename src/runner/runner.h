@@ -1,3 +1,7 @@
+/*
+ * runner.h -- Functions that execute or display the program
+ */
+
 #ifndef NJCM_RUNNER_H_INCLUDED
 #define NJCM_RUNNER_H_INCLUDED
 

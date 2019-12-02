@@ -1,3 +1,7 @@
+/*
+ * njvm.c -- Vm Start and argument functions
+ */
+
 #include "debugger/debugger.h"
 #include "memory/programMemory.h"
 #include "runner/runner.h"

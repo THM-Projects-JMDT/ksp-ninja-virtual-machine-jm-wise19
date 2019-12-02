@@ -1,3 +1,7 @@
+/*
+ * instructions.c -- All Functions that handle the VM  Instructions
+ */
+
 #include "instructions.h"
 #include "../debugger/debugger.h"
 #include "../memory/programMemory.h"

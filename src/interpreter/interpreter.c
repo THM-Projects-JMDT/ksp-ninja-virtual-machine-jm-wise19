@@ -1,3 +1,7 @@
+/*
+ * interpreter.c -- All functions that determine which instruction to execute
+ */
+
 #include "interpreter.h"
 #include "../util/error.h"
 #include "instructions.h"

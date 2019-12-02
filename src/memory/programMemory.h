@@ -1,3 +1,8 @@
+/*
+ * programMemory.h -- All Functions that handle the VM Program Memory and Global
+ * var Memory
+ */
+
 #ifndef NJCM_PROGRAMMEMORY_H_INCLUDED
 #define NJCM_PROGRAMMEMORY_H_INCLUDED
 
