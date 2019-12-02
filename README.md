@@ -12,7 +12,6 @@ Die **Debugger Spezifikation** ist [hier](debug.txt) zu finden.
 - [ ] step [anzahl]?
 - [ ] mehrere breakpoints
 - [ ] help command
-- [ ] list programm run (mit allen inst auch bei jmp) ?
-- [ ] auszug vom stack / daten ?
-- [ ] wie mit Errors umgehen ? 
+- [x] auszug vom stack / daten ?
+- [x] wie mit Errors umgehen ? 
 - [ ] vtl var angeben, die nach jedem step angezeigt wird
