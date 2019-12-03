@@ -85,6 +85,7 @@ void cantCloseCodeFileError(void) { vmError(24, "cantCloseCodeFileError"); }
 
 // Memory Errors 3x
 void outOfMemoryError(void) { vmError(30, "Vm run out of Memory"); }
+void outOfHeapSpaceError(void) { vmError(31, "Vm run out of Heap space"); }
 
 // Stack Errors 4x
 void stackOverflowError(void) { vmError(40, "stackOverflowError"); }

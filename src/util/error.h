@@ -31,5 +31,6 @@ void notACompundObjectError(void);
 void indexOutofBoundsError(const int size, const int index);
 void argumentNoInteger(const char *arg, const char *myself);
 void missingArgument(const char *arg, const char *myself);
+void outOfHeapSpaceError(void);
 
 #endif
