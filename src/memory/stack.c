@@ -19,7 +19,7 @@ static ObjRef return_value_register;
 
 void initStack(int size) {
   // Get Bytes
-  size = size * 1024;
+  size *= 1024;
 
   stack = malloc(size);
 
