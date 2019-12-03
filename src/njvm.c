@@ -7,6 +7,7 @@
 #include "runner/runner.h"
 #include "util/error.h"
 #include "util/prettyPrint.h"
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -51,7 +52,10 @@ static void help(const char *myself) {
   pprintf(BOLD, "\t5x: ");
   printf("Runtime Errors\n");
 }
-void checkArgument(char *argv) {}
+void checkArgument(char *argv) {
+  if (!isdigit(argv[0]))
+    argumentNoInteger(argv);
+}
 
 int main(int argc, char *argv[]) {
   int filePos = -1;
@@ -59,16 +63,20 @@ int main(int argc, char *argv[]) {
   // check arguments
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--stack") == 0) {
+      if (i + 1 == argc)
+        missingArgument(argv[i]);
+
       checkArgument(argv[i + 1]);
       stacksize = atoi(argv[i + 1]);
       i++;
-    }
-    if (strcmp(argv[i], "--heap") == 0) {
+    } else if (strcmp(argv[i], "--heap") == 0) {
+      if (i + 1 == argc)
+        missingArgument(argv[i]);
+
       checkArgument(argv[i + 1]);
       heapsize = atoi(argv[i + 1]);
       i++;
-    }
-    if (strcmp(argv[i], "--version") == 0) {
+    } else if (strcmp(argv[i], "--version") == 0) {
       displayVersion(argv[0]);
       exit(0);
     } else if (strcmp(argv[i], "--help") == 0) {

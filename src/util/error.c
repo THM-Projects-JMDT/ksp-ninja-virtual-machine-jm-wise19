@@ -56,6 +56,14 @@ void moreThanOneInputError(const char *myself) {
   vmError(12, "Only one code file may be specified, try '%s --help'", myself);
 }
 
+void argumentNoInteger(const char *myself) {
+  vmError(13, " Argument '%s has to be a Integer'", myself);
+}
+
+void missingArgument(const char *myself) {
+  vmError(14, "'%s needs an Integer after'", myself);
+}
+
 // File read Errors 2x
 void invalidPathError(const char *path) {
   vmError(20, "can not open code File '%s'", path);
