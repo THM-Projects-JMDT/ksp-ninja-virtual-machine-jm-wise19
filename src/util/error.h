@@ -29,7 +29,7 @@ void invalidJumpDestinationError(const int destination);
 void ilegalNilRefecenceError(void);
 void notACompundObjectError(void);
 void indexOutofBoundsError(const int size, const int index);
-void argumentNoInteger(const char *myself);
-void missingArgument(const char *myself);
+void argumentNoInteger(const char *arg, const char *myself);
+void missingArgument(const char *arg, const char *myself);
 
 #endif
