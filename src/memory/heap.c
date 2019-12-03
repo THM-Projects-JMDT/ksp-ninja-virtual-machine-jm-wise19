@@ -1,5 +1,5 @@
 /*
- * stack.h -- All Heap suport Functions
+ * heap.c -- All Heap suport Functions
  */
 
 #include "../njvm.h"
@@ -13,7 +13,7 @@ static char *heap;
 
 void initHeap(int size) {
   // Get Bytes
-  heapSize = size * 1024;
+  heapSize = size * K_BYTES;
 
   heap = malloc(heapSize);
 

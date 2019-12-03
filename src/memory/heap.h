@@ -1,5 +1,5 @@
 /*
- * stack.h -- All Heap suport Functions
+ * heap.h -- All Heap suport Functions
  */
 
 #ifndef NJCM_HEAP_H_INCLUDED
