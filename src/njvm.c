@@ -4,6 +4,7 @@
 
 #include "debugger/debugger.h"
 #include "memory/programMemory.h"
+#include "memory/stack.h"
 #include "runner/runner.h"
 #include "util/error.h"
 #include "util/prettyPrint.h"
@@ -93,7 +94,8 @@ int main(int argc, char *argv[]) {
   // check if progFile was Specified
   if (filePos == -1)
     noPathError(argv[0]);
-
+  // init stack
+  initStack(stacksize);
   // load programm in Memory
   loadprog(argv[filePos]);
 

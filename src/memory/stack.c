@@ -3,21 +3,36 @@
  */
 
 #include "stack.h"
+#include "../njvm.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <support.h>
-#define SK_SIZE 10000
 
+static int stackSlots = 0;
 static int sp = 0;
 static int fp = 0;
 
-static StackSlot stack[SK_SIZE];
+static StackSlot *stack;
 static ObjRef return_value_register;
+
+void initStack(int size) {
+  // Get Bytes
+  size = size * 1024;
+
+  stack = malloc(size);
+
+  if (stack == NULL)
+    outOfMemoryError();
+
+  // Calculate stack Slots
+  stackSlots = size / sizeof(StackSlot);
+}
 
 // Check Stack Size
 void checkOverflow() {
-  if (sp >= SK_SIZE)
+  if (sp >= stackSlots)
     stackOverflowError();
 }
 
