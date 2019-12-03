@@ -3,6 +3,7 @@
  */
 
 #include "debugger/debugger.h"
+#include "memory/heap.h"
 #include "memory/programMemory.h"
 #include "memory/stack.h"
 #include "runner/runner.h"
@@ -104,6 +105,8 @@ int main(int argc, char *argv[]) {
     noPathError(argv[0]);
   // init stack
   initStack(stacksize);
+  // init heap
+  initHeap(heapsize);
   // load programm in Memory
   loadprog(argv[filePos]);
 
