@@ -36,6 +36,10 @@ static void help(const char *myself) {
   pprintf(BOLD, "Options: \n");
   pprintf(BOLD, "\t--debug");
   printf("\t\t start debug mode\n");
+  pprintf(BOLD, "\t--stack <n>");
+  printf("\t set Stack size to n KBytes(default: n = 64)\n");
+  pprintf(BOLD, "\t--heap <n>");
+  printf("\t set Hep size to n KBytes(default: n = 8192)\n");
   pprintf(BOLD, "\t--version");
   printf("\t show version and exit\n");
   pprintf(BOLD, "\t--help");
