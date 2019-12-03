@@ -8,7 +8,8 @@
 #include <stdbool.h>
 #include <support.h>
 
-typedef struct {
+typedef struct
+{
   bool isObjRef; /* slot used for object reference? */
   union {
     ObjRef objRef; /* used if isObjRef=TRUE */
