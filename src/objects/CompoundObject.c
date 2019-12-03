@@ -18,6 +18,8 @@ ObjRef newCompoundObject(int numObjRefs) {
   // set size to numObjRefs and set MSB to 1
   objRef->size = numObjRefs | MSB;
 
+  // TODO init fields with null
+
   return objRef;
 }
 
