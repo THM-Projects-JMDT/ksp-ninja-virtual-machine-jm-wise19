@@ -24,11 +24,13 @@ void initHeap(int size) {
 }
 
 void *allocOnHeap(const int size) {
-  void *out = &heap[hp];
-  hp += size;
-
-  if (hp >= heapSize / 2)
+  // Check if enough space is free
+  if (hp + size >= heapSize / 2)
     outOfHeapSpaceError();
+
+  // Get next free Memory
+  void *out = heap + hp;
+  hp += size;
 
   // TODO init fields with null
 
