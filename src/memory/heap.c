@@ -8,6 +8,7 @@
 #include <stdlib.h>
 
 static int heapSize;
+static int hp;
 static char *heap;
 
 void initHeap(int size) {
@@ -18,4 +19,18 @@ void initHeap(int size) {
 
   if (heap == NULL)
     outOfMemoryError();
+
+  hp = 0;
+}
+
+void *allocOnHeap(const int size) {
+  void *out = &heap[hp];
+  hp += size;
+
+  if (hp >= heapSize / 2)
+    outOfHeapSpaceError();
+
+  // TODO init fields with null
+
+  return out;
 }
