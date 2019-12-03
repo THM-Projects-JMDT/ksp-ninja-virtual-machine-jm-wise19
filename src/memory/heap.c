@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static char **heap;
+static char *heap;
 
 void initHeap(int size) {
   // Get Bytes
