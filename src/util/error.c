@@ -111,3 +111,6 @@ void notACompundObjectError(void) {
       57,
       "Invalid attempt to use a 'Primitive Object' as an 'Compound Object'");
 }
+void indexOutofBoundsError(const int size, const int index) {
+  vmError(56, "index Out of Bounds Error");
+}
