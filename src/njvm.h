@@ -7,8 +7,5 @@
 
 extern const int version;
 extern int debug;
-extern int heapsize;
-extern int stacksize;
-extern int debug;
 
 #endif

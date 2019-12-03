@@ -16,6 +16,7 @@ typedef struct {
   } u;
 } StackSlot;
 
+void initStack(int size);
 void push(ObjRef value);
 void pushNoRef(int value);
 ObjRef pop(void);
