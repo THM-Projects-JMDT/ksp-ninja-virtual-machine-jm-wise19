@@ -7,13 +7,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static int heapSize;
 static char *heap;
 
 void initHeap(int size) {
   // Get Bytes
-  size = size * 1024;
+  heapSize = size * 1024;
 
-  heap = malloc(size);
+  heap = malloc(heapSize);
 
   if (heap == NULL)
     outOfMemoryError();
