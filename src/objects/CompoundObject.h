@@ -5,7 +5,7 @@
 #ifndef NJCM_COMPOUNDOBJECT_H_INCLUDED
 #define NJCM_COMPOUNDOBJECT_H_INCLUDED
 
-#include <Support.h>
+#include <support.h>
 #include <stdio.h>
 
 #define MSB (1 << (8 * sizeof(unsigned int) - 1))
