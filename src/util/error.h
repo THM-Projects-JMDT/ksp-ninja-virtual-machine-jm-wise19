@@ -28,5 +28,6 @@ void cantCloseCodeFileError(void);
 void invalidJumpDestinationError(const int destination);
 void ilegalNilRefecenceError(void);
 void notACompundObjectError(void);
+void indexOutofBoundsError(const int size, const int index);
 
 #endif
