@@ -12,6 +12,8 @@
 #include <string.h>
 
 const int version = 7;
+int stacksize = 64;
+int heapsize = 8192;
 int debug = 0;
 
 // Handle version argument
@@ -49,12 +51,23 @@ static void help(const char *myself) {
   pprintf(BOLD, "\t5x: ");
   printf("Runtime Errors\n");
 }
+void checkArgument(char *argv) {}
 
 int main(int argc, char *argv[]) {
   int filePos = -1;
 
   // check arguments
   for (int i = 1; i < argc; i++) {
+    if (strcmp(argv[i], "--stack") == 0) {
+      checkArgument(argv[i + 1]);
+      stacksize = atoi(argv[i + 1]);
+      i++;
+    }
+    if (strcmp(argv[i], "--heap") == 0) {
+      checkArgument(argv[i + 1]);
+      heapsize = atoi(argv[i + 1]);
+      i++;
+    }
     if (strcmp(argv[i], "--version") == 0) {
       displayVersion(argv[0]);
       exit(0);
