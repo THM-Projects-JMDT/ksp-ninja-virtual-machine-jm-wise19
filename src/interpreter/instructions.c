@@ -180,9 +180,31 @@ void execPutf(int i) {
 
   GET_REF(obj) = value;
 }
-void execNewa(void) {}
-void execGetfa(void) {}
-void execPutfa(void) {}
+void execNewa(void) {
+  bip.op1 = pop();
+  push(newCompoundObject(bigToInt()));
+}
+void execGetfa(void) {
+  bip.op1 = pop();
+  ObjRef obj = pop();
+
+  checkIsCompundObject(obj);
+
+  int i = bigToInt();
+
+  push(GET_REF(obj));
+}
+void execPutfa(void) {
+  ObjRef value = pop();
+  bip.op1 = pop();
+  ObjRef obj = pop();
+
+  checkIsCompundObject(obj);
+
+  int i = bigToInt();
+
+  GET_REF(obj) = value;
+}
 void execGetsz(void) {
   ObjRef obj = pop();
 
