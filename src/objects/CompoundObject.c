@@ -3,22 +3,18 @@
  */
 
 #include "CompoundObject.h"
+#include "../memory/heap.h"
 #include "../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
 
 ObjRef newCompoundObject(int numObjRefs) {
   // int size + pointer size
-  ObjRef objRef = malloc(sizeof(unsigned int) + numObjRefs * sizeof(ObjRef));
-
-  // check if malloc worked
-  if (objRef == NULL)
-    outOfMemoryError();
+  ObjRef objRef =
+      allocOnHeap(sizeof(unsigned int) + numObjRefs * sizeof(ObjRef));
 
   // set size to numObjRefs and set MSB to 1
   objRef->size = numObjRefs | MSB;
-
-  // TODO init fields with null
 
   return objRef;
 }

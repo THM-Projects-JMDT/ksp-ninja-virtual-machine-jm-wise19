@@ -2,17 +2,14 @@
  * support.c -- object representation and support functions
  */
 
+#include "../../memory/heap.h"
 #include "../../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <support.h>
 
 ObjRef newPrimObject(int dataSize) {
-  ObjRef objRef = malloc(sizeof(unsigned int) + dataSize);
-
-  // check if malloc worked
-  if (objRef == NULL)
-    outOfMemoryError();
+  ObjRef objRef = allocOnHeap(sizeof(unsigned int) + dataSize);
 
   objRef->size = dataSize;
 
