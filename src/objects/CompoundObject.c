@@ -29,3 +29,8 @@ void checkIsCompundObject(ObjRef obj) {
   if (IS_PRIM(obj))
     notACompundObjectError();
 }
+
+void checkIndex(ObjRef obj, int i) {
+  if (GET_SIZE(obj) - 1 < i || i < 0)
+    indexOutofBoundsError(GET_SIZE(obj), i);
+}

@@ -189,10 +189,9 @@ void execGetfa(void) {
   int i = bigToInt();
 
   ObjRef obj = pop();
-  checkIsCompundObject(obj);
 
-  if (GET_SIZE(obj) - 1 < i || i < 0)
-    indexOutofBoundsError(GET_SIZE(obj), i);
+  checkIsCompundObject(obj);
+  checkIndex(obj, i);
 
   push(GET_REF(obj));
 }
@@ -201,11 +200,11 @@ void execPutfa(void) {
 
   bip.op1 = pop();
   int i = bigToInt();
-  ObjRef obj = pop();
-  checkIsCompundObject(obj);
 
-  if (GET_SIZE(obj) - 1 < i || i < 0)
-    indexOutofBoundsError(GET_SIZE(obj), i);
+  ObjRef obj = pop();
+
+  checkIsCompundObject(obj);
+  checkIndex(obj, i);
 
   GET_REF(obj) = value;
 }

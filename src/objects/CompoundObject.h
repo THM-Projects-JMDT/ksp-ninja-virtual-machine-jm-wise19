@@ -15,5 +15,6 @@
 
 ObjRef newCompoundObject(int numObjRefs);
 void checkIsCompundObject(ObjRef obj);
+void checkIndex(ObjRef obj, int i);
 
 #endif
