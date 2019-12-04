@@ -56,8 +56,8 @@ void moreThanOneInputError(const char *myself) {
   vmError(12, "Only one code file may be specified, try '%s --help'", myself);
 }
 
-void argumentNoInteger(const char *arg, const char *myself) {
-  vmError(13, " Argument '%s' has to be a Integer, try '%s --help'", arg,
+void argumentNoInteger(const char *arg, const char *size, const char *myself) {
+  vmError(13, "illegal size '%s' for Argument '%s', try '%s --help'", size, arg,
           myself);
 }
 

@@ -58,9 +58,9 @@ static void help(const char *myself) {
   pprintf(BOLD, "\t5x: ");
   printf("Runtime Errors\n");
 }
-void checkArgument(char *argv, char *myself) {
-  if (!isdigit(argv[0]))
-    argumentNoInteger(argv, myself);
+void checkArgument(char *arg, char *size, char *myself) {
+  if (!isdigit(size[0]))
+    argumentNoInteger(arg, size, myself);
 }
 
 int main(int argc, char *argv[]) {
@@ -72,14 +72,14 @@ int main(int argc, char *argv[]) {
       if (i + 1 == argc)
         missingArgument(argv[i], argv[0]);
 
-      checkArgument(argv[i + 1], argv[0]);
+      checkArgument(argv[i], argv[i + 1], argv[0]);
       stacksize = atoi(argv[i + 1]);
       i++;
     } else if (strcmp(argv[i], "--heap") == 0) {
       if (i + 1 == argc)
         missingArgument(argv[i], argv[0]);
 
-      checkArgument(argv[i + 1], argv[0]);
+      checkArgument(argv[i], argv[i + 1], argv[0]);
       heapsize = atoi(argv[i + 1]);
       i++;
     } else if (strcmp(argv[i], "--version") == 0) {
