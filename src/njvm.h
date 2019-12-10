@@ -9,5 +9,7 @@
 
 extern const int version;
 extern int debug;
+extern int gcpurge;
+extern int gcstats;
 
 #endif
