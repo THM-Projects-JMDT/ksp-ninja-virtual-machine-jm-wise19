@@ -18,6 +18,7 @@ void initHeap(int size);
 void switchHeap(void);
 void *allocOnHeap(const int size);
 void *copyObject(void *pointer, int size);
+void copyRootObjects();
 void setbip(ObjRef objRef);
 
 #endif

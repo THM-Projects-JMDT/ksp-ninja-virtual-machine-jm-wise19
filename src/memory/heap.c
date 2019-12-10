@@ -4,6 +4,7 @@
 
 #include "heap.h"
 #include "../njvm.h"
+#include "../objects/CompoundObject.h"
 #include "../util/error.h"
 #include "programMemory.h"
 #include "stack.h"
@@ -51,6 +52,11 @@ void *allocOnHeap(const int size) {
   return out;
 }
 
+void runGC(void) {
+  switchHeap();
+  copyRootObjects();
+}
+
 void copyRootObjects() {
   for (int i = 0; i < globalVarSize; i++) {
     ObjRef objRef = getGlobVar(i);
@@ -79,4 +85,22 @@ void *copyObject(void *pointer, int size) {
   memcpy(newpointer, pointer, size);
 
   return newpointer;
+}
+
+void scan() {
+  int scan = 0;
+  while (scan < hp) {
+    ObjRef obj = (ObjRef)heap + (hp + scan);
+    if (!IS_PRIM(obj)) {
+      for (int i = 0; i < GET_SIZE(obj); i++) {
+        ObjRef sObj = GET_REF(obj);
+
+        if (!GET_BROKEN_HEART(sObj))
+          copyObject(sObj, sObj->size);
+
+        obj->data[i] = hp + GET_POINTER(sObj);
+      }
+    }
+    scan += GET_SIZE(obj) + sizeof(unsigned int);
+  }
 }
