@@ -9,13 +9,13 @@
 
 #define BROKEN_HEART (1 << (sizeof(unsigned int) * 8 - 2))
 #define SET_BROKEN_HEART(obj) ((obj)->size = (obj)->size | BROKEN_HEART)
-#define GET_BROKEN_HEART(obj)                                                  \
-  (((obj)->size & BROKEN_HEART) >> (sizeof(unsigned int) * 8 - 2))
+#define GET_BROKEN_HEART(obj) \
+    (((obj)->size & BROKEN_HEART) >> (sizeof(unsigned int) * 8 - 2))
 
 void initHeap(int size);
 void switchHeap(void);
 void *allocOnHeap(const int size);
-void *copyObject(void *pointer, int size);
+void *copyObject(ObjRef objRef);
 void setbip(ObjRef objRef);
 
 #endif
