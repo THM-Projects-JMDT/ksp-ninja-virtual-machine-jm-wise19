@@ -57,7 +57,7 @@ void runGC(void) {
   copyRootObjects();
 }
 
-void copyRootObjects() {
+void copyRootObjects(void) {
   for (int i = 0; i < globalVarSize; i++) {
     ObjRef objRef = getGlobVar(i);
     setGlobVar(i, copyObject(objRef));
@@ -78,10 +78,10 @@ void copyRootObjects() {
 void setbip(ObjRef objRef) { objRef = copyObject(objRef); }
 
 void *copyObject(ObjRef objRef) {
-  void *newpointer = allocOnHeap(objRef->size + sizeof(unsigned int));
+  void *newpointer = allocOnHeap(GET_SIZE(objRef) + sizeof(unsigned int));
 
-  memcpy(newpointer, objRef, objRef->size + sizeof(unsigned int));
-  objRef->size = hp - objRef->size + sizeof(unsigned int);
+  memcpy(newpointer, objRef, GET_SIZE(objRef) + sizeof(unsigned int));
+  objRef->size = hp - GET_SIZE(objRef) + sizeof(unsigned int);
   SET_BROKEN_HEART(objRef);
 
   return newpointer;
@@ -96,7 +96,7 @@ void scan() {
         ObjRef sObj = GET_REF(obj);
 
         if (!GET_BROKEN_HEART(sObj))
-          copyObject(sObj, sObj->size);
+          copyObject(sObj);
 
         obj->data[i] = hp + GET_POINTER(sObj);
       }
