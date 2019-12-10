@@ -6,6 +6,7 @@
 #include "../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static int heapSize;
 static int hp;
@@ -35,4 +36,12 @@ void *allocOnHeap(const int size) {
   // TODO init fields with null
 
   return out;
+}
+
+void *copyObject(void *pointer, int size) {
+  void *newpointer = allocOnHeap(size);
+
+  memcpy(newpointer, pointer, size);
+
+  return newpointer;
 }
