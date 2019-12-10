@@ -9,12 +9,14 @@
 #include <string.h>
 
 static int heapSize;
+static int heapMax;
 static int hp;
 static char *heap;
 
 void initHeap(int size) {
   // Get Bytes
   heapSize = size * K_BYTES;
+  heapMax = heapSize / 2;
 
   heap = malloc(heapSize);
 
@@ -22,6 +24,13 @@ void initHeap(int size) {
     outOfMemoryError();
 
   hp = 0;
+}
+
+void switchHeap(void) {
+  printf("%d: %d, ", heapSize, heapMax);
+  hp = heapMax;
+  heapMax = heapMax == heapSize ? 0 : heapSize;
+  printf("%d\n", heapMax);
 }
 
 void *allocOnHeap(const int size) {
