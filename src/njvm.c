@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-const int version = 7;
+const int version = 8;
 int stacksize = 64;
 int heapsize = 8192;
 int gcpurge = 0;
