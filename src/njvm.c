@@ -19,6 +19,7 @@ int stacksize = 64;
 int heapsize = 8192;
 int gcpurge = 0;
 int gcstats = 0;
+int debug = 0;
 
 // Handle version argument
 static void displayVersion(const char *myself) {
