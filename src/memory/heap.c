@@ -32,11 +32,11 @@ void initHeap(int size) {
 }
 
 void switchHeap(void) {
-  hp = heapMax;
+  hp = (heapMax) % heapSize;
   heapMax = heapMax == heapSize ? 0 : heapSize;
 }
 
-int hasNoSpace(const int size) { return hp + size >= heapSize / 2; }
+int hasNoSpace(const int size) { return hp + size >= heapMax; }
 
 void *unsaveAllocOnHeap(const int size) {
   if (hasNoSpace(size))
@@ -67,30 +67,31 @@ void runGC(void) {
 }
 
 void copyRootObjects(void) {
-  for (int i = 0; i < globalVarSize; i++) {
-    ObjRef objRef = getGlobVar(i);
-    setGlobVar(i, copyObject(objRef));
-  }
+  for (int i = 0; i < globalVarSize; i++)
+    setGlobVar(i, copyObject(getGlobVar(i)));
+
   for (int i = 0; i < getsp(); i++) {
     StackSlot stackSlot = getStackSlot(i);
-    if (stackSlot.isObjRef) {
-      ObjRef objRef = getObjRef(i);
-      setObjRef(i, copyObject(objRef));
-    }
+    if (stackSlot.isObjRef)
+      setObjRef(i, copyObject(getObjRef(i)));
   }
-  setbip(bip.op1);
-  setbip(bip.op2);
-  setbip(bip.rem);
-  setbip(bip.res);
+  bip.op1 = copyObject(bip.op1);
+  bip.op2 = copyObject(bip.op2);
+  bip.res = copyObject(bip.res);
+  bip.rem = copyObject(bip.rem);
 }
 
-void setbip(ObjRef objRef) { objRef = copyObject(objRef); }
-
 void *copyObject(ObjRef objRef) {
-  void *newpointer = unsaveAllocOnHeap(GET_SIZE(objRef) + sizeof(unsigned int));
+  if (objRef == NULL)
+    return objRef;
 
-  memcpy(newpointer, objRef, GET_SIZE(objRef) + sizeof(unsigned int));
-  objRef->size = hp - GET_SIZE(objRef) + sizeof(unsigned int);
+  if (GET_BROKEN_HEART(objRef))
+    return heap + (hp + GET_POINTER(objRef));
+
+  void *newpointer = unsaveAllocOnHeap(GET_TOTAL_SIZE(objRef));
+
+  memcpy(newpointer, objRef, GET_TOTAL_SIZE(objRef));
+  objRef->size = hp - GET_TOTAL_SIZE(objRef);
   SET_BROKEN_HEART(objRef);
 
   return newpointer;
@@ -99,17 +100,14 @@ void *copyObject(ObjRef objRef) {
 void scanHeap() {
   int scan = 0;
   while (scan < hp) {
-    ObjRef obj = (ObjRef)heap + (hp + scan);
-    if (!IS_PRIM(obj)) {
+    ObjRef obj = (ObjRef)(heap + (hp + scan));
+    if (obj != NULL && !IS_PRIM(obj)) {
       for (int i = 0; i < GET_SIZE(obj); i++) {
         ObjRef sObj = GET_REF(obj);
 
-        if (!GET_BROKEN_HEART(sObj))
-          copyObject(sObj);
-
-        obj->data[i] = hp + GET_POINTER(sObj);
+        GET_REF(obj) = (ObjRef)copyObject(sObj);
       }
     }
-    scan += GET_SIZE(obj) + sizeof(unsigned int);
+    scan += GET_TOTAL_SIZE(obj);
   }
 }
