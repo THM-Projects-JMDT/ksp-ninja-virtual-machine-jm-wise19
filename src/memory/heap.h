@@ -8,6 +8,7 @@
 #include <support.h>
 
 void initHeap(int size);
+void switchHeap(void);
 void *allocOnHeap(const int size);
 void *copyObject(void *pointer, int size);
 void setbip(ObjRef objRef);
