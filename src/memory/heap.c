@@ -36,7 +36,7 @@ void switchHeap(void) {
   heapMax = heapMax == heapSize ? 0 : heapSize;
 }
 
-int hasNoSpace(const int size) { return hp + size >= heapSize / 2; }
+int hasNoSpace(const int size) { return hp + size >= heapMax; }
 
 void *unsaveAllocOnHeap(const int size) {
   if (hasNoSpace(size))
@@ -71,6 +71,7 @@ void copyRootObjects(void) {
     ObjRef objRef = getGlobVar(i);
     setGlobVar(i, copyObject(objRef));
   }
+  printf("Globvarsdone\n");
   for (int i = 0; i < getsp(); i++) {
     StackSlot stackSlot = getStackSlot(i);
     if (stackSlot.isObjRef) {
@@ -78,10 +79,12 @@ void copyRootObjects(void) {
       setObjRef(i, copyObject(objRef));
     }
   }
+  printf("Stackdone\n");
   setbip(bip.op1);
   setbip(bip.op2);
   setbip(bip.rem);
   setbip(bip.res);
+  printf("BipDone\n");
 }
 
 void setbip(ObjRef objRef) { objRef = copyObject(objRef); }
