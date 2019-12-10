@@ -20,5 +20,7 @@ void *allocOnHeap(const int size);
 void *copyObject(ObjRef objRef);
 void copyRootObjects(void);
 void setbip(ObjRef objRef);
+void scanHeap();
+void runGC(void);
 
 #endif

@@ -32,15 +32,14 @@ void initHeap(int size) {
 }
 
 void switchHeap(void) {
-  printf("%d: %d, ", heapSize, heapMax);
   hp = heapMax;
   heapMax = heapMax == heapSize ? 0 : heapSize;
-  printf("%d\n", heapMax);
 }
 
-void *allocOnHeap(const int size) {
-  // Check if enough space is free
-  if (hp + size >= heapSize / 2)
+int hasNoSpace(const int size) { return hp + size >= heapSize / 2; }
+
+void *unsaveAllocOnHeap(const int size) {
+  if (hasNoSpace(size))
     outOfHeapSpaceError();
 
   // Get next free Memory
@@ -52,9 +51,19 @@ void *allocOnHeap(const int size) {
   return out;
 }
 
+void *allocOnHeap(const int size) {
+  // Check if enough space is free
+  if (hasNoSpace(size))
+    runGC();
+
+  return unsaveAllocOnHeap(size);
+}
+
 void runGC(void) {
+  printf("GC\n");
   switchHeap();
   copyRootObjects();
+  scanHeap();
 }
 
 void copyRootObjects(void) {
@@ -78,7 +87,7 @@ void copyRootObjects(void) {
 void setbip(ObjRef objRef) { objRef = copyObject(objRef); }
 
 void *copyObject(ObjRef objRef) {
-  void *newpointer = allocOnHeap(GET_SIZE(objRef) + sizeof(unsigned int));
+  void *newpointer = unsaveAllocOnHeap(GET_SIZE(objRef) + sizeof(unsigned int));
 
   memcpy(newpointer, objRef, GET_SIZE(objRef) + sizeof(unsigned int));
   objRef->size = hp - GET_SIZE(objRef) + sizeof(unsigned int);
@@ -87,7 +96,7 @@ void *copyObject(ObjRef objRef) {
   return newpointer;
 }
 
-void scan() {
+void scanHeap() {
   int scan = 0;
   while (scan < hp) {
     ObjRef obj = (ObjRef)heap + (hp + scan);
