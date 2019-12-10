@@ -68,6 +68,17 @@ ObjRef pop(void) {
   return stack[sp].u.objRef;
 }
 
+// get stackslot at Pos
+StackSlot getStackSlot(const int pos) { return stack[pos]; }
+
+// get ObjRef at Pos
+ObjRef getObjRef(const int pos) { return stack[pos].u.objRef; }
+
+// set stackslot at Pos
+void setObjRef(const int pos, const ObjRef val) { stack[pos].u.objRef = val; }
+
+int getsp() { return sp; }
+
 int popNoRef(void) {
   checkUnderflow();
 

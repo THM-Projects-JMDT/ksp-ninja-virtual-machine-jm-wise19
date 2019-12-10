@@ -5,6 +5,8 @@
 #ifndef NJCM_HEAP_H_INCLUDED
 #define NJCM_HEAP_H_INCLUDED
 
+#include <support.h>
+
 #define BROKEN_HEART (1 << (sizeof(unsigned int) * 8 - 2))
 #define SET_BROKEN_HEART(obj) ((obj)->size = (obj)->size | BROKEN_HEART)
 #define GET_BROKEN_HEART(obj)                                                  \
@@ -13,5 +15,7 @@
 void initHeap(int size);
 void switchHeap(void);
 void *allocOnHeap(const int size);
+void *copyObject(void *pointer, int size);
+void setbip(ObjRef objRef);
 
 #endif
