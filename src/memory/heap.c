@@ -60,13 +60,13 @@ void runGC(void) {
 void copyRootObjects() {
   for (int i = 0; i < globalVarSize; i++) {
     ObjRef objRef = getGlobVar(i);
-    setGlobVar(i, copyObject(objRef, objRef->size + sizeof(unsigned int)));
+    setGlobVar(i, copyObject(objRef));
   }
   for (int i = 0; i < getsp(); i++) {
     StackSlot stackSlot = getStackSlot(i);
     if (stackSlot.isObjRef) {
       ObjRef objRef = getObjRef(i);
-      setObjRef(i, copyObject(objRef, objRef->size + sizeof(unsigned int)));
+      setObjRef(i, copyObject(objRef));
     }
   }
   setbip(bip.op1);
@@ -75,14 +75,14 @@ void copyRootObjects() {
   setbip(bip.res);
 }
 
-void setbip(ObjRef objRef) {
-  objRef = copyObject(objRef, objRef->size + sizeof(unsigned int));
-}
+void setbip(ObjRef objRef) { objRef = copyObject(objRef); }
 
-void *copyObject(void *pointer, int size) {
-  void *newpointer = allocOnHeap(size);
+void *copyObject(ObjRef objRef) {
+  void *newpointer = allocOnHeap(objRef->size + sizeof(unsigned int));
 
-  memcpy(newpointer, pointer, size);
+  memcpy(newpointer, objRef, objRef->size + sizeof(unsigned int));
+  objRef->size = hp - objRef->size + sizeof(unsigned int);
+  SET_BROKEN_HEART(objRef);
 
   return newpointer;
 }
