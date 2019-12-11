@@ -17,6 +17,9 @@ ObjRef newCompoundObject(int numObjRefs) {
   // set size to numObjRefs and set MSB to 1
   objRef->size = numObjRefs | MSB;
 
+  // init filds with NULL
+  memset(objRef->data, 0, numObjRefs * sizeof(ObjRef));
+
   return objRef;
 }
 
@@ -36,6 +39,7 @@ void checkIndex(ObjRef obj, int i) {
 
 int getTotalSize(ObjRef obj) {
   unsigned int size = sizeof(unsigned int);
+
   if (IS_PRIM(obj))
     return size + GET_SIZE(obj);
 
