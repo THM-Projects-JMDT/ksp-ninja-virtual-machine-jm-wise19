@@ -104,10 +104,9 @@ void scanHeap() {
   int scan = heapMin;
   while (scan < hp) {
     ObjRef obj = (ObjRef)(heap + scan);
-    if (obj != NULL && !IS_PRIM(obj)) {
+    if (!IS_PRIM(obj)) {
       for (int i = 0; i < GET_SIZE(obj); i++) {
-        ObjRef sObj = GET_REF(obj);
-        GET_REF(obj) = (ObjRef)copyObject(sObj);
+        GET_REF(obj) = (ObjRef)copyObject(GET_REF(obj));
       }
     }
     scan += getTotalSize(obj);
