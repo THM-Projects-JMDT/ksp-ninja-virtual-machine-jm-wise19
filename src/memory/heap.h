@@ -14,6 +14,7 @@
   (((obj)->size & BROKEN_HEART) >> (sizeof(unsigned int) * 8 - 2))
 #define GET_POINTER(obj) ((obj)->size & ~(BROKEN_HEART | MSB))
 
+int getHeapSize(void);
 void initHeap(int size);
 void switchHeap(void);
 void *allocOnHeap(const int size);

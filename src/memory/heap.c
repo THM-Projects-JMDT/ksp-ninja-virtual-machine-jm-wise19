@@ -33,6 +33,8 @@ void initHeap(int size) {
   heapMin = hp;
 }
 
+int getHeapSize(void) { return heapSize; }
+
 void switchHeap(void) {
   hp = (heapMax) % heapSize;
   heapMin = hp;
@@ -61,6 +63,10 @@ void runGC(void) {
   switchHeap();
   copyRootObjects();
   scanHeap();
+
+  // If gcpurge -> clear unused heap area
+  if (gcpurge)
+    memset(heap + ((heapMax) % heapSize), 0, heapSize / 2);
 }
 
 void copyRootObjects(void) {
