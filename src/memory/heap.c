@@ -41,29 +41,23 @@ void switchHeap(void) {
 
 int hasNoSpace(const int size) { return hp + size >= heapMax; }
 
-void *unsaveAllocOnHeap(const int size) {
-  if (hasNoSpace(size))
-    outOfHeapSpaceError();
+void *allocOnHeap(const int size) {
+  // Check if enough space is free
+  if (hasNoSpace(size)) {
+    runGC();
+
+    if (hasNoSpace(size))
+      outOfHeapSpaceError();
+  }
 
   // Get next free Memory
   void *out = heap + hp;
   hp += size;
 
-  // TODO init fields with null
-
   return out;
 }
 
-void *allocOnHeap(const int size) {
-  // Check if enough space is free
-  if (hasNoSpace(size))
-    runGC();
-
-  return unsaveAllocOnHeap(size);
-}
-
 void runGC(void) {
-  printf("GC\n");
   switchHeap();
   copyRootObjects();
   scanHeap();
@@ -91,7 +85,7 @@ void *copyObject(ObjRef objRef) {
   if (GET_BROKEN_HEART(objRef))
     return heap + GET_POINTER(objRef);
 
-  void *newpointer = unsaveAllocOnHeap(getTotalSize(objRef));
+  void *newpointer = allocOnHeap(getTotalSize(objRef));
 
   memcpy(newpointer, objRef, getTotalSize(objRef));
   objRef->size = hp - getTotalSize(objRef);
