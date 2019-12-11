@@ -7,6 +7,7 @@
 #include "../util/error.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 ObjRef newCompoundObject(int numObjRefs) {
   // int size + pointer size
@@ -31,4 +32,12 @@ void checkIsCompundObject(ObjRef obj) {
 void checkIndex(ObjRef obj, int i) {
   if (GET_SIZE(obj) - 1 < i || i < 0)
     indexOutofBoundsError(GET_SIZE(obj), i);
+}
+
+int getTotalSize(ObjRef obj) {
+  unsigned int size = sizeof(unsigned int);
+  if (IS_PRIM(obj))
+    return size + GET_SIZE(obj);
+
+  return size + GET_SIZE(obj) * sizeof(ObjRef);
 }

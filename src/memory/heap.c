@@ -15,6 +15,7 @@
 
 static int heapSize;
 static int heapMax;
+static int heapMin;
 static int hp;
 static char *heap;
 
@@ -29,10 +30,12 @@ void initHeap(int size) {
     outOfMemoryError();
 
   hp = 0;
+  heapMin = hp;
 }
 
 void switchHeap(void) {
   hp = (heapMax) % heapSize;
+  heapMin = hp;
   heapMax = heapMax == heapSize ? 0 : heapSize;
 }
 
@@ -86,28 +89,27 @@ void *copyObject(ObjRef objRef) {
     return objRef;
 
   if (GET_BROKEN_HEART(objRef))
-    return heap + (hp + GET_POINTER(objRef));
+    return heap + GET_POINTER(objRef);
 
-  void *newpointer = unsaveAllocOnHeap(GET_TOTAL_SIZE(objRef));
+  void *newpointer = unsaveAllocOnHeap(getTotalSize(objRef));
 
-  memcpy(newpointer, objRef, GET_TOTAL_SIZE(objRef));
-  objRef->size = hp - GET_TOTAL_SIZE(objRef);
+  memcpy(newpointer, objRef, getTotalSize(objRef));
+  objRef->size = hp - getTotalSize(objRef);
   SET_BROKEN_HEART(objRef);
 
   return newpointer;
 }
 
 void scanHeap() {
-  int scan = 0;
+  int scan = heapMin;
   while (scan < hp) {
-    ObjRef obj = (ObjRef)(heap + (hp + scan));
+    ObjRef obj = (ObjRef)(heap + scan);
     if (obj != NULL && !IS_PRIM(obj)) {
       for (int i = 0; i < GET_SIZE(obj); i++) {
         ObjRef sObj = GET_REF(obj);
-
         GET_REF(obj) = (ObjRef)copyObject(sObj);
       }
     }
-    scan += GET_TOTAL_SIZE(obj);
+    scan += getTotalSize(obj);
   }
 }
