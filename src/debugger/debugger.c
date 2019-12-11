@@ -71,13 +71,14 @@ void printNextInst(void) {
 void debugStartMsg(const char *file, const int codeSize, const int dataSize) {
   printMsPromt();
   pprintf(BOLD, "Debugger Started\n");
+
   printSep();
   pprintf(YELLOW, "-- VM Informations --\n");
-  pprintf(BOLD, "file  : '%s'\n", file);
-  pprintf(BOLD, "code  : %d Instructions\n", codeSize);
-  pprintf(BOLD, "data  : %d objects\n", dataSize);
-  pprintf(BOLD, "stack : %d slots\n", getStackSize());
-  pprintf(BOLD, "heap  : 2 * %d bytes\n", getHeapSize() / 2);
+  pprintf(BOLD, " file  : '%s'\n", file);
+  pprintf(BOLD, " code  : %d Instructions\n", codeSize);
+  pprintf(BOLD, " data  : %d objects\n", dataSize);
+  pprintf(BOLD, " stack : %d slots\n", getStackSize());
+  pprintf(BOLD, " heap  : 2 * %d bytes\n", getHeapSize() / 2);
   pprintf(YELLOW, "-- End --\n");
   printSep();
 }
