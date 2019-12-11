@@ -30,6 +30,9 @@ void initStack(int size) {
   stackSlots = size / sizeof(StackSlot);
 }
 
+ObjRef getReturnReg(void) { return return_value_register; }
+void setReturnReg(ObjRef objRef) { return_value_register = objRef; }
+
 int getStackSize(void) { return stackSlots; }
 
 // Check Stack Size
@@ -135,7 +138,10 @@ void drop(const int n) {
     stackUnderflowError();
 }
 
-void pushr(void) { push(return_value_register); }
+void pushr(void) {
+  push(return_value_register);
+  return_value_register = NULL;
+}
 
 void popr(void) { return_value_register = pop(); }
 

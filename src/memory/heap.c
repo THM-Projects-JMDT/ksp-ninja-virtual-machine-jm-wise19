@@ -78,6 +78,9 @@ void copyRootObjects(void) {
     if (stackSlot.isObjRef)
       setObjRef(i, copyObject(getObjRef(i)));
   }
+
+  setReturnReg(copyObject(getReturnReg()));
+
   bip.op1 = copyObject(bip.op1);
   bip.op2 = copyObject(bip.op2);
   bip.res = copyObject(bip.res);

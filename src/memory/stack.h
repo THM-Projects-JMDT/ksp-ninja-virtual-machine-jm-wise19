@@ -18,6 +18,8 @@ typedef struct {
 
 void initStack(int size);
 int getStackSize(void);
+ObjRef getReturnReg(void);
+void setReturnReg(ObjRef objRef);
 void push(ObjRef value);
 void pushNoRef(int value);
 ObjRef pop(void);
