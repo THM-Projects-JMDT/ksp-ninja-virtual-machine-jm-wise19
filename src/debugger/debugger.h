@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 
-void showFileLoaded(const int codeSize, const int dataSize);
+void debugStartMsg(const char *file, const int codeSize, const int dataSize);
 void startDebug(void);
 void printSep(void);
 void printPromt(void);

@@ -120,6 +120,10 @@ int main(int argc, char *argv[]) {
   // load programm in Memory
   loadprog(argv[filePos]);
 
+  // If debug mode is on Print start Message
+  if (debug)
+    debugStartMsg(argv[filePos], memorySize, globalVarSize);
+
   printf("Ninja Virtual Machine started\n");
 
   // if debug mode is offline start Programm

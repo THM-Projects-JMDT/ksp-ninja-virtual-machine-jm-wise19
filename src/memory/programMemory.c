@@ -4,7 +4,6 @@
  */
 
 #include "programMemory.h"
-#include "../debugger/debugger.h"
 #include "../njvm.h"
 #include "../util/error.h"
 #include "../util/prettyPrint.h"
@@ -106,10 +105,6 @@ void loadprog(const char *path) {
   // Close and Check if file Close is possible
   if (fclose(fp) == EOF)
     cantCloseCodeFileError();
-
-  // If debug mode is on Print File loaded Message
-  if (debug)
-    showFileLoaded(memorySize, globalVarSize);
 }
 
 void printglobalvars(void) {

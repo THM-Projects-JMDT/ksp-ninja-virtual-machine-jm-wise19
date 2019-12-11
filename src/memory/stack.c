@@ -30,6 +30,8 @@ void initStack(int size) {
   stackSlots = size / sizeof(StackSlot);
 }
 
+int getStackSize(void) { return stackSlots; }
+
 // Check Stack Size
 void checkOverflow() {
   if (sp >= stackSlots)

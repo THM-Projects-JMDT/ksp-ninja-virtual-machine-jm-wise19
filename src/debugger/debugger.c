@@ -4,7 +4,9 @@
 
 #include "debugger.h"
 #include "../interpreter/interpreter.h"
+#include "../memory/heap.h"
 #include "../memory/programMemory.h"
+#include "../memory/stack.h"
 #include "../njvm.h"
 #include "../runner/runner.h"
 #include "../util/prettyPrint.h"
@@ -66,11 +68,18 @@ void printNextInst(void) {
     printDebugInst(getPC());
 }
 
-void showFileLoaded(const int codeSize, const int dataSize) {
+void debugStartMsg(const char *file, const int codeSize, const int dataSize) {
   printMsPromt();
-  printf("code file ");
-  pprintf(BOLD, "'test.bin'");
-  printf(" loaded (code size = %d, data size = %d)\n", codeSize, dataSize);
+  pprintf(BOLD, "Debugger Started\n");
+  printSep();
+  pprintf(YELLOW, "-- VM Informations --\n");
+  pprintf(BOLD, "file  : '%s'\n", file);
+  pprintf(BOLD, "code  : %d Instructions\n", codeSize);
+  pprintf(BOLD, "data  : %d objects\n", dataSize);
+  pprintf(BOLD, "stack : %d slots\n", getStackSize());
+  pprintf(BOLD, "heap  : 2 * %d bytes\n", getHeapSize() / 2);
+  pprintf(YELLOW, "-- End --\n");
+  printSep();
 }
 
 void startDebug(void) {
