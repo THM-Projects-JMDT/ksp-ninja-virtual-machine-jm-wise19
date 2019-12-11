@@ -36,7 +36,7 @@ void initHeap(int size) {
 void switchHeap(void) {
   hp = (heapMax) % heapSize;
   heapMin = hp;
-  heapMax = heapMax == heapSize ? 0 : heapSize;
+  heapMax = heapMax == heapSize ? heapSize / 2 : heapSize;
 }
 
 int hasNoSpace(const int size) { return hp + size >= heapMax; }
