@@ -32,16 +32,20 @@ static void displayVersion(const char *myself) {
 static void help(const char *myself) {
   // Print usage
   pprintf(BOLD, "usage: ");
-  printf("%s [options] [code file]\n", myself);
+  printf("%s [options] <code file>\n", myself);
 
   // Print Options
   pprintf(BOLD, "Options: \n");
+  pprintf(BOLD, "\t--stack <n>");
+  printf("\t set Stack size to n KBytes (default: n = 64)\n");
+  pprintf(BOLD, "\t--heap <n>");
+  printf("\t set Heap size to n KBytes (default: n = 8192)\n");
+  pprintf(BOLD, "\t--gcstats");
+  printf("\t show garbage collection statistics \n");
+  pprintf(BOLD, "\t--gcpurge");
+  printf("\t purge old objects after collection\n");
   pprintf(BOLD, "\t--debug");
   printf("\t\t start debug mode\n");
-  pprintf(BOLD, "\t--stack <n>");
-  printf("\t set Stack size to n KBytes(default: n = 64)\n");
-  pprintf(BOLD, "\t--heap <n>");
-  printf("\t set Hep size to n KBytes(default: n = 8192)\n");
   pprintf(BOLD, "\t--version");
   printf("\t show version and exit\n");
   pprintf(BOLD, "\t--help");
