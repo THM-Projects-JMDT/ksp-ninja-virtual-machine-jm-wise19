@@ -33,7 +33,7 @@ void checkIsCompundObject(ObjRef obj) {
 }
 
 void checkIndex(ObjRef obj, int i) {
-  if (GET_SIZE(obj) - 1 < i || i < 0)
+  if (i >= GET_SIZE(obj) || i < 0)
     indexOutofBoundsError(GET_SIZE(obj), i);
 }
 
