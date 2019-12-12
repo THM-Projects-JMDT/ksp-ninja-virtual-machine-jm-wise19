@@ -59,9 +59,11 @@ void *allocOnHeap(const int size) {
   void *out = heap + hp;
   hp += size;
 
-  // Collect Heap Stats
-  heapStats.cObjCount++;
-  heapStats.cObjByte += size;
+  // if gcstats -> Collect Heap Stats
+  if (gcstats) {
+    heapStats.cObjCount++;
+    heapStats.cObjByte += size;
+  }
 
   return out;
 }
@@ -76,11 +78,12 @@ void runGC(void) {
     memset(heap + ((heapMax) % heapSize), 0, heapSize / 2);
 
   // If gcStats -> print stats
-  if (gcstats)
+  if (gcstats) {
     printStats();
 
-  // Reset heap stats
-  resetStats();
+    // Reset heap stats
+    resetStats();
+  }
 }
 
 void copyRootObjects(void) {
@@ -112,9 +115,11 @@ void *copyObject(ObjRef objRef) {
 
   memcpy(newpointer, objRef, getTotalSize(objRef));
 
-  // Collect heap Stats
-  heapStats.mObjCount++;
-  heapStats.mObjByte += getTotalSize(objRef);
+  // if gcstats -> Collect heap Stats
+  if (gcstats) {
+    heapStats.mObjCount++;
+    heapStats.mObjByte += getTotalSize(objRef);
+  }
 
   // Set Forwart Pointer and flag
   objRef->size = hp - getTotalSize(objRef);
