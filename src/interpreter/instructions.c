@@ -4,8 +4,10 @@
 
 #include "instructions.h"
 #include "../debugger/debugger.h"
+#include "../memory/heap.h"
 #include "../memory/programMemory.h"
 #include "../memory/stack.h"
+#include "../njvm.h"
 #include "../objects/CompoundObject.h"
 #include "../runner/runner.h"
 #include "../util/error.h"
@@ -26,6 +28,10 @@ void printInstValue(char *inst, int value, int ct) {
 void execHalt(void) {
   stopProgramm();
   stopDebugging();
+
+  // If gcstats -> run gc at the end
+  if (gcstats)
+    runGC();
 }
 void execPushc(int value) {
   bigFromInt(value);

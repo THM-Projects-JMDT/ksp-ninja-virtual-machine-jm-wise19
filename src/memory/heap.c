@@ -6,6 +6,7 @@
 #include "../njvm.h"
 #include "../objects/CompoundObject.h"
 #include "../util/error.h"
+#include "../util/prettyPrint.h"
 #include "programMemory.h"
 #include "stack.h"
 #include <bigint.h>
@@ -18,6 +19,8 @@ static int heapMax;
 static int heapMin;
 static int hp;
 static char *heap;
+
+static HeapStats heapStats;
 
 void initHeap(int size) {
   // Get Bytes
@@ -56,6 +59,10 @@ void *allocOnHeap(const int size) {
   void *out = heap + hp;
   hp += size;
 
+  // Collect Heap Stats
+  heapStats.cObjCount++;
+  heapStats.cObjByte += size;
+
   return out;
 }
 
@@ -67,6 +74,13 @@ void runGC(void) {
   // If gcpurge -> clear unused heap area
   if (gcpurge)
     memset(heap + ((heapMax) % heapSize), 0, heapSize / 2);
+
+  // If gcStats -> print stats
+  if (gcstats)
+    printStats();
+
+  // Reset heap stats
+  resetStats();
 }
 
 void copyRootObjects(void) {
@@ -97,6 +111,12 @@ void *copyObject(ObjRef objRef) {
   void *newpointer = allocOnHeap(getTotalSize(objRef));
 
   memcpy(newpointer, objRef, getTotalSize(objRef));
+
+  // Collect heap Stats
+  heapStats.mObjCount++;
+  heapStats.mObjByte += getTotalSize(objRef);
+
+  // Set Forwart Pointer and flag
   objRef->size = hp - getTotalSize(objRef);
   SET_BROKEN_HEART(objRef);
 
@@ -114,4 +134,25 @@ void scanHeap() {
     }
     scan += getTotalSize(obj);
   }
+}
+
+void printStats(void) {
+  pprintf(BLUE, "======\n");
+
+  pprintf(YELLOW, "Garbage Collector:\n");
+  pprintf(BOLD, "\t%d Objects (%d bytes) allocated since last collection\n",
+          heapStats.cObjCount, heapStats.cObjByte);
+  pprintf(BOLD, "\t%d objects (%d bytes) copied during this collection\n",
+          heapStats.mObjCount, heapStats.mObjByte);
+  pprintf(BOLD, "\t%d of %d bytes free after this collection\n", heapMax - hp,
+          heapSize / 2);
+
+  pprintf(BLUE, "======\n");
+}
+
+void resetStats(void) {
+  heapStats.cObjByte = 0;
+  heapStats.cObjCount = 0;
+  heapStats.mObjByte = 0;
+  heapStats.mObjCount = 0;
 }
