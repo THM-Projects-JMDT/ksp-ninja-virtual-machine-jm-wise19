@@ -60,27 +60,15 @@ void execMul(void) {
 }
 void execDiv(void) {
   bip.op2 = pop();
-  bigFromInt(0);
-  bip.op1 = bip.res;
-
-  // Check if Secound nummber is Zero
-  if (bigCmp() == 0)
-    dividedByZeroError();
-
   bip.op1 = pop();
+
   bigDiv();
   push(bip.res);
 }
 void execMod(void) {
   bip.op2 = pop();
-  bigFromInt(0);
-  bip.op1 = bip.res;
-
-  // Check if Secound nummber is Zero
-  if (bigCmp() == 0)
-    dividedByZeroError();
-
   bip.op1 = pop();
+
   bigDiv();
   push(bip.rem);
 }

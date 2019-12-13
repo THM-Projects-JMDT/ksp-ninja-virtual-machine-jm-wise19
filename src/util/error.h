@@ -12,7 +12,6 @@ void popNoObjRefError(void);
 void localNoObjRefError(const int var);
 void noIntError(void);
 void unknownInstructionError(const int optCode);
-void dividedByZeroError(void);
 void outOfMemoryError(void);
 void invalidProgrammCodeError(void);
 void moreThanOneInputError(const char *myself);

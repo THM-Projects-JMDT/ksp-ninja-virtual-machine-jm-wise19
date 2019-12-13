@@ -107,21 +107,20 @@ void noIntError(void) { vmError(45, "Top of Stack is not from Type int"); }
 void unknownInstructionError(const int optCode) {
   vmError(50, "Opcode '%d' does not exist", optCode);
 }
-void dividedByZeroError(void) { vmError(51, "dividedByZeroError"); }
-void invalidProgrammCodeError(void) { vmError(52, "Missing 'HALT' statement"); }
+void invalidProgrammCodeError(void) { vmError(51, "Missing 'HALT' statement"); }
 void invalidGlobalVarPositionError(const int pos) {
-  vmError(53, "The global var %d does not exsist", pos);
+  vmError(52, "The global var %d does not exsist", pos);
 }
 void invalidJumpDestinationError(const int destination) {
-  vmError(54, "The Jump Destination %d is invalid", destination);
+  vmError(53, "The Jump Destination %d is invalid", destination);
 }
-// Runtime Error 55 -> bigInt error (in Support.c)
-void ilegalNilRefecenceError(void) { vmError(56, "Invalid 'nil reference'"); }
+// Runtime Error 54 -> bigInt error (in Support.c)
+void ilegalNilRefecenceError(void) { vmError(55, "Invalid 'nil reference'"); }
 void notACompundObjectError(void) {
   vmError(
-      57,
+      56,
       "Invalid attempt to use a 'Primitive Object' as an 'Compound Object'");
 }
 void indexOutofBoundsError(const int size, const int index) {
-  vmError(58, "Index %d out of bounds for length %d", index, size);
+  vmError(57, "Index %d out of bounds for length %d", index, size);
 }
