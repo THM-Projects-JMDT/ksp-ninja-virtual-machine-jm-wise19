@@ -10,6 +10,7 @@
 #include "programMemory.h"
 #include "stack.h"
 #include <bigint.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -19,6 +20,7 @@ static int heapMax;
 static int heapMin;
 static int hp;
 static char *heap;
+static bool gc;
 
 static HeapStats heapStats;
 
@@ -59,8 +61,8 @@ void *allocOnHeap(const int size) {
   void *out = heap + hp;
   hp += size;
 
-  // if gcstats -> Collect Heap Stats
-  if (gcstats) {
+  // if not run a gc and gcstats -> Collect Heap Stats
+  if (!gc && gcstats) {
     heapStats.cObjCount++;
     heapStats.cObjByte += size;
   }
@@ -69,6 +71,8 @@ void *allocOnHeap(const int size) {
 }
 
 void runGC(void) {
+  gc = true;
+
   switchHeap();
   copyRootObjects();
   scanHeap();
@@ -84,6 +88,8 @@ void runGC(void) {
     // Reset heap stats
     resetStats();
   }
+
+  gc = false;
 }
 
 void copyRootObjects(void) {
