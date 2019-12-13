@@ -140,7 +140,7 @@ void drop(const int n) {
 
 void pushr(void) {
   push(return_value_register);
-  return_value_register = NULL;
+  // return_value_register = NULL;
 }
 
 void popr(void) { return_value_register = pop(); }

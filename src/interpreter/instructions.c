@@ -129,20 +129,14 @@ void execGe(void) {
 void execJmp(int n) { changePC(n); }
 void execBrf(int n) {
   bip.op1 = pop();
-  // Add dummy null to check op1
-  bigFromInt(0);
-  bip.op2 = bip.res;
 
-  if (bigCmp() == 0)
+  if (!bigToInt())
     changePC(n);
 }
 void execBrt(int n) {
   bip.op1 = pop();
-  // Add dummy null to check op1
-  bigFromInt(0);
-  bip.op2 = bip.res;
 
-  if (bigCmp() != 0)
+  if (bigToInt())
     changePC(n);
 }
 void execCall(int n) {
