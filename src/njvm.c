@@ -17,9 +17,9 @@
 const int version = 8;
 int stacksize = 64;
 int heapsize = 8192;
-int gcpurge = 0;
-int gcstats = 0;
-int debug = 0;
+bool gcpurge = false;
+bool gcstats = false;
+bool debug = false;
 
 // Handle version argument
 static void displayVersion(const char *myself) {
@@ -75,9 +75,9 @@ int main(int argc, char *argv[]) {
   // check arguments
   for (int i = 1; i < argc; i++) {
     if (strcmp(argv[i], "--gcpurge") == 0) {
-      gcpurge = 1;
+      gcpurge = true;
     } else if (strcmp(argv[i], "--gcstats") == 0) {
-      gcstats = 1;
+      gcstats = true;
     } else if (strcmp(argv[i], "--stack") == 0) {
       if (i + 1 == argc)
         missingArgument(argv[i], argv[0]);
@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
       help(argv[0]);
       exit(0);
     } else if (strcmp(argv[i], "--debug") == 0) {
-      debug = 1;
+      debug = true;
     }
     // invalid argument
     else if (argv[i][0] == '-') {
