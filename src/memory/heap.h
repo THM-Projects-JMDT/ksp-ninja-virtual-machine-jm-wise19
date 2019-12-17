@@ -23,6 +23,7 @@ typedef struct {
 
 int getHeapSize(void);
 void initHeap(int size);
+void freeHeap();
 void switchHeap(void);
 void *allocOnHeap(const int size);
 void *copyObject(ObjRef objRef);

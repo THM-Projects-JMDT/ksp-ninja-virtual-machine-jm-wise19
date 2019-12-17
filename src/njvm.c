@@ -139,6 +139,8 @@ int main(int argc, char *argv[]) {
   // TODO maybe somewhere else
   freeProgMem();
   freeGlobVars();
+  freeStack();
+  freeHeap();
 
   printf("Ninja Virtual Machine stopped\n");
 }

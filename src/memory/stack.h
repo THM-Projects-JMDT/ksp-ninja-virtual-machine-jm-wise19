@@ -17,6 +17,7 @@ typedef struct {
 } StackSlot;
 
 void initStack(int size);
+void freeStack();
 int getStackSize(void);
 ObjRef getReturnReg(void);
 void setReturnReg(ObjRef objRef);

@@ -30,6 +30,8 @@ void initStack(int size) {
   stackSlots = size / sizeof(StackSlot);
 }
 
+void freeStack() { free(stack); }
+
 ObjRef getReturnReg(void) { return return_value_register; }
 void setReturnReg(ObjRef objRef) { return_value_register = objRef; }
 

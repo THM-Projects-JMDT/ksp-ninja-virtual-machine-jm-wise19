@@ -38,6 +38,8 @@ void initHeap(int size) {
   heapMin = hp;
 }
 
+void freeHeap() { free(heap); }
+
 int getHeapSize(void) { return heapSize; }
 
 void switchHeap(void) {
