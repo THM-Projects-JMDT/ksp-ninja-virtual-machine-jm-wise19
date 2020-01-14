@@ -19,7 +19,7 @@ static int heapSize;
 static int heapMax;
 static int heapMin;
 static int hp;
-static char *heap;
+static Byte *heap;
 static bool gc;
 
 static HeapStats heapStats;
@@ -117,7 +117,7 @@ void *copyObject(ObjRef objRef) {
     return objRef;
 
   if (GET_BROKEN_HEART(objRef))
-    return heap + GET_POINTER(objRef);
+    return GET_POINTER(objRef);
 
   void *newpointer = allocOnHeap(getTotalSize(objRef));
 
@@ -130,7 +130,7 @@ void *copyObject(ObjRef objRef) {
   }
 
   // Set Forwart Pointer and flag
-  objRef->size = hp - getTotalSize(objRef);
+  objRef->size = CALC_FW_POINTER(objRef);
   SET_BROKEN_HEART(objRef);
 
   return newpointer;

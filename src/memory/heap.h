@@ -12,7 +12,11 @@
 #define SET_BROKEN_HEART(obj) ((obj)->size = (obj)->size | BROKEN_HEART)
 #define GET_BROKEN_HEART(obj)                                                  \
   (((obj)->size & BROKEN_HEART) >> (sizeof(unsigned int) * 8 - 2))
-#define GET_POINTER(obj) ((obj)->size & ~(BROKEN_HEART | MSB))
+#define CALC_FW_POINTER(obj) ((hp - getTotalSize((obj))) - heapMin)
+#define GET_POINTER(obj)                                                       \
+  (heap + (((obj)->size & ~(BROKEN_HEART | MSB)) + heapMin))
+
+typedef unsigned char Byte;
 
 typedef struct {
   unsigned int cObjCount;
