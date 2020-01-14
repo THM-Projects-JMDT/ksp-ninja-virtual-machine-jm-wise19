@@ -6,13 +6,14 @@
 #include "../interpreter/interpreter.h"
 #include "../memory/programMemory.h"
 #include "../util/error.h"
+#include <stdbool.h>
 
-static int haltProg = 0;
+static bool haltProg = false;
 static int pc = 0;
 static int lc = 0;
 
 // Stop Runner
-void stopProgramm(void) { haltProg = 1; }
+void stopProgramm(void) { haltProg = true; }
 int getPC(void) { return pc; }
 
 // Change Programm Counter
@@ -30,14 +31,14 @@ void execList(void) {
   while (lc < memorySize) {
     unsigned int ir = getInst(lc);
     lc++;
-    execInst(ir, lc, 1);
+    execInst(ir, lc, true);
   }
 }
 
 void step(void) {
   unsigned int ir = getInst(pc);
   pc++;
-  execInst(ir, pc, 0);
+  execInst(ir, pc, false);
 }
 
 // Run Programm in Memory

@@ -58,11 +58,11 @@ typedef enum inst {
 } Inst;
 
 // Find right Instruction
-void execInst(const unsigned int inst, const int counter, const int dpMode) {
+void execInst(const unsigned int inst, const int counter, const bool dpMode) {
   int opcode = GET_INST(inst);
   int value = SIGN_EXTEND(GET_IMMEDIATE(inst));
 
-  // If Display Mode(dpMode) == 1 -> Just Print Instructions
+  // If Display Mode(dpMode) == true -> Just Print Instructions
   switch (opcode) {
   case halt:
     dpMode ? printInst("halt", counter) : execHalt();

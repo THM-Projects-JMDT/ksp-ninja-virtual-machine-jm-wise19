@@ -46,7 +46,7 @@ void printSep(void) { pprintf(BLUE, "======\n"); }
 
 void printDebugInst(const int pc) {
   printSep();
-  execInst(getInst(pc), pc + 1, 1);
+  execInst(getInst(pc), pc + 1, true);
   printSep();
 }
 
