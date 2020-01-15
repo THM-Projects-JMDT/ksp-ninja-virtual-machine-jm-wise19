@@ -1,2 +1,4 @@
 #!/bin/bash
+(cd lib/bigint/src;
+  make install)
 bash -c make
